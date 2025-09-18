@@ -6,7 +6,7 @@
 
 // to create a root, 
 // i need to import a method called root from the react DOM library from a sub module called reactClient
-import {createRoot} from "react-dom/client"
+import { createRoot } from "react-dom/client"
 
 // we then use the method to create a root
 // what we need to pass to the createRoot method is the dom node in our index.html
@@ -35,3 +35,18 @@ root.render(<h1>Hello, React!</h1>)
 
 // import ReactDOM from "react-dom/client"
 // ReactDOM.createRoot(document.getElementById("root")).render(<h4>Wowo</h4>)
+
+
+// CHALLENGE - setup a react app from scratch
+// this time, try rendering an un-ordered list with 2-3 list items
+// with why you are excited to learn rwact
+
+import { createRoot } from "react-dom/client"
+const root1 = createRoot(document.getElementById("root"))
+root1.render(
+    <ol>
+        <li>To create React NAtive</li>
+        <li>Build SaaS business</li>
+        <li>Build brand online</li>
+    </ol>
+)
