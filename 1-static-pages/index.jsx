@@ -36,10 +36,10 @@ root.render(<h1>Hello, React!</h1>)
 // import ReactDOM from "react-dom/client"
 // ReactDOM.createRoot(document.getElementById("root")).render(<h4>Wowo</h4>)
 
-
-// CHALLENGE - setup a react app from scratch
-// this time, try rendering an un-ordered list with 2-3 list items
-// with why you are excited to learn rwact
+/*
+CHALLENGE - setup a react app from scratch
+this time, try rendering an un-ordered list with 2-3 list items
+with why you are excited to learn rwact
 
 import { createRoot } from "react-dom/client"
 const root1 = createRoot(document.getElementById("root"))
@@ -50,3 +50,18 @@ root1.render(
         <li>Build brand online</li>
     </ol>
 )
+*/
+
+// HOW TO SETUP REACT PROJECT LOCALLY USING VITE
+// Vite - fast in french
+// you need to have Node and NPM setup
+// NPM mostly comes with node so I installed node from the official webpage - .exe
+// then i used 'npm create vite@latest'
+// give the project a name, selected the framwork and the variant.
+// cd into the project name. run 'npm install'
+// next is to run run the Dev server. we can do that in VScode
+// code . to open the current folder in vscode
+// once i am in vscode, i can run 'npm run dev' - my vscode gave error, i had to run it in bash
+// run this in powershell admin 'Set-ExecutionPolicy RemoteSigned' it fix the error
+// this will spin up a dev server on port  http://localhost:5173/
+// i just need to go to the address to see the project created with vite
