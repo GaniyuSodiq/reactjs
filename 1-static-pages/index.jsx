@@ -65,3 +65,79 @@ root1.render(
 // run this in powershell admin 'Set-ExecutionPolicy RemoteSigned' it fix the error
 // this will spin up a dev server on port  http://localhost:5173/
 // i just need to go to the address to see the project created with vite
+
+/**
+    JAVASCRIPT LIBRARIES/FRAMEWORKS 
+
+    LIBRARY is a collection of reuseable code
+    reduxes the need to write repetitive/complex things from scratch
+    you control how wehn it is used
+    no/few boundaries
+
+    FRAMEWORK is predetermined architecture - you follow a specified pettern of development
+    you work within the boundaries set by the framework
+    there is "Right" and "wrong" way to use the framework
+
+    REACT is considered to be a library
+
+    When you might not use a library/framework 
+    * when u are buiding small projects
+    * when network load is a problem in users location
+*/
+
+/**
+    React.createElement()
+
+    import {createRoot} from "react-dom/client"
+    const root = createRoot(document.getElementById("root"))
+    root.render(<h4>Wowo</h4>)
+
+    it might be a little bit starnge to have our html inside our javascript
+    yes, when react was first introduced, html in js didnt exist
+
+    react exported a function called createElement, similar to document.createElement() in vanilla js
+    import {createElement} from "react"
+    it takes in 3 parameters
+
+    1- what type of html element you want to create
+    2- props
+    3- what is the children of the html element. the content in the tag
+
+    so it looks like this
+    root.render(
+        reactElement("h1", null, "this is an h1 content")
+    )
+
+    we can the save the createElement fn inside a variable and use the variable name in .render()
+
+    const createElement = createElement("h1", null, "this is an h1 content")
+    root.render(
+        reactElement
+    )
+
+    if you console.log(reactElement), 
+    {$$typeof: Symbol(react.transitional.element), type: 'h1', key: null, props: {…}, _owner: null, …}
+    you will see that is an object that has info
+    about the DOM node that is going to be inserted by react into our actual DOM
+
+    this object is just a regular js object
+    it needs to be structured the way it is so that react can undertsnad what it is
+
+    it is just a javascript object
+
+    Maybe the react team figured this way of writing html isnt so cool
+
+    but this led to jsx 
+
+    root.render(<h4>Wowo</h4>)
+
+    root1.render(
+        <ol>
+            <li>To create React NAtive</li>
+            <li>Build SaaS business</li>
+            <li>Build brand online</li>
+        </ol>
+    )
+
+    basically having html in javascript
+ */
