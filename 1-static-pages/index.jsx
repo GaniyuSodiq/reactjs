@@ -110,7 +110,7 @@ root1.render(
 
     we can the save the createElement fn inside a variable and use the variable name in .render()
 
-    const createElement = createElement("h1", null, "this is an h1 content")
+    const reactElement = createElement("h1", null, "this is an h1 content")
     root.render(
         reactElement
     )
@@ -140,4 +140,20 @@ root1.render(
     )
 
     basically having html in javascript
+ */
+
+/**
+    JSX
+
+    as you can see, using createElement is not the greatest experince.
+    createElement even gets crazier when you have html elements inside each other
+    so this difficulty quickly gave birth to JSX
+
+    const reactElement = <h1><span>Hello ReactJS</span></h1>
+    root.render(
+        reactElement
+    )
+
+    under the hood, react is going to turn the jsx into the createElement() call we saw earlier
+    JSX is a syntactic sugar on top of the createElement()
  */

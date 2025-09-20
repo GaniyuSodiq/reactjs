@@ -4,7 +4,7 @@ import { createElement } from 'react'
 import './index.css'
 import App from './App.jsx'
 
-const reactElement = createElement("h1", null, "Hello from createElement")
+const reactElement = <h1><span>Hello ReactJS</span></h1>
 
 console.log(reactElement)
 
