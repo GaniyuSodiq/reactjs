@@ -157,3 +157,39 @@ root1.render(
     under the hood, react is going to turn the jsx into the createElement() call we saw earlier
     JSX is a syntactic sugar on top of the createElement()
  */
+
+/**
+    WHY REACT IS COMPOSABLE
+    
+    why you should graduate from vanilla kavascript
+
+    Composable means that you can create easily reuseable and interchangeable pieces of the web
+    that can be combined in various ways to create complex systems
+
+
+ */
+
+/**
+    COMPONENT
+
+    this is like lego block that you use to build bigger block
+    this lego is a chunk of code written somewhere and used in another place
+
+    <div>
+        <MyAwesomeNavBar />
+        <MyContent />
+        <MyFooter />
+    </div>
+
+    each lego/component is a function that return JSX ie HTML written in JS
+
+    function MyContent(){
+        return (
+            <>
+                <p>THIS IS THE Content OF MY PAGE</p>
+            </>
+        )
+    }
+    export default Content
+
+ */
