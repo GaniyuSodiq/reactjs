@@ -6,11 +6,11 @@
 
 // to create a root, 
 // i need to import a method called root from the react DOM library from a sub module called reactClient
-import { createRoot } from "react-dom/client"
+// import { createRoot } from "react-dom/client"
 
 // we then use the method to create a root
 // what we need to pass to the createRoot method is the dom node in our index.html
-const root = createRoot(document.getElementById("root"))
+// const root = createRoot(document.getElementById("root"))
 
 // why is it called 'root'
 // since we are going to be rendering all of our markup using react in our javascript files,
@@ -23,7 +23,7 @@ const root = createRoot(document.getElementById("root"))
 // now that we have root in our js, 
 // i can call a method on that root, a method called render
 // and pass in what looks alot like normal html
-root.render(<h1>Hello, React!</h1>)
+// root.render(<h1>Hello, React!</h1>)
 
 // CHALLENGE - rewrite the first 3 react code we have above this sentence
 
@@ -159,7 +159,7 @@ root1.render(
  */
 
 /**
-    WHY REACT IS COMPOSABLE
+    WHY REACT? IT IS COMPOSABLE
     
     why you should graduate from vanilla kavascript
 
@@ -193,3 +193,32 @@ root1.render(
     export default Content
 
  */
+
+/**
+    WHY REACT? IT IS DECLARATIVE
+
+    It is declarative means we can lean on react to handle the manual and tedious task,
+    that we otherwise would have to worry about ourselves
+
+    what is declarative/imperative 
+
+    Declarative: what should be done
+    the computer says just tell me what needs to happen and i will worry about how to do it.
+
+    Imperative: how should it be done
+    the computer says describe to me every step on how to do something and i will do it.
+
+    in imperative, we have to tell the computer what to do every single step
+    like the code below
+ */
+
+    const root = document.getElementById("root")
+
+    const newH1 = document.createElement("h1")
+    newH1.textContent = "This is manual, imperative coding"
+    newH1.className = "header"
+
+    root.appendChild(newH1)
+
+    // we dont have to do all this in React.
+

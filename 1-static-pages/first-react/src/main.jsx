@@ -1,20 +1,7 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createElement } from 'react'
-import './index.css'
-import App from './App.jsx'
-import Header from './Header.jsx'
-import Content from './Content.jsx'
+import {createRoot} from "react-dom/client"
 
-const reactElement = <h1><span>Hello ReactJS</span></h1>
+const root = createRoot(document.getElementById("root"))
 
-console.log(reactElement)
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    {/* <App /> */}
-    <Header />
-    <Content />
-  </StrictMode>,
-  // reactElement
+root.render(
+  <h1>Welcome, React</h1>
 )
