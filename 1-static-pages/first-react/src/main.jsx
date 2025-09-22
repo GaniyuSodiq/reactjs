@@ -1,4 +1,4 @@
-// FIRST PROJECT
+/** // FIRST PROJECT - my code - SAME AS TUTOR'S CODE
 import './index.css'
 import { createRoot } from 'react-dom/client'
 const root = createRoot(document.getElementById("root"))
@@ -20,3 +20,9 @@ root.render(
     </div>
   </main>
 )
+
+
+You wouldnt put all code inside of .render() in actual projects
+you would use something called custom components
+*/
+
