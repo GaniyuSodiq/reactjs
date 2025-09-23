@@ -52,7 +52,7 @@ root1.render(
 )
 */
 
-// HOW TO SETUP REACT PROJECT LOCALLY USING VITE
+//❤️‍🔥 HOW TO SETUP REACT PROJECT LOCALLY USING VITE
 // Vite - fast in french
 // you need to have Node and NPM setup
 // NPM mostly comes with node so I installed node from the official webpage - .exe
@@ -143,7 +143,7 @@ root1.render(
  */
 
 /**
-    JSX
+    // ❤️‍🔥 JSX
 
     as you can see, using createElement is not the greatest experince.
     createElement even gets crazier when you have html elements inside each other
@@ -250,7 +250,7 @@ root.render(
 // JSX expression must have one parent element.
 
 
-/** // FIRST PROJECT - my code - SAME AS TUTOR'S CODE
+/** ❤️‍🔥 // FIRST PROJECT - my code - SAME AS TUTOR'S CODE
 import './index.css'
 import { createRoot } from 'react-dom/client'
 const root = createRoot(document.getElementById("root"))
@@ -354,3 +354,7 @@ root.render(
         /* components can also be written in opening and closing bracket
         <Page>Some content can be here</Page> */ 
 )
+
+
+
+// ❤️‍🔥 REACT FRAGMENT

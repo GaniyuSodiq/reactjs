@@ -79,36 +79,6 @@ root.render(
 
 
 
-// CHALLENGE add a header and footer component
-
-// function Header() {
-//     return (
-//         <header>
-//             <img src="src/assets/react.svg" alt="React Logo" />
-
-//         </header>
-//     )
-// }
-
-// function Footer() {
-//     return (
-//         <footer>
-//             <small>c 2025 <span>Ganiyu</span> Developement. All rights reserved</small>
-//         </footer>
-//     )
-// }
-
-// root.render(
-//     <>
-//         <Header />
-//         <Page />
-//         <Footer />
-//     </>
-// )
-
-
-
-
 
 // ❤️‍🔥 FRAGMENT - a built-in component from React
 // we first import it
@@ -156,32 +126,86 @@ import { Fragment } from 'react'
  * we can just use '<> </>' tags and disregard the import too
  */
 
-function Page() {
-    return (
-        <>
-            <header>
-                <img src="src/assets/react.svg" alt="React Logo" />
-            </header>
-            <main>
-                <h1>Reasons I'm Excited To Learn React</h1>
-                <ol>
-                    <li>I WANT TO LEARN REACT NATIVE</li>
-                    <li>I NEED A BETTER INCOME</li>
-                    <li>I WANT TO CREATE SOFTWARE ENGINEERING COMPANY</li>
-                </ol>
-            </main>
-            <footer>
-                <small>c 2025 <span>Ganiyu</span> Developement. All rights reserved</small>
-            </footer>
-        </>
-    )
-}
+// function Page() {
+//     return (
+//         <>
+//             <header>
+//                 <img src="src/assets/react.svg" alt="React Logo" />
+//             </header>
+//             <main>
+//                 <h1>Reasons I'm Excited To Learn React</h1>
+//                 <ol>
+//                     <li>I WANT TO LEARN REACT NATIVE</li>
+//                     <li>I NEED A BETTER INCOME</li>
+//                     <li>I WANT TO CREATE SOFTWARE ENGINEERING COMPANY</li>
+//                 </ol>
+//             </main>
+//             <footer>
+//                 <small>c 2025 <span>Ganiyu</span> Developement. All rights reserved</small>
+//             </footer>
+//         </>
+//     )
+// }
 
 /**
  * So you can see this empty tags in react 
  * know that this allows us to render sibling react element
  */
 
+
+
+// ❤️‍🔥 CUSTOM COMPONENTS & PARENT CHILD IDEA
+
+// CHALLENGE add a header, main and footer component
+
+function Header() {
+    return (
+        <header>
+            <img src="src/assets/react.svg" alt="React Logo" />
+
+        </header>
+    )
+}
+
+function MainContent() {
+    return (
+        <main>
+            <h1>Reasons I'm Excited To Learn React</h1>
+            <ol>
+                <li>I WANT TO LEARN REACT NATIVE</li>
+                <li>I NEED A BETTER INCOME</li>
+                <li>I WANT TO CREATE SOFTWARE ENGINEERING COMPANY</li>
+            </ol>
+        </main>
+    )
+}
+
+function Footer() {
+    return (
+        <footer>
+            <small>c 2025 <span>Ganiyu</span> Developement. All rights reserved</small>
+        </footer>
+    )
+}
+
+function Page() {
+    return (
+        <>
+            <Header />
+            <MainContent />
+            <Footer />            
+        </>
+    )
+}
+
 root.render(
-        <Page />
+    <Page />
 )
+// PARENT CHILD COMPONENTS IDEA
+// The idea of Parent/Child is like what we have in the example above
+// We have the individual components Header, MainContent, Footer
+// we can as well put these 3 inside the .render(), but we made another component called Page
+// We put the others inside Page. Page here is the Parent and Header, MainContent and Footer are the Children
+// This can go further down where a child, eg Header in this case, will be a parent for another component
+// and that other component too will have its own child component.
+// And Page here can be a child of another component
