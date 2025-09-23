@@ -1,0 +1,30 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'inter', sans-serif;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #0a1a1e;
+  font-weight: 700;
+  padding: 20px 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav span {
+  color: #61dbfb;
+  font-size: 1.7rem;
+}
