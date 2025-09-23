@@ -523,6 +523,11 @@ root.render(
  * we dont use import {Header} from "./Header" bcs we used export default in the function declaration
  * also, we can use whatever name we want after the import keyword bcs we exported as default
  * 
- * './' means I am inporting this from my own file, not from a thied party package like "react-dom"
+ * './' means I am importing this from my own file, not from a third party package like "react-dom"
  * 
  */
+
+
+// ❤️‍🔥 MAKE MENTAL OUTLINE OF PAGE/PROJECT
+// When starting out, one thing you must do is make a mental/written outline of the page(s)
+// Just thinking through what needs to go on the page and how you will go about it
