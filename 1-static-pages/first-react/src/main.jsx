@@ -1,5 +1,9 @@
 import './index.css'
 import { createRoot } from 'react-dom/client'
+import Header from './header'
+import MainContent from './MainContent'
+import Footer from './Footer'
+
 const root = createRoot(document.getElementById("root"))
 
 
@@ -167,26 +171,26 @@ import { Fragment } from 'react'
 //     )
 // }
 
-function MainContent() {
-    return (
-        <main>
-            <h1>Reasons I'm Excited To Learn React</h1>
-            <ol>
-                <li>I WANT TO LEARN REACT NATIVE</li>
-                <li>I NEED A BETTER INCOME</li>
-                <li>I WANT TO CREATE SOFTWARE ENGINEERING COMPANY</li>
-            </ol>
-        </main>
-    )
-}
+// function MainContent() {
+//     return (
+//         <main>
+//             <h1>Reasons I'm Excited To Learn React</h1>
+//             <ol>
+//                 <li>I WANT TO LEARN REACT NATIVE</li>
+//                 <li>I NEED A BETTER INCOME</li>
+//                 <li>I WANT TO CREATE SOFTWARE ENGINEERING COMPANY</li>
+//             </ol>
+//         </main>
+//     )
+// }
 
-function Footer() {
-    return (
-        <footer>
-            <small>c 2025 <span>Ganiyu</span> Developement. All rights reserved</small>
-        </footer>
-    )
-}
+// function Footer() {
+//     return (
+//         <footer>
+//             <small>c 2025 <span>Ganiyu</span> Developement. All rights reserved</small>
+//         </footer>
+//     )
+// }
 
 function Page() {
     return (
@@ -216,17 +220,17 @@ root.render(
 // ❤️‍🔥 STYLING WITH CLASSES
 // whenever we ares tyling something in JSX, we use 'className' not 'class'
 
-function Header() {
-    return (
-        <header className='header'>
-            <img src="src/assets/react.svg" alt="React Logo" />
-            <nav>
-                <ul className='nav-list'>
-                    <li className='list-item'>Pricing</li>
-                    <li className='list-item'>About</li>
-                    <li className='list-item'>Contact</li>
-                </ul>
-            </nav>
-        </header>
-    )
-}
+// function Header() {
+//     return (
+//         <header className='header'>
+//             <img src="src/assets/react.svg" alt="React Logo" />
+//             <nav>
+//                 <ul className='nav-list'>
+//                     <li className='list-item'>Pricing</li>
+//                     <li className='list-item'>About</li>
+//                     <li className='list-item'>Contact</li>
+//                 </ul>
+//             </nav>
+//         </header>
+//     )
+// }

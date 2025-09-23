@@ -1,8 +1,15 @@
-function Header(){
+function Header() {
     return (
-        <>
-            <h4>THIS IS THE HEADER OF MY PAGE</h4>
-        </>
+        <header className='header'>
+            <img src="src/assets/react.svg" alt="React Logo" />
+            <nav>
+                <ul className='nav-list'>
+                    <li className='list-item'>Pricing</li>
+                    <li className='list-item'>About</li>
+                    <li className='list-item'>Contact</li>
+                </ul>
+            </nav>
+        </header>
     )
 }
 

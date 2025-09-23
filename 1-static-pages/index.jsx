@@ -506,3 +506,23 @@ root.render(
 //         </header>
 //     )
 // }
+
+
+
+
+// ❤️‍🔥 ORGANIZING COMPONENTS
+/**
+ * We cant have all our components on a page/file. That will look rough
+ * So a solution is to have a file named after each component with the JSX extension
+ * So our Header component file will be Header.jsx
+ * 
+ * And for our Page component to see the Header we just moved to its own page, 
+ * we need to do 2 things. 
+ * 1- export the Header component. Most poeple put 'export default' before the function declaration
+ * 2- import the Header component into our where we need it. ' import Header from "./Header" '
+ * we dont use import {Header} from "./Header" bcs we used export default in the function declaration
+ * also, we can use whatever name we want after the import keyword bcs we exported as default
+ * 
+ * './' means I am inporting this from my own file, not from a thied party package like "react-dom"
+ * 
+ */
