@@ -158,14 +158,14 @@ import { Fragment } from 'react'
 
 // CHALLENGE add a header, main and footer component
 
-function Header() {
-    return (
-        <header>
-            <img src="src/assets/react.svg" alt="React Logo" />
+// function Header() {
+//     return (
+//         <header>
+//             <img src="src/assets/react.svg" alt="React Logo" />
 
-        </header>
-    )
-}
+//         </header>
+//     )
+// }
 
 function MainContent() {
     return (
@@ -209,3 +209,24 @@ root.render(
 // This can go further down where a child, eg Header in this case, will be a parent for another component
 // and that other component too will have its own child component.
 // And Page here can be a child of another component
+
+
+
+
+// ❤️‍🔥 STYLING WITH CLASSES
+// whenever we ares tyling something in JSX, we use 'className' not 'class'
+
+function Header() {
+    return (
+        <header className='header'>
+            <img src="src/assets/react.svg" alt="React Logo" />
+            <nav>
+                <ul className='nav-list'>
+                    <li className='list-item'>Pricing</li>
+                    <li className='list-item'>About</li>
+                    <li className='list-item'>Contact</li>
+                </ul>
+            </nav>
+        </header>
+    )
+}
