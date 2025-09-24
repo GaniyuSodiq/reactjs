@@ -6,11 +6,13 @@
 
 body {
   font-family: 'inter', sans-serif;
+  color: #ecf6f9;
 }
 
 .container {
   max-width: 700px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 header {
@@ -29,4 +31,33 @@ header {
 .nav span {
   color: #61dbfb;
   font-size: 1.7rem;
+}
+
+main{  
+  height: calc(100vh - 90px);
+  background-image: url('src/assets/react.svg'); /* Specify the path to your image */
+  background-color: #0a1a1eea; /* Set a fallback background color */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: right center; /* Center the background image */
+  background-size: 40%; /* Scale the image to cover the entire box */
+}
+
+.container > h1{
+  padding: 30px 0px 20px;
+  font-size: 2.4rem;
+}
+
+.facts-list{
+  max-width: 400px;
+}
+
+.facts-list > li {
+  padding-block: 10px;
+  line-height: 19px;
+  margin-left: 50px;
+}
+
+.facts-list > li::marker{
+  color: #61dbfb;
+  font-size: 1.5rem;
 }
