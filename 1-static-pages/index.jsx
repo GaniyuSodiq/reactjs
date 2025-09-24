@@ -1,4 +1,37 @@
-// to setup the most basic react app,
+
+// ❤️‍🔥❤️‍🔥❤️‍🔥 SECTION 1 - STATIC PAGES
+/**
+ * HTML FILE
+ * <body>
+    <!--
+    Why static pages?
+
+    You must have known how to build static pages in html css and js.
+    The reason we are doing it again for react is for u to understand...
+
+    HOW TO THINK IN REACT
+    writing a good react code requires a bit paradigm shift from how you are used 
+    to build web apps in html css and vanilla js
+    -->
+    
+    <!-- <h1>Hello World!</h1>  -->
+    <!-- 
+    this is the basic html way 
+    but we dont write code like this in reactjs
+    instead of adding anything manually to our markup, 
+    react will take this in our javascript and add the content to our html for us
+    we just need to have a place holder tag (ie div) in our html file
+    the div will usually have an id of root  
+    -->
+    <div id="root"></div>
+    <!-- this is the place where react will place all the markup we generate from our jsx -->
+
+
+    <script src="index.jsx"></script>
+</body>
+ */
+
+//❤️‍🔥 to setup the most basic react app,
 // you need to do 2 things
 
 // 1- create a root
@@ -67,7 +100,7 @@ root1.render(
 // i just need to go to the address to see the project created with vite
 
 /**
-    JAVASCRIPT LIBRARIES/FRAMEWORKS 
+    ❤️‍🔥 JAVASCRIPT LIBRARIES/FRAMEWORKS 
 
     LIBRARY is a collection of reuseable code
     reduxes the need to write repetitive/complex things from scratch
@@ -86,7 +119,7 @@ root1.render(
 */
 
 /**
-    React.createElement()
+    ❤️‍🔥 React.createElement()
 
     import {createRoot} from "react-dom/client"
     const root = createRoot(document.getElementById("root"))
@@ -170,7 +203,7 @@ root1.render(
  */
 
 /**
-    COMPONENT
+   ❤️‍🔥 COMPONENT
 
     this is like lego block that you use to build bigger block
     this lego is a chunk of code written somewhere and used in another place
@@ -439,7 +472,6 @@ function Header() {
     return (
         <header>
             <img src="src/assets/react.svg" alt="React Logo" />
-
         </header>
     )
 }
@@ -531,3 +563,142 @@ root.render(
 // ❤️‍🔥 MAKE MENTAL OUTLINE OF PAGE/PROJECT
 // When starting out, one thing you must do is make a mental/written outline of the page(s)
 // Just thinking through what needs to go on the page and how you will go about it
+
+
+
+// ❤️‍🔥❤️‍🔥 FIRST PROJECT - REACT FUNFACTS
+/**
+ * I used vite to create a React project environment
+ * 
+ * I created Main page component
+ * 
+ * export default function Main() {
+    return (
+        <main>
+            <div className="container">
+                <h1>Fun facts about React</h1>
+                <ul className="facts-list">
+                    <li>Was first released in 2013</li>
+                    <li>Was originally created by Jordan Walke</li>
+                    <li>Has well over 100k stars on Github</li>
+                    <li>Is maintained by Meta</li>
+                    <li>Powers thousands of Enterprise Apps including Mobile Apps</li>
+                </ul>
+            </div>
+        </main>
+    )
+}
+* I created the Navbar component
+
+export default function Navbar(){
+    return (
+        <header className="">
+            <nav className="nav container">
+                <img src="src/assets/react.svg" alt="" />
+                <span>ReactFacts</span>
+            </nav>
+        </header>
+    )
+}
+
+* I created the App component and imported Main and Navbar into it
+
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
+
+export default function App(){
+  return (
+    <>
+      <Navbar />
+      <Main />
+    </>
+  )
+}
+
+* I used main.jsx given by Vite. This could be index.jsx in another scenerio
+* i cleaned what give gave and wrote all i needed from scratch
+
+import {createRoot} from "react-dom/client"
+import App from "./App"
+import "./index.css"
+
+const root = createRoot(document.getElementById("root"))
+
+root.render(
+  <App />
+)
+
+* This is the CSS i used
+
+// *{
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
+// body {
+//   font-family: 'inter', sans-serif;
+//   color: #ecf6f9;
+// }
+
+// .container {
+//   max-width: 700px;
+//   margin: 0 auto;
+//   padding: 0 20px;
+// }
+
+// header {
+//   background-color: #0a1a1e;
+//   font-weight: 700;
+//   height: 90px;
+// }
+
+// .nav {
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+// }
+
+// .nav span {
+//   color: #61dbfb;
+//   font-size: 1.7rem;
+// }
+
+// main{  
+//   height: calc(100vh - 90px);
+//   background-image: url('src/assets/react.svg'); /* Specify the path to your image */
+//   background-color: #0a1a1eea; /* Set a fallback background color */
+//   background-repeat: no-repeat; /* Prevent the image from repeating */
+//   background-position: right center; /* Center the background image */
+//   background-size: 40%; /* Scale the image to cover the entire box */
+// }
+
+// .container > h1{
+//   padding: 30px 0px 20px;
+//   font-size: 2.4rem;
+// }
+
+// .facts-list{
+//   max-width: 400px;
+// }
+
+// .facts-list > li {
+//   padding-block: 10px;
+//   line-height: 19px;
+//   margin-left: 50px;
+// }
+
+// .facts-list > li::marker{
+//   color: #61dbfb;
+//   font-size: 1.5rem;
+// }
+// */
+
+/**
+ * The body of my html  file
+ <body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+ */
