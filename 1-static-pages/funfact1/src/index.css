@@ -5,7 +5,7 @@
 }
 
 body{
-  background-color: rgb(1, 36, 36);
+  /* background-color: rgb(1, 36, 36); */
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -31,5 +31,32 @@ header{
 header span{
   font-size: x-large;
   font-weight: 700;
+  color: aqua;
+}
+
+main{
+  height: calc(100vh - 90px);
+  background-color: rgb(1, 36, 36);
+  background-repeat: no-repeat;
+  background-image: url('src/assets/react.svg');
+  background-position: right center;
+  background-size: 20%;
+}
+
+main h1{
+  padding: 50px 0px 20px;
+  font-size: 3rem;
+}
+
+.facts-list{
+  width: 400px;
+  margin-left: 50px;
+}
+
+.facts-list > li{
+  padding-block: 10px;
+}
+
+.facts-list > li::marker{
   color: aqua;
 }
