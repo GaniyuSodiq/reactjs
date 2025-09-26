@@ -5,6 +5,31 @@
 }
 
 body{
-  background-color: rgb(0, 17, 17);
+  background-color: rgb(1, 36, 36);
   color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container{
+  width: 700px;
+  margin: 0 auto;
+}
+
+header{
+   background-color: rgb(0, 17, 17);
+   height: 90px;
+   display: flex;
+   align-items: center;
+}
+
+#logo{
+ display: flex;
+ align-items: center;
+ gap: 5px;
+}
+
+header span{
+  font-size: x-large;
+  font-weight: 700;
+  color: aqua;
 }
