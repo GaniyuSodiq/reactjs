@@ -38,7 +38,7 @@
 // 2- render some markup to the root
 
 // to create a root, 
-// i need to import a method called root from the react DOM library from a sub module called reactClient
+// i need to import a method called createRoot from the react DOM library from a sub module called 'client
 // import { createRoot } from "react-dom/client"
 
 // we then use the method to create a root
@@ -103,7 +103,7 @@ root1.render(
     ❤️‍🔥 JAVASCRIPT LIBRARIES/FRAMEWORKS 
 
     LIBRARY is a collection of reuseable code
-    reduxes the need to write repetitive/complex things from scratch
+    reduces the need to write repetitive/complex things from scratch
     you control how wehn it is used
     no/few boundaries
 
@@ -342,7 +342,7 @@ function TemporaryName() {
 
 /**
 root.render(
-  temporaryName() // this works the same way as before
+  TemporaryName() // this works the same way as before
   // and it make sence bcs this function returns the jsx we need for our .render()
   // but this is not exactly how we use components in react
 )
@@ -616,7 +616,7 @@ export default function App(){
 }
 
 * I used main.jsx given by Vite. This could be index.jsx in another scenerio
-* i cleaned what give gave and wrote all i needed from scratch
+* i cleaned what vite gave me and wrote all i needed from scratch
 
 import {createRoot} from "react-dom/client"
 import App from "./App"
