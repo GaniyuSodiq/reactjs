@@ -718,4 +718,6 @@ root.render(
 // in the form of objects and arrays.
 // our react code will iterate over the data and use it to produce components on the page
 
-// CHALLENGE - create header of the app
+// CHALLENGE - create header of the travel journal app
+
+// CHALLENGE - create one travel destionation component

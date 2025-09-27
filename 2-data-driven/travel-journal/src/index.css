@@ -20,9 +20,48 @@ header{
 #logo{
   display: flex;
   align-items: center;
-  font-weight: 600;
 }
 
 #logo > span:nth-child(1){
   font-size: 2rem;
+}
+
+#logo > h1 {
+  font-size: 1rem;
+}
+
+.container{
+  padding-top: 30px;
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.location-image{
+  width: 50%;
+  height: 200px;
+  background-color: darkviolet;
+  background-image: url('src/assets/react.svg');
+  border-radius: 10px;
+}
+
+.country{
+  margin-right: 10px;
+  font-weight: 500;
+  font-size: .85rem;
+}
+
+.country + a{
+  color:darkolivegreen;
+}
+
+.date-visited{
+  margin: 15px 0 10px;
+}
+
+.details{
+  font-size: .8rem;
+  font-weight: 400;
 }

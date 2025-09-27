@@ -3,7 +3,7 @@ export default function () {
         <header>
             <div id="logo">
                 <span>🌍</span>
-                <span>my travel journal</span>
+                <h1>my travel journal</h1>
             </div>
         </header>
     )
