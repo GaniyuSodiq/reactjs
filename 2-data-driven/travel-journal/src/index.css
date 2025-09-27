@@ -1,0 +1,28 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header{
+  background-color:crimson;
+  color: white;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo{
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+#logo > span:nth-child(1){
+  font-size: 2rem;
+}

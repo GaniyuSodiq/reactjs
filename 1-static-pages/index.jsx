@@ -702,3 +702,20 @@ root.render(
   <script type="module" src="/src/main.jsx"></script>
 </body>
  */
+
+
+// ❤️‍🔥❤️‍🔥❤️‍🔥 SECTION 2 - DATA DRIVEN REACT APP
+/**
+ * You see in our previous project, we hard coded everything on the page into our markup
+ * Sure anything that is static or unchanging in going to be written into the code
+ * However, we are going to see how the power of React is not just from its composeability and declarative
+ * but also from its ability to recieve informaton in the form of data 
+ * and use that to produce reuseable components on the page
+ */
+
+// We are going to build A Travel Journal 
+// and what will make it different is all the info on the page will be contained in regular javascript files
+// in the form of objects and arrays.
+// our react code will iterate over the data and use it to produce components on the page
+
+// CHALLENGE - create header of the app
