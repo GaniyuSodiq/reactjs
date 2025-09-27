@@ -192,45 +192,27 @@ import { Fragment } from 'react'
 //     )
 // }
 
-function Page() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+function App() {
+    const firstName = "Sodiq"
+    const lastName = "Ganiyu"
     return (
-        <>
-            <Header />
-            <MainContent />
-            <Footer />            
-        </>
+        <h1>Hello {firstName} {lastName}</h1>
     )
 }
 
 root.render(
-    <Page />
+    <App />
 )
-// PARENT CHILD COMPONENTS IDEA
-// The idea of Parent/Child is like what we have in the example above
-// We have the individual components Header, MainContent, Footer
-// we can as well put these 3 inside the .render(), but we made another component called Page
-// We put the others inside Page. Page here is the Parent and Header, MainContent and Footer are the Children
-// This can go further down where a child, eg Header in this case, will be a parent for another component
-// and that other component too will have its own child component.
-// And Page here can be a child of another component
-
-
-
-
-// ❤️‍🔥 STYLING WITH CLASSES
-// whenever we ares tyling something in JSX, we use 'className' not 'class'
-
-// function Header() {
-//     return (
-//         <header className='header'>
-//             <img src="src/assets/react.svg" alt="React Logo" />
-//             <nav>
-//                 <ul className='nav-list'>
-//                     <li className='list-item'>Pricing</li>
-//                     <li className='list-item'>About</li>
-//                     <li className='list-item'>Contact</li>
-//                 </ul>
-//             </nav>
-//         </header>
-//     )
-// }

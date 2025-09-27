@@ -765,3 +765,34 @@ This will always work but it will always give 3. But it can be better with a lit
 IN BOTH CASES, we can see that passing addidtional info to our elements/function... 
 allows us to reuse the elements/functions in multiple ways
 */
+
+
+// ❤️‍🔥 PROPS part 2: Reuseable components
+
+/**
+If you look at most webpage, you will see repeated nature of the page.
+this can be seen on YouTube any sites
+
+Aside: JS in JSX
+Similar to above code examples, we can have Javascript in our JSX code
+
+function App() {
+    const firstName = "Sodiq"
+    const lastName = "Ganiyu"
+    
+    return (
+        <h1>Hello {firstName} {lastName}</h1> // Helo Sodiq Ganiyu
+        
+        // this is similar to how we you write js in string literal
+        // `Hello ${firstName} ${lastName}` 
+        // ${} means js is in here
+        // is props, {} means js is in here
+    )
+}
+
+root.render(
+    <App />
+)
+
+
+*/
