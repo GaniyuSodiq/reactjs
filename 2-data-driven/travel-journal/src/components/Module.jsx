@@ -1,7 +1,8 @@
 export default function Module(){
     return (
         <section className="container">
-            <div className="location-image">
+            <div className="main-image-container">
+                <img className="main-image" src="src/assets/react.svg" alt="" />
             </div>
 
             <div className="location-details">

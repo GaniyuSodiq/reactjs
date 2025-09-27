@@ -713,7 +713,7 @@ root.render(
  * and use that to produce reuseable components on the page
  */
 
-// We are going to build A Travel Journal 
+// We are going to build A Travel Journal
 // and what will make it different is all the info on the page will be contained in regular javascript files
 // in the form of objects and arrays.
 // our react code will iterate over the data and use it to produce components on the page
@@ -721,3 +721,47 @@ root.render(
 // CHALLENGE - create header of the travel journal app
 
 // CHALLENGE - create one travel destionation component
+// I named my component Module - tuttor nammed his own Entry
+// The point is of the challenge is to show how difficult is will be if...
+// ...we are to create all the Module/Entry in the page manually
+
+
+// proble with this way - Not reuseable component
+// we can find the idea of reuseable component everywhere like Amazon product listing
+// This is where the idea of props comes into play
+
+
+// ❤️‍🔥 PROPS part 1: Understanding the concept
+
+/** 
+    <html lang="en">
+    <head>
+    </head>
+    <body>    
+        <a ></a>
+        <img >
+        <input >
+    </body>
+    </html>
+
+What do you think is the problem with the tags in the body of this html content?
+
+Each of them would work limitedly as they are but they can be very efficist 
+when given attributes/properties 
+    <a href="www.google.com"></a>
+    <img src="index.png" alt="">
+    <input type="text" placeholder="First Name">
+
+Here is a similar example in javascript
+    function addTwoNumbersTogether(){
+        return 1 + 2
+    }
+
+This will always work but it will always give 3. But it can be better with a little changes 
+    function addTwoNumbersTogether(a, b){
+        return a + b
+    }
+
+IN BOTH CASES, we can see that passing addidtional info to our elements/function... 
+allows us to reuse the elements/functions in multiple ways
+*/
