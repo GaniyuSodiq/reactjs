@@ -1107,4 +1107,8 @@ export default function Contact({img, name, phone, email}) {
         </article>
     )
 }
+
+Destructuring the props is useful but if you have another internal variable in the component,
+using a single word from destructuring like this can be confusing.... be use the props.img etc
+
 */
