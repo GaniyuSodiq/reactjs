@@ -1,17 +1,28 @@
-export default function Contact(props) {
-    console.log(props)
+export default function Contact({img, name, phone, email}) {
     return (
         <article className='contact-card'>
-            <img src={props.img} alt={props.name} />
-            <h3>{props.name}</h3>
+            <img src={img} alt={name} />
+            <h3>{name}</h3>
             <div className="info-group">
                 <span>☎️</span>
-                <p>{props.phone}</p>
+                <p>{phone}</p>
             </div>
             <div className="info-group">
                 <span>📧</span>
-                <p>{props.email}</p>
+                <p>{email}</p>
             </div>
         </article>
     )
 }
+
+const person = {
+    img: "src/assets/react.svg",
+    name: "Felix",
+    phone: "000-234-1234-567",
+    email: "mr.felixoh@catnap.meow",
+}
+
+console.log(person.name)
+
+const {img, name} = person
+console.log(name)

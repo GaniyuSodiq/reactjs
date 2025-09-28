@@ -1047,3 +1047,64 @@ export default function Contact(props) {
     )
 }
 */
+
+
+// ❤️‍🔥 PROPS part 5: Recieving props in a component
+
+/**
+ 
+Lets say we have the variable name person that contains an object
+const person = {
+    img: "src/assets/react.svg",
+    name: "Felix",
+    phone: "000-234-1234-567",
+    email: "mr.felixoh@catnap.meow",
+}
+
+then i can go on and call any property in the object
+console.log(person.phone) // Felix
+
+
+however, in some situation it can be useful to destructor the some of the variable out of the obj
+and use them directly
+How?
+make a variable with name as curly braces that contin the property you want to pull out of the obj
+and equate the variable to the obj
+
+const {img, name} = person
+
+what this does is: it declares 2 variables in one go... img and name
+and set their value to the value of the property that have their name as the variable name
+
+console.log(name) // Felix
+
+Also, know that i dont get to decide what the variable name will be. 
+i cant use 'const {image, username} = person'
+wont work bcs there is no image or username property on object
+
+one little hack to change the name if you want is use :
+const {img: image, name: username} = person
+but this is not commonly use
+
+
+Now lets bring this object destructuring to react
+
+remember props is an object
+so i can destructure it right in the argument parenthesis
+export default function Contact({img, name, phone, email}) {
+    return (
+        <article className='contact-card'>
+            <img src={img} alt={name} />
+            <h3>{name}</h3>
+            <div className="info-group">
+                <span>☎️</span>
+                <p>{phone}</p>
+            </div>
+            <div className="info-group">
+                <span>📧</span>
+                <p>{email}</p>
+            </div>
+        </article>
+    )
+}
+*/
