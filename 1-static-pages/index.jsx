@@ -245,15 +245,15 @@ root1.render(
     like the code below
 */
 
-    const root = document.getElementById("root")
+const root = document.getElementById("root")
 
-    const newH1 = document.createElement("h1")
-    newH1.textContent = "This is manual, imperative coding"
-    newH1.className = "header"
+const newH1 = document.createElement("h1")
+newH1.textContent = "This is manual, imperative coding"
+newH1.className = "header"
 
-    root.appendChild(newH1)
+root.appendChild(newH1)
 
-    // we dont have to do all this in React.
+// we dont have to do all this in React.
 
 
 /** ANOTHER CHALLENGE
@@ -383,9 +383,9 @@ function Page() {
 
 
 root.render(
-        <Page />
-        /* components can also be written in opening and closing bracket
-        <Page>Some content can be here</Page> */ 
+    <Page />
+    /* components can also be written in opening and closing bracket
+    <Page>Some content can be here</Page> */
 )
 
 
@@ -502,7 +502,7 @@ function Page() {
         <>
             <Header />
             <MainContent />
-            <Footer />            
+            <Footer />
         </>
     )
 }
@@ -547,16 +547,16 @@ root.render(
  * We cant have all our components on a page/file. That will look rough
  * So a solution is to have a file named after each component with the JSX extension
  * So our Header component file will be Header.jsx
- * 
- * And for our Page component to see the Header we just moved to its own page, 
- * we need to do 2 things. 
+ *
+ * And for our Page component to see the Header we just moved to its own page,
+ * we need to do 2 things.
  * 1- export the Header component. Most poeple put 'export default' before the function declaration
  * 2- import the Header component into our where we need it. ' import Header from "./Header" '
  * we dont use import {Header} from "./Header" bcs we used export default in the function declaration
  * also, we can use whatever name we want after the import keyword bcs we exported as default
- * 
+ *
  * './' means I am importing this from my own file, not from a third party package like "react-dom"
- * 
+ *
  */
 
 
@@ -569,9 +569,9 @@ root.render(
 // ❤️‍🔥❤️‍🔥 FIRST PROJECT - REACT FUNFACTS
 /**
  * I used vite to create a React project environment
- * 
+ *
  * I created Main page component
- * 
+ *
  * export default function Main() {
     return (
         <main>
@@ -665,7 +665,7 @@ root.render(
 //   font-size: 1.7rem;
 // }
 
-// main{  
+// main{
 //   height: calc(100vh - 90px);
 //   background-image: url('src/assets/react.svg'); /* Specify the path to your image */
 //   background-color: #0a1a1eea; /* Set a fallback background color */
@@ -709,7 +709,7 @@ root.render(
  * You see in our previous project, we hard coded everything on the page into our markup
  * Sure anything that is static or unchanging in going to be written into the code
  * However, we are going to see how the power of React is not just from its composeability and declarative
- * but also from its ability to recieve informaton in the form of data 
+ * but also from its ability to recieve informaton in the form of data
  * and use that to produce reuseable components on the page
  */
 
@@ -733,11 +733,11 @@ root.render(
 
 // ❤️‍🔥 PROPS part 1: Understanding the concept
 
-/** 
+/**
     <html lang="en">
     <head>
     </head>
-    <body>    
+    <body>
         <a ></a>
         <img >
         <input >
@@ -746,8 +746,8 @@ root.render(
 
 What do you think is the problem with the tags in the body of this html content?
 
-Each of them would work limitedly as they are but they can be very efficist 
-when given attributes/properties 
+Each of them would work limitedly as they are but they can be very efficist
+when given attributes/properties
     <a href="www.google.com"></a>
     <img src="index.png" alt="">
     <input type="text" placeholder="First Name">
@@ -757,12 +757,12 @@ Here is a similar example in javascript
         return 1 + 2
     }
 
-This will always work but it will always give 3. But it can be better with a little changes 
+This will always work but it will always give 3. But it can be better with a little changes
     function addTwoNumbersTogether(a, b){
         return a + b
     }
 
-IN BOTH CASES, we can see that passing addidtional info to our elements/function... 
+IN BOTH CASES, we can see that passing addidtional info to our elements/function...
 allows us to reuse the elements/functions in multiple ways
 */
 
@@ -778,12 +778,12 @@ Similar to above code examples, we can have Javascript in our JSX code
 function App() {
     const firstName = "Sodiq"
     const lastName = "Ganiyu"
-    
+
     return (
         <h1>Hello {firstName} {lastName}</h1> // Helo Sodiq Ganiyu
 
         // this is similar to how we you write js in string literal
-        // `Hello ${firstName} ${lastName}` 
+        // `Hello ${firstName} ${lastName}`
         // ${} means js is in here
         // is props, {} means js is in here
     )
@@ -814,7 +814,7 @@ function App() {
 }
 
 
-To take this a little further, lets say we want the return statement to return... 
+To take this a little further, lets say we want the return statement to return...
 Good afternoon, good evening, or good night.
 We prefer the logic to be above return and return should contain maybe a variable name
 
@@ -837,6 +837,213 @@ function App() {
     )
 }
 
-Now lets look a t the actual syntax of props
+Now lets look at the actual syntax of props
 
+*/
+
+
+// ❤️‍🔥 PROPS part 3: Create a contact component
+
+/**
+export default function Contact() {
+    return (
+        <article className='contact-card'>
+            <img src="src/assets/react.svg" alt="Photo of Mr. Whiskerson" />
+            <h3>Mr. Whiskerson</h3>
+            <div className="info-group">
+                <span>☎️</span>
+                <p>222-234-1234-567</p>
+            </div>
+            <div className="info-group">
+                <span>📧</span>
+                <p>mr.whiskerz@catnap.meow</p>
+            </div>
+        </article>
+    )
+}
+
+import Contact from './Contact'
+
+function App(){
+    <div className="contacts">
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+    </div>
+}
+
+root.render(
+    <App />
+)
+
+The problem now is only one contact is reandering in 4 places on our site
+This is the same thing as our function that can only add 1+2
+
+    function addTwoNumbersTogether(){
+        return 1 + 2
+    }
+
+
+One way we can make this better useful is to allow the person using the functions to
+give a or b . and specify their own numbers
+
+    function addTwoNumbersTogether(a, b){
+        return a + b
+    }
+
+*/
+
+
+// ❤️‍🔥 PROPS part 4: Passing data into a component
+
+/**
+We need to find a way to pass data into our component other wise
+we will have to hard code data into it and that ruins the purpose of reuable components
+fortunatley react has made this simple for anyone who has done any kind of html in the past
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+just like in html where i can have a reuseable element like a (link) 
+that I can then pass in different attributes of html that can then alter the behaviour of that link
+I also can pass info into that link like an href="google.com"
+so that a link can act differently from other links that have different values for the href
+
+
+in html i cant simply type whatever atribute name i want 
+<link whatEverIwant ="" rel="icon" type="image/svg+xml" href="/vite.svg" />
+bcs whatEverIwant is not defined in the html doc/specification 
+
+
+The way we pass data to react components is very similar to the way we have it in html
+and bcs react component is something i created, i can pass in whatEverIwant as an attribute
+this attribute is called property in react and more called props more commonly
+And i can pass in whatever value i want
+
+function App(){
+    <div className="contacts">
+        <Contact whatEverIwant = "Whatever value i want"/>
+        <Contact />
+        <Contact />
+        <Contact />
+    </div>  
+}
+
+
+The goal of props is to take whatever hardcoded data from the component
+We are not cosuming the props now in the component declaration - we will later
+Here we want to take hard coded data form the component and use the comps usage
+
+function App(){
+    <div className="contacts">
+            <Contact
+                img="src/assets/react.svg"
+                name="Mr. Whiskerson"
+                phone="222-234-1234-567"
+                email="mr.whiskerz@catnap.meow"
+            />
+            <Contact
+                img="src/assets/react.svg"
+                name="Felix"
+                phone="000-234-1234-567"
+                email="mr.felixoh@catnap.meow"
+            />
+            <Contact
+                img="src/assets/react.svg"
+                name="Pumpkinfluffy"
+                phone="999-234-1234-567"
+                email="mr.pumhaz@catnap.meow"
+            />
+            <Contact
+                img="src/assets/react.svg"
+                name="Mrs. Ajanla"
+                phone="777-234-1234-567"
+                email="mr.ajanla@catnap.meow"
+            />
+    </div>  
+}
+
+
+If you notice we now have a data focus in the Coponent usage in App
+and we have design and layout focus in the Component declaration
+And if we want to make changes to the design or layout...  
+we can do it from one place, the Componet declaration.
+Component usage only cares about the data
+
+*/
+
+
+// ❤️‍🔥 PROPS part 5: Recieving props in a component
+
+/**
+You have seen how we can pass our own custom data into the component we are using 
+with attributes/properties/props just like we use html attributes
+
+So how do we recieve this in our Component declaration?
+Just like the way we recieve arguments/parameters in function. 
+The react component will recive an object that represents all of the properties we passed in.
+
+You can call it 'props' but like any parameter, you can it whatever you want
+
+export default function Contact(whatever) {
+    console.log(whatever)
+    return (
+        <article className='contact-card'>
+            <img src="src/assets/react.svg" alt="Photo of Mr. Whiskerson" />
+            <h3>Mr. Whiskerson</h3>
+            <div className="info-group">
+                <span>☎️</span>
+                <p>222-234-1234-567</p>
+            </div>
+            <div className="info-group">
+                <span>📧</span>
+                <p>mr.whiskerz@catnap.meow</p>
+            </div>
+        </article>
+    )
+}
+
+The console gives 4 objects
+{img: 'src/assets/react.svg', name: 'Mr. Whiskerson', phone: '222-234-1234-567', email: 'mr.whiskerz@catnap.meow'}
+{img: 'src/assets/react.svg', name: 'Felix', phone: '000-234-1234-567', email: 'mr.felixoh@catnap.meow'}
+{img: 'src/assets/react.svg', name: 'Pumpkinfluffy', phone: '999-234-1234-567', email: 'mr.pumhaz@catnap.meow'}
+{img: 'src/assets/react.svg', name: 'Mrs. Ajanla', phone: '777-234-1234-567', email: 'mr.ajanla@catnap.meow'}
+
+Why did it console log 4 times when we only wrote console.log() once???
+It is because we have 4 instances of our Contact component
+
+Although the <Contact /> looks alot like html, what really happens is the Contact() function is called
+And because we have the Component 4 times, the fn is executed 4 times, and console is log 4 times
+
+now to use this argument/parameter in our jsx - just like we use js in html 
+
+export default function Contact(props) {
+    return (
+        <article className='contact-card'>
+            <img src={props.img} alt={props.name} />
+            <h3>{props.name}</h3>
+            <div className="info-group">
+                <span>☎️</span>
+                <p>{props.phone}</p>
+            </div>
+            <div className="info-group">
+                <span>📧</span>
+                <p>{props.email}</p>
+            </div>
+        </article>
+    )
+}
 */

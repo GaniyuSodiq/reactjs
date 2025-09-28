@@ -41,3 +41,21 @@ h1 {
 .list-item{
   font-size: 1.2rem;
 }
+
+.contacts{
+  display: flex;
+  gap: 10px;  
+  flex-wrap: wrap;
+}
+
+.contact-card{
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: .2 .2 1 3 #242424;
+  padding: 10px;
+}
+
+.info-group{
+  display: flex;
+  align-items: center;
+}
