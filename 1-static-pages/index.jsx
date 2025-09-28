@@ -772,7 +772,6 @@ allows us to reuse the elements/functions in multiple ways
 /**
 If you look at most webpage, you will see repeated nature of the page.
 this can be seen on YouTube any sites
-
 Aside: JS in JSX
 Similar to above code examples, we can have Javascript in our JSX code
 
@@ -782,17 +781,62 @@ function App() {
     
     return (
         <h1>Hello {firstName} {lastName}</h1> // Helo Sodiq Ganiyu
-        
+
         // this is similar to how we you write js in string literal
         // `Hello ${firstName} ${lastName}` 
         // ${} means js is in here
         // is props, {} means js is in here
     )
 }
-
 root.render(
     <App />
 )
 
+
+Lets say we want the component to return what ever time it is
+function App() {
+
+    return (
+        <h1>It is currently {new Date().getHours() % 12}</h1>
+    )
+}
+
+
+This means whatever logic we have in the curly braces will be executed as js
+It is not the best to have our entire logic in the curly braces though.
+So we can always write the logic in normal js before the return statement
+
+function App() {
+    const hours = new Date().getHours() % 12
+    return (
+        <h1>It is currently {hours}</h1>
+    )
+}
+
+
+To take this a little further, lets say we want the return statement to return... 
+Good afternoon, good evening, or good night.
+We prefer the logic to be above return and return should contain maybe a variable name
+
+function App() {
+    const hours = new Date().getHours()
+    let timeOfDay
+
+    if (hours < 12){
+        timeOfDay = "morning"
+    } else if (hours >= 12 && hours < 17){
+        timeOfDay = "aternoon"
+    } else if (hours < 21){
+        timeOfDay = "evening"
+    } else if (hours >= 21){
+        timeOfDay = "night"
+    }
+
+    return (
+        <h1>Good {timeOfDay}</h1>
+    )
+}
+
+Now lets look a t the actual syntax of props
 
 */

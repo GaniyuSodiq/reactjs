@@ -206,10 +206,21 @@ import { Fragment } from 'react'
 
 
 function App() {
-    const firstName = "Sodiq"
-    const lastName = "Ganiyu"
+    const hours = new Date().getHours()
+    let timeOfDay
+
+    if (hours < 12){
+        timeOfDay = "morning"
+    } else if (hours >= 12 && hours < 17){
+        timeOfDay = "aternoon"
+    } else if (hours < 21){
+        timeOfDay = "evening"
+    } else if (hours >= 21){
+        timeOfDay = "night"
+    }
+
     return (
-        <h1>Hello {firstName} {lastName}</h1>
+        <h1>Good {timeOfDay}</h1>
     )
 }
 
