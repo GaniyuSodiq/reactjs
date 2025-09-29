@@ -55,10 +55,9 @@ function ContactsGroup() {
     )
 }
 
-function App() {
-    return (
-        <>
-            <Joke
+/**
+ * 
+ <Joke
                 setup="How many days can you read in a week"
                 punchline="Everyday! I read my Netflix new realease everyday."
                 upvotes={10}
@@ -84,7 +83,37 @@ function App() {
                 // setup="How many days can you read in a week"
                 punchline="Everyday! I read my Netflix new realease everyday."
             />
-        </>
+ */
+
+import generalImage from "./assets/react.svg"
+function App(){
+    return (
+            <div className="contacts">
+            <Contact
+                img={generalImage}
+                name="Mr. Whiskerson"
+                phone="222-234-1234-567"
+                email="mr.whiskerz@catnap.meow"
+            />
+            <Contact
+                img={generalImage}
+                name="Felix"
+                phone="000-234-1234-567"
+                email="mr.felixoh@catnap.meow"
+            />
+            <Contact
+                img={generalImage}
+                name="Pumpkinfluffy"
+                phone="999-234-1234-567"
+                email="mr.pumhaz@catnap.meow"
+            />
+            <Contact
+                img={generalImage}
+                name="Mrs. Ajanla"
+                phone="777-234-1234-567"
+                email="mr.ajanla@catnap.meow"
+            />
+    </div> 
     )
 }
 
@@ -92,8 +121,5 @@ root.render(
     <App />
 )
 
-// conditional rendering
-/**
-    I only want to publush this parapgraph if a certian condition exixts
-*/
+
 

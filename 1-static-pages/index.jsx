@@ -1115,7 +1115,7 @@ using a single word from destructuring like this can be confusing.... use the pr
 
 
 // ❤️‍🔥 Conditional Rendering
-
+// conditional rendering
 /**
 Create Joke compoent that that takes props setup and punchline
 
@@ -1150,6 +1150,9 @@ export default function Joke(props){
         </article>
     )
 }
+*/
+/**
+    I only want to publush this parapgraph if a certian condition exixts
 */
 /**
          * CONDITIONAL RENDERING
@@ -1187,4 +1190,21 @@ so to pass in non string, we will use the curly braces
                 }
                 stringsCanBrace={"We can also use brace for strings"}
             />
+*/
+
+
+// ❤️‍🔥 Working with static assets
+
+/**
+It is important to know that Vite re organize our code especially when tranfedring to live site
+so this will lose track of the location of the image when we use it this way
+<img src="src/assets/react.svg" alt="React Logo" />
+
+What we can do is import the images from a relative part
+this make js know where th images were before this re-organization happens
+
+import generalImage from "./assets/react.svg"
+{generalImage} is use as src value
+
+
 */

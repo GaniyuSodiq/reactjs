@@ -15,14 +15,14 @@ export default function Contact({img, name, phone, email}) {
     )
 }
 
-const person = {
-    img: "src/assets/react.svg",
-    name: "Felix",
-    phone: "000-234-1234-567",
-    email: "mr.felixoh@catnap.meow",
-}
+// const person = {
+//     img: "src/assets/react.svg",
+//     name: "Felix",
+//     phone: "000-234-1234-567",
+//     email: "mr.felixoh@catnap.meow",
+// }
 
-console.log(person.name)
+// console.log(person.name)
 
-const {img, name} = person
-console.log(name)
+// const {img, name} = person
+// console.log(name)
