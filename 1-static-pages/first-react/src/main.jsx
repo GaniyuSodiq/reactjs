@@ -61,6 +61,16 @@ function App() {
             <Joke
                 setup="How many days can you read in a week"
                 punchline="Everyday! I read my Netflix new realease everyday."
+                upvotes={10}
+                isPun={true}
+                comments={
+                    [
+                        {author: "Ade", text: "Good job", title: "yo"},
+                        {author: "Waine", text: "Good job", title: "yo"},
+                        {author: "Murshid", text: "Good job", title: "yo"},
+                    ]
+                }
+                stringsCanBrace={"We can also use brace for strings"}
             />
             <Joke
                 setup="How many days can you read in a week"

@@ -1163,3 +1163,28 @@ export default function Joke(props){
          * 3
          * <p style={{display: props.setup ? "block" : "none"}}>Setup: {props.setup}</p>
 */
+
+
+// ❤️‍🔥 Non String props
+
+/**
+Up on till now we have only pass in string through our props
+And understandably bcs props are like attributes in html and attributes takes strings in quotes
+
+But with react and javascript, we are not limited to only string
+so to pass in non string, we will use the curly braces
+            <Joke
+                setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+                upvotes={10}
+                isPun={true}
+                comments={
+                    [
+                        {author: "Ade", text: "Good job", title: "yo"},
+                        {author: "Waine", text: "Good job", title: "yo"},
+                        {author: "Murshid", text: "Good job", title: "yo"},
+                    ]
+                }
+                stringsCanBrace={"We can also use brace for strings"}
+            />
+*/
