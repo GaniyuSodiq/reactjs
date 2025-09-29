@@ -1109,6 +1109,57 @@ export default function Contact({img, name, phone, email}) {
 }
 
 Destructuring the props is useful but if you have another internal variable in the component,
-using a single word from destructuring like this can be confusing.... be use the props.img etc
+using a single word from destructuring like this can be confusing.... use the props.img etc
 
+*/
+
+
+// ❤️‍🔥 Conditional Rendering
+
+/**
+Create Joke compoent that that takes props setup and punchline
+
+function App() {
+    return (
+        <>
+            <Joke
+                setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+            <Joke
+                setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+                        <Joke
+                setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+            <Joke
+                // setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+        </>
+    )
+}
+
+export default function Joke(props){
+    return (
+        <article>
+            <p style={{display: props.setup ? "block" : "none"}}>Setup: {props.setup}</p>
+            <p>Punchline: {props.punchline ? props.punchline  : "this joke doesnt have punchline"}</p>
+        </article>
+    )
+}
+*/
+/**
+         * CONDITIONAL RENDERING
+         * 1
+         * {props.setup && <p>Setup: {props.setup}</p>}
+         * if LHS is trutty, return RHS
+         * 
+         * 2
+         * <p>Setup: {props.setup ? props.setup : "this joke doesnt have setup"}</p>
+         * 
+         * 3
+         * <p style={{display: props.setup ? "block" : "none"}}>Setup: {props.setup}</p>
 */

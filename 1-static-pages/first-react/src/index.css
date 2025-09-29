@@ -59,3 +59,11 @@ h1 {
   display: flex;
   align-items: center;
 }
+
+article{
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: inset 1px .5px red;
+  margin: 5px 0px;
+  padding: 5px;
+}

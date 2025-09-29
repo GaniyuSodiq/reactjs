@@ -7,6 +7,7 @@ import Footer from './Footer'
 const root = createRoot(document.getElementById("root"))
 
 import Contact from './Contact'
+import Joke from './Joke'
 
 function ContactsGroup() {
     return (
@@ -55,70 +56,34 @@ function ContactsGroup() {
 }
 
 function App() {
-    const hours = new Date().getHours()
-    let timeOfDay
-
-    if (hours < 12) {
-        timeOfDay = "morning"
-    } else if (hours >= 12 && hours < 17) {
-        timeOfDay = "aternoon"
-    } else if (hours < 21) {
-        timeOfDay = "evening"
-    } else if (hours >= 21) {
-        timeOfDay = "night"
-    }
-
     return (
-        <h1>Good {timeOfDay}</h1>
+        <>
+            <Joke
+                setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+            <Joke
+                setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+                        <Joke
+                setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+            <Joke
+                // setup="How many days can you read in a week"
+                punchline="Everyday! I read my Netflix new realease everyday."
+            />
+        </>
     )
 }
 
 root.render(
-    <>
-        <App />
-
-        <div className="contacts">
-            <Contact
-                img="src/assets/react.svg"
-                name="Mr. Whiskerson"
-                phone="222-234-1234-567"
-                email="mr.whiskerz@catnap.meow"
-            />
-            <Contact
-                img="src/assets/react.svg"
-                name="Felix"
-                phone="000-234-1234-567"
-                email="mr.felixoh@catnap.meow"
-            />
-            <Contact
-                img="src/assets/react.svg"
-                name="Pumpkinfluffy"
-                phone="999-234-1234-567"
-                email="mr.pumhaz@catnap.meow"
-            />
-            <Contact
-                img="src/assets/react.svg"
-                name="Mrs. Ajanla"
-                phone="777-234-1234-567"
-                email="mr.ajanla@catnap.meow"
-            />
-        </div>
-    </>
+    <App />
 )
 
+// conditional rendering
 /**
-The problem now is only one contact is reandering in 4 places on our site
-This is the same thing as our function that can only add 1+2
-
-    function addTwoNumbersTogether(){
-        return 1 + 2
-    }
-
-
-One way we can make this better useful is to allow the person using the functions to 
-give a or b . and specify their own numbers
-
-    function addTwoNumbersTogether(a, b){
-        return a + b
-    }
+    I only want to publush this parapgraph if a certian condition exixts
 */
+
