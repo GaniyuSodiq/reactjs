@@ -1372,7 +1372,7 @@ function App(){
 }
 
 
-// MAPPING COMPONENTS
+// ❤️‍🔥 MAPPING COMPONENTS
 We are not yet ready to be pulling data from an API
 we will be doing that in the next section
 
@@ -1380,6 +1380,30 @@ however, we have made a js file that contain a array of the jokes setup and punc
 and have it export default [] from the declaration
 
 this will be similar to the dat we are pulling down from the API
+
+so we will import jokesData from my App() compnent
+
+    // then i can create a new array of elments from jokes data, not from the jokeData itself...
+    // but from the mapped version of the jokesData. 
+
+    // remember the jokesData js file contains array of objects [{},{},{}]
+
+    // for each item in the jokesData, i can return a joke component
+    // and i can pass in data from the javascript joke object down through props into my component
+
+
+import jokesData from './jokesData'
+function App() {
+    const jokesElement = jokesData.map(joke => {
+        return <Joke setup={joke.setup} punchline={joke.punchline}/>
+    })
+
+    return (
+        <main>
+            {jokesElement}
+        </main>
+    )
+}
 */
 
 

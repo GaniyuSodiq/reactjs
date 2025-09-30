@@ -79,7 +79,7 @@ import generalImage from "./assets/react.svg"
 
 
 import jokesData from './jokesData'
-function App(){
+function App() {
     // then i can create a new array of elments from jokes data, not from the jokeData itself...
     // but from the mapped version of the jokesData. 
 
@@ -89,10 +89,7 @@ function App(){
     // and i can pass in data from the javascript joke object down through props into my component
 
     const jokesElement = jokesData.map(joke => {
-        return <Joke 
-            setup={joke.setup}
-            punchline={joke.punchline}
-        />
+        return <Joke setup={joke.setup} punchline={joke.punchline}/>
     })
 
     return (
