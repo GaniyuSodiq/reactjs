@@ -64,10 +64,12 @@ header{
   margin-right: 10px;
   font-weight: 500;
   font-size: .85rem;
+  text-transform: uppercase;
 }
 
 .country + a{
   color:darkolivegreen;
+  font-size: .7rem;
 }
 
 .date-visited{
