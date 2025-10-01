@@ -1,4 +1,5 @@
 export default function Entry(props){
+    console.log(props)
     return (
         <section className="container">
             <div className="main-image-container">
