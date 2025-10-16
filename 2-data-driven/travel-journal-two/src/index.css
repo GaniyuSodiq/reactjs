@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header{
+  background-color: orange;
+  text-align: center;
+  padding: 20px 0;
+  font-size: x-large;
+  color: white;
+  font-weight: 900;
+}
+
+.header-box{
+  
+}
