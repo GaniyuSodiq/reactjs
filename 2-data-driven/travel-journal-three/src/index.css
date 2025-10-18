@@ -1,0 +1,17 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.header-text{
+  display: flex;
+  background-color: goldenrod;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 70px;
+}
+
+.header-text span{
+  font-size: 2rem;
+}
