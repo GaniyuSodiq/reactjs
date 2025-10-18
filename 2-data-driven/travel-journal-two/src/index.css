@@ -1,13 +1,13 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-header{
+header {
   background-color: orange;
   text-align: center;
   padding: 20px 0;
@@ -16,6 +16,55 @@ header{
   font-weight: 900;
 }
 
-.header-box{
-  
+.entry {
+  display: flex;
+  width: 50%;
+  height: 200px;
+  margin: 40px auto 5px;
+  gap: 20px;
+  align-items: center;
+}
+
+.image-area {
+  height: 100%;
+  width: 25%;
+}
+
+.image-area img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.text-area {
+  width: 75%;
+}
+
+.location .country{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .8rem;
+  margin-right: 10px;
+}
+
+.location a{
+  color: black;
+  opacity: .7;
+  font-size: .8rem;
+}
+
+.text-area h2{
+  font-size: xx-large;
+  margin-bottom: 15px;
+}
+
+.text-area .date{
+  font-weight: 600;
+}
+
+.text-area p{
+  font-size: .9rem;
+  opacity: .8;
+  margin-top: 5px;
 }
