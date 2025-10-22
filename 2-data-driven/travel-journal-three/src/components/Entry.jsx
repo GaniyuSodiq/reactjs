@@ -1,19 +1,19 @@
-export default function Entry(){
+export default function Entry({entry}){
     return (
+
         <div className="entry-box">
             <div className="image-box">
-                <img src="https://scrimba.com/links/travel-journal-japan-image-url" alt="hallo" />
+                <img src={entry.img.src} alt={entry.img.alt} />
             </div>
             <div className="text-box">
                 <div className="location">
                     <span>📌</span>
-                    <span className="country">JAPAN</span>
-                    <a href="">view on Google Maps</a>
+                    <span className="country">{entry.country}</span>
+                    <a href={entry.googleMapsLink}>view on Google Maps</a>
                 </div>
-                <h2>Mount Fiji</h2>
-                <p className="dates">27 May, 2021 - 8 Jun, 2021</p>
-                <p className="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Explicabo amet aliquam atque harum dicta numquam minus enim eveniet officia commodi?
+                <h2>{entry.title}</h2>
+                <p className="dates">{entry.dates}</p>
+                <p className="text">{entry.text}
                 </p>
             </div>
         </div>

@@ -36,7 +36,11 @@ header{
 
 .image-box{
   height: 100%;
-  width: 45%;
+  width: 30%;
+}
+
+.text-box{
+  width: 70%;
 }
 
 .image-box img{
