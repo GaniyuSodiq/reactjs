@@ -1,6 +1,15 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Courier New', Courier, monospace;
+}
+
+header{
+  margin-bottom: 30px;
 }
 
 .header-text{
@@ -20,16 +29,34 @@
   display: flex;
   width: 50%;
   height: 200px;
-  margin: 0 auto;
+  margin: 30px auto;
+  gap: 30px;
+  align-items: center;
 }
 
 .image-box{
   height: 100%;
-  width: 25%;
+  width: 45%;
 }
 
 .image-box img{
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-radius: 10px;
+}
+
+.location .country{
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.text-box h2{
+  margin: 5px 0 10px;
+}
+
+.text-box .dates{
+  font-weight: 600;
+  margin-bottom: 5px;
 }
