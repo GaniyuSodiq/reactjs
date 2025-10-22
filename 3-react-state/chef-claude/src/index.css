@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #fafaf8;
+}
+
+header{
+  border-bottom: solid 1px rgba(0, 0, 0, 0.365);
+  padding: 10px 0;
+  box-shadow: 0 .3px 10px 1px rgba(0, 0, 0, 0.338);
+  background-color: white;
+}
+
+.header-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

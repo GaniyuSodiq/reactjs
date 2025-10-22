@@ -1,6 +1,5 @@
-export default function Entry({entry}){
+export default function Entry({key, entry}){
     return (
-
         <div className="entry-box">
             <div className="image-box">
                 <img src={entry.img.src} alt={entry.img.alt} />
