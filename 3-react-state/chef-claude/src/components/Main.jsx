@@ -10,6 +10,7 @@ export default function Main() {
         ingredients.push(newIngredient)
         console.log(ingredients)
     }
+    
     return (
         <main>
             <form action="" onSubmit={handleOnSubmit}>
