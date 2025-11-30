@@ -5,57 +5,24 @@
 }
 
 body{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #fafaf8;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.container{
+  width: 50%;
+  margin: 0 auto;
 }
 
-header{
-  border-bottom: solid 1px rgba(0, 0, 0, 0.365);
-  padding: 10px 0;
-  box-shadow: 0 .3px 10px 1px rgba(0, 0, 0, 0.338);
-  background-color: white;
-}
-
-.header-content{
+header {
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  border-bottom: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.292);
 }
 
-main{
-  padding: 30px 30px 10px;
-}
-
-.add-ingredient-form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.add-ingredient-form input{
-  border-radius: 6px;
-  border: solid 1px #d1d5db;
-  padding: 9px 13px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  flex-grow: 1;
-  min-width: 150px;
-  max-width: 400px;
-}
-
-.add-ingredient-form button{
-  border-radius: 6px;
-  border: none;
-  background-color: #141413;
-  color: #fafafb;
-  align-self: stretch;
-  width: 150px;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.add-ingredient-form button::before{
-  content: "+";
-  margin-right: 5px;
+header img {
+  width: 40px;
+  height: 50px;
 }
