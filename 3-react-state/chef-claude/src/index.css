@@ -30,3 +30,56 @@ header > img {
 header > h1{
   font-weight: 400;
 }
+
+main{
+  padding: 30px 30px 10px;
+}
+
+.add-ingredient-form{
+  display: flex;
+  /*the items are already side by side but for centering and gap sake we use flex */
+  justify-content: center;
+  /*the display flex align items default of stretch is making it taller and same height as the button*/
+  /* align-items: center; */ 
+  gap: 10px;
+  /*height here gives all items in the form a max height to stretch to*/
+  height: 38px;
+}
+
+.add-ingredient-form > input{
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 9px 13px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.095);
+  /*the input gets wide ad the screen gets wider: flex-grow: 1; gives that */
+  flex-grow: 1;
+  /*we want to give min and max bcs flex grow 1 can be too wide or thin*/
+  min-width: 150px;
+  max-width: 480px;
+}
+
+
+.add-ingredient-form > button{
+  /*buttons and placeholders dont take the font family specified in body and other parts*/
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  border-radius: 6px;
+  border: none;
+  background-color: #141413;
+  color: #fafaf8;
+  /*the display flex align items default of stretch is making it taller and same height as the input*/
+  /*setting the display flex in parent to center would bring the height to hug the content-add ingredient*/
+  padding: 9px 13px;
+  width: 150px;
+  font-size: 0.87rem;
+  font-weight: 400;
+}
+
+/*
+  the button has "+" before add ingredient. 
+  we could put it in the html but it looks decorative and we could put it from css too
+  so we use the ::before sudo element
+*/
+.add-ingredient-form > button::before{
+  content: "+";
+  margin-right: 5px;
+}
