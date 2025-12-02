@@ -1760,7 +1760,7 @@ We basically pass the content of the function to the button and run when the but
 there are several eventhandlers like onClick in the React doc
 */
 
-// CHALLENGE: LOG SOMETHING TO THE CONSOLE WHEN CLICK A BUTTON & MOUSE OVER THE IMAGE
+// ❤️‍🔥 CHALLENGE: LOG SOMETHING TO THE CONSOLE WHEN CLICK A BUTTON & MOUSE OVER THE IMAGE
 /*
 
 import reactImage from "./assets/react.svg"
@@ -1783,4 +1783,250 @@ export default function App() {
 }
 
 */
+
+
+
+
+// ❤️‍🔥 MAPPING INGREDIENTS IN CHEF CLAUDE
+// the plan is to list out what the user type into the input fied after they type n click the button
+
+// so we will add the ingredient the user is submitting thru the form to an array and 
+// we will be mapping over the array to display a list item
+
+// CHALLENGE MAPP OVER AN ARRAY AN DISPLAY THE LIST ON THE MAIN PAGE AFTER THE FORM
+/**
+ * 
+export default function Main(){
+    const ingredients = ["Chicken", "Oregano", "Tomatoes"]
+    
+    /**
+     * 1: Review Challenge:
+     * Map over the list of ingredients and render them as list items
+     * 
+     * Note: We're doing things a weird way here. Don't worry,
+     * we're building up to learning the right way 🙂
+     * 
+     * key is included to prevent react from showing the key error for array items
+     */
+
+ //   const ingredientsListItems = ingredients.map(ingredient => 
+ //       (<li key={ingredient}> {ingredient} </li>)
+        // the extra brcket() is use to take advantage of the return benefit in single arr fn
+ //  )
+
+
+    /**
+     * 2: Another challenge:
+     * add onSubmit eventListener on the form and get it diapl "form submitted" to console
+     */
+
+//    function handleSubmit(event){
+        // to stop the submit from reloading the page
+        // and if you look down on the form opening tag, thisis where we use this fn with onSubmit
+//        event.preventDefault()
+//        console.log("form submitted")
+        // the reason we disnt use it in the submit button is:
+        // 1: we want to the user to be able to submit the form by pressing Enter key not just submit btn
+        // 2: being in the form looks more semantic. submit btn will work despit the onSubmit in the form tag.
+        
+        /**
+         * 3: Another challenge:
+         * A: how can we grab the igredient that was added to the input?
+         * B: And put it in the array?
+        */
+        // --A: how can we grab the igredient that was added to the input?
+        // in order to grab the indgredient typed into the input
+        // we need to grab the form data that was submitted with the form
+        // in another word...
+        // in order to grab the text of the of the input field that has attribute name="ingredient",
+        // we need to do that thru form data
+        // we can grab the form data on the html form itself
+        // or grab it from the form DOM thru the 'event'
+
+        // grab the form data from the form DOM thru the 'event'
+//        const formData = new FormData(event.currentTarget)
+        // get the ingredient data from the form data we grabbed above
+//        const newIngredient = formData.get("ingredient")
+
+        // --B: And put the new ingredient into the array?
+//        ingredients.push(newIngredient)
+//        console.log(ingredients)
+
+        /**
+         * By default React doe not automatically upate the page for us
+         * in the imparative vanilla js. we would have a fn re-render the list when new item is added
+         * But React is declarative so there is a better way to do that here
+         * We want to just update our data ie the list and have react sense that then update d page or us
+         * THAT IS WEHRE THE CONCEPT OF REACT STATE COMES IN 😁❤️‍🔥
+         */
+//    }
+
+
+
+//    return(
+//        <main>
+//            <form action="" className="add-ingredient-form" onSubmit={handleSubmit}>
+//                <input 
+//                    aria-label="Add Ingridient" 
+//                    type="text" 
+//                    placeholder="e.g. Oregano"
+                    // Whenever we are submitting a form, our input(s) must have a name
+//                    name="ingredient"
+                    // If the page reloads (by commenting out the preventDefault() above), 
+                    // we will see the URL change to: http://localhost:5173/?ingredient=Maggi
+                    // Maggi is the value typed into the input field
+                    // But modern development doesnt need the page to reload in this way
+//                />
+
+//                <button>Add Ingredient</button>
+//            </form>
+//            <ul>
+//                {ingredientsListItems}
+//            </ul>
+//        </main>
+//    )
+//}
+
+// */
+
+
+
+
+// 😁❤️‍🔥 STATE IN REACT
+/**
+ * one of themain confusion in react ususally come from not understnding the difference between STATE & PROPS
+ * 
+ * PROPS😁
+ * props refers to the properties passed into a cmponent in order for it to work correctly
+ * this is similar to how functions recieve parameters
+ * A component recieving props is not allowed to modify the props. props are immutable
+ * props are used to get the component display what we want it to display
+ * components are not allowed to modify props - this is one the things that distinguish props from state
+ * props are immutable ie props are unchangeable
+ */
+// for example
+// function addTwoParameter(a, b){
+//     // it would not make sense for us to change the incoming parameter like below
+//     a = 43 // DONT DO THIS
+//     return a + b
+// }
+
+// addTwoParameter(1, 2)
+
+
+// similar in a react component
+// function Navbar(props){
+//     props.logoIcon = "some-other-icon.png" // DONT DO THIS
+// }
+// < Navbar logoIcon="logo.png" />
+
+
+/** STATE 😁
+ * state refers to the values that are managed by the component
+ * similar to variables declared inside a function
+ * Any time you have a changing value that should be saved/displayed... 
+ * you will likely be using a state
+ * 
+ * 
+ * "The view (UI) is a funcyion of your state component"
+ * 
+ * 01: Render
+ * React runs your function and display whatever gets returned.
+ * The function will only be run again if:
+ * A: the function recieves new props from above
+ * B: the function's internal state value change
+ * 
+ * 02: setState
+ * Changing a local, non state variable does not cause React to re-render the component.
+ * Changing state with a built in 'setState' function does.
+ * example is our ingredients array. we save it as regular: const ingredients = []
+ * this is not saved as a state value so React doe not re-render the Main component
+ * 
+ * 03: view = function(state)
+ * When state changes and React re-runs (re-renders) your component,
+ * something new gets returned and replaces what used to be on the page
+ */
+
+// another State analogy is the: light bulb analogy
+/**
+ * if the light switch is tuned on, there will electricity runing into the bulb and you get a light room
+ * if no electricity, there will be no light and the view is a dark room
+*/
+
+
+
+// ❤️‍🔥❤️‍🔥❤️‍🔥 useState
+// import React from "react"
+
+// export default function App() {
+
+  // simply changin a local variable is not gonna make react re-run our component
+  // see the code below
+  // if I click the btn on page for it to change to 'Heck Yes', it will not
+  // bcs 'state' here is a local variable. not a useState variable
+
+  // let state = "Yes o"
+
+  // function handleClick() {
+  //   state = "Heck Yes!"
+  // }
+
+  /**
+   * Instead we have to use a function that is provided by React...
+   * ...to save the variable in an actual 'State'
+   * We need to first import the function from React using
+   * either: import {useState} from "react"
+   * or: import React form "react"
+   */
+  // const result = React.useState() // useState is an array of undefined and a fn: [undefined, ƒ]
+  // console.log(result) // [undefined, ƒ]
+
+//  const result2 = React.useState("Hello") // ['Hello', ƒ] . "Hello and fn"
+//  console.log(result2) // ['Hello', ƒ]
+
+  // if we are calling useState and we pass in a value like "Hello" here
+  // this value is uses as the initial state.
+  // we use it if we want our state to start from a particular value
+
+  // const [result, func] = React.useState("Yes") 
+
+  // so now 'result' is a state variable instead of a local value
+  // and we use the variable in our code {result[0]} or better {result}
+  // this {result[0]} is bcs when we call React.useState(), we recieve an array in return
+  // and we dont use {result[0]} to reference the array value
+  // instead we distructure the array like this: 
+  // const [result, func] = React.useState("Yes")
+  // what the code above means is that.. we know the content of the rhs is ['Yes', ƒ]
+  // we are only distructuring them to their individual variable name
+  // const [result, func] = ['Yes', ƒ]
+  // in other words: // const result = "Yes"  // const func = f
+  // we can use any variable name unlike in object destructuring that the name is not flexible
+  // const [isImportant, func] = React.useState("Yes")
+
+  // we now that changing a local variabe will not re-render the page, even the default state value
+  // but if we call the function and provide a new value...
+  // ...React will re-render the page with the new value
+  // it will update state and triger React to re-render the page with the updated state
+
+  // there is a naming convention for the func, 
+  // it starts with 'set' and ends with the initial state variable name: isImportant
+  // making 'setIsImportant'
+//  const [isImportant, setIsImportant] = React.useState("Yes")
+  // we can call the function by setIsImportant("Heck Yes"), it would work but that would lead to error
+  // bcs each time the page renders, it will re-render again thereby causing a loop
+
+//  function handleClick(){
+//    setIsImportant("Heck Yes")
+//  }
+
+//  return (
+//    <main>
+//      <h1 className="title">Is state important to know?</h1>
+//      {/* <button onClick={handleClick} className="value">{state}</button> */}
+//      <button onClick={handleClick} className="value">{isImportant}</button>
+//    </main>
+//  )
+//}
+
+// but how do we get back to the previous state value??
 
