@@ -1537,7 +1537,250 @@ export default function App() {
 
 // ❤️‍🔥 SECTION 3 STARTS AT 4HR:33
 
+/*
+so far we have discussed 
+1; static websites and 
+2; reuseable components
 
-      
+You can tell that something is Static web page when it is usally read-only 
+there is no user driven changes to the data behind the scenes
 
+some examples are
+Blog: when u visit a blog, u are usullay just reading the page
+News sites: we are not updating the news on the page
+Recipes sites: likewise we just view the recipes and the pictures
+etc
+
+❤️‍🔥 WHAT WE ABOUT TO TALK ABOUT NOW IS HOW TO BUILD DYNAMIC WEB APPS IN REACT
+you can clasify a web page as dynamic when user can read and write
+
+Read Write: user has ability to change data
+Highly interactive
+Displays the user's specific data
+
+some examples are
+Bank website: you login and it displays your details and account balance
+SaaS websites like AirBnb... you can filter listing. book etc
+eCommerce sites: you add items to cart
+
+**/
+
+// ❤️‍🔥 CHALLENGE BUILD A HEADER COMPONENT FOR CHEF CLAUDE
+/*
+-- the header component
+
+import ClaudeImage from "./../images/chef-claude-icon.png"
+
+export default function Header(){
+    return(
+        <header className="">
+            <img src={ClaudeImage} />
+            <h1>Chef Claude</h1>
+        </header>
+    )
+}
+
+-- the style
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.container{
+  width: 50%;
+  margin: 0 auto;
+}
+
+header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.292);
+}
+
+header img {
+  width: 40px;
+  height: 50px;
+}
+**/
+
+
+// ❤️‍🔥 CHEF CLAUDE FORM
+
+/*
+when a user visit our chef claude app, they will just see the header and the form
+
+the form conprise just the input field and a button beside the input 
+
+Lets create the form. 
+
+I know the input and buttom are just small part that we can just make without outting them in the form
+however, it is best to have them in a form though bcs of semantic and benefits of using a a form
+
+**/
+
+
+// ❤️‍🔥 WE CREATED THE MAIN COMPONENT
+/*
+export default function Main(){
+    return(
+        <main>
+            <form action="" className="add-ingredient-form">
+                arial -label is same as puting the form component into lable tags
+                both arial-lable and label tags are use for screen readers to knw what to do with the...
+                ..form component
+                placeholder is where u give example of what to be in the form
+                placeholder is not where you put the title / what the does does like Add Ingridient 
+
+                <input 
+                    aria-label="Add Ingridient" 
+                    type="text" 
+                    placeholder="e.g. Oregano"
+                />
+
+                <button>Add Ingredient</button>
+            </form>
+        </main>
+    )
+}
+**/
+
+
+// ❤️‍🔥 WE STYLED THE FORM LIKE THIS
+
+// main{
+//   padding: 30px 30px 10px;
+// }
+
+// .add-ingredient-form{
+//   display: flex;
+//   /*the items are already side by side but for centering and gap sake we use flex */
+//   justify-content: center;
+//   /*the display flex align items default of stretch is making it taller and same height as the button*/
+//   /* align-items: center; */ 
+//   gap: 10px;
+//   /*height here gives all items in the form a max height to stretch to*/
+//   height: 38px;
+// }
+
+// .add-ingredient-form > input{
+//   border-radius: 6px;
+//   border: 1px solid #d1d5db;
+//   padding: 9px 13px;
+//   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.095);
+//   /*the input gets wide ad the screen gets wider: flex-grow: 1; gives that */
+//   flex-grow: 1;
+//   /*we want to give min and max bcs flex grow 1 can be too wide or thin*/
+//   min-width: 150px;
+//   max-width: 480px;
+// }
+
+
+// .add-ingredient-form > button{
+//   /*buttons and placeholders dont take the font family specified in body and other parts*/
+//   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+//   border-radius: 6px;
+//   border: none;
+//   background-color: #141413;
+//   color: #fafaf8;
+//   /*the display flex align items default of stretch is making it taller and same height as the input*/
+//   /*setting the display flex in parent to center would bring the height to hug the content-add ingredient*/
+//   padding: 9px 13px;
+//   width: 150px;
+//   font-size: 0.87rem;
+//   font-weight: 400;
+// }
+
+// /*
+//   the button has "+" before add ingredient. 
+//   we could put it in the html but it looks decorative and we could put it from css too
+//   so we use the ::before sudo element
+// */
+// .add-ingredient-form > button::before{
+//   content: "+";
+//   margin-right: 5px;
+// }
+
+
+// ❤️‍🔥 CHEF CLAUDE PROJECT OVERVIEW
+/*
+it is always good to have a good understanding of what you are building before you dive into the code
+Best to have the entire project designed out so you know what the user will input and get at the end.
+
+1- WHEN THE USER FIRST GETS TO THE PAGE, THEY WILL SEE THE HEADER AND THE INPUT WITH BUTTON
+
+2- WHEN THEY ADD INPUTS INGREDIENTS, WE WILL MAP OVER THE INPUT AND DISPLAY THEM UNDER Ingredients on Hand
+
+3- WE WILL ALSO DISPLAY A CALL TO ACTION AT THE BOTTOM TO ASK THE USER TO GET A RECIPE
+THE CTA WILL SEND OUR INGREDIENTS TO THE CLAUDE API 
+
+4- THEN WE WILL DISPLAY Suggested Recipe WE WILL GET FROM THE API
+IT WILL DISPLAY A FORMATTED LIST OF INGREDIENTS AND AND INSTRUCTIOS 
+
+**/
+
+
+
+// ❤️‍🔥 EVENT LISTENER
+/* The primary thing tha separates a static page and dynamic page is..
+for users to be to interact with what they see on screen.
+And one of the prmary ways we do that is by listening for events.
+
+one way to add event listener to your page in vanilla js is by
+someElement.addEventListener("click", function(){})
+
+another way is by using onClick attribute in HTML
+<button onclick="evenHandlerFunction()">Teiger Event </button>
+
+the first way is what is common in vanilla js 
+but the second way looks similar to how we do event listerner is React js
+
+
+this is how we write it in React js
+<button onClick={handleClick}>Click me</button>
+
+Notice the attribute here is onClick in camelCase just like the way we write className
+
+It is important to know the difference between onClick={handleClick} and onClick={handleClick()}
+having the parenthesis after the function name like this onClick={handleClick()}, will call the fn immediately the component loads
+which we dont want. This is similar to how we write it in html code 
+
+onClick={handleClick} is the right way to write it JS code and React. Without the parenthesis.
+<button onClick={handleClick}>Click me</button>
+We only want to call the function when the event is triggered. i.e when the fn is called.
+We basically pass the content of the function to the button and run when the button is clicked.
+
+there are several eventhandlers like onClick in the React doc
+*/
+
+// CHALLENGE: LOG SOMETHING TO THE CONSOLE WHEN CLICK A BUTTON & MOUSE OVER THE IMAGE
+/*
+
+import reactImage from "./assets/react.svg"
+export default function App() {
+  
+  function handleClick() {
+    console.log("I was clicked!")
+  }
+
+  function handleMouseHover(){
+    console.log("I was hovered")
+  }
+    
+  return (
+    <main className="container">
+      <img src={reactImage} alt="Placeholder image from Picsum" onMouseEnter={handleMouseHover} />
+      <button onClick={handleClick}>Click me</button>
+    </main>
+  )
+}
+
+*/
 
