@@ -1,49 +1,81 @@
+import React from "react"
+
 export default function App() {
   /**
-   * Challenge: Replace the if/else below with a ternary
-   * to determine the text that should display on the page
-   */
-  // const isGoingOut = true
+     * Challenge: Convert the code below to use an array
+     * held in state instead of a local variable. 
+     * Initialize the state array as an empty array
+     * 
+     * Don't worry about fixing `addFavoriteThing` quite yet.
+     */
+  // const myFavoriteThings = []
+  const [myFavoriteThings, setMyFavoriteThings] = React.useState([])
 
-  // let answer  // 👈 Use ternary here
+  const allFavoriteThings = ["💦🌹", "😺", "💡🫖", "🔥🧤", "🟤🎁",  "🐴", "🍎🥧", "🚪🔔", "🛷🔔", "🥩🍝"]
+  
+  const thingsElements = myFavoriteThings.map(thing => <p key={thing}>{thing}</p>)
 
-  // let answer = isGoingOut ? "Yes" : "No"
+  // the main purpose of this app is to see how to add things into the array
+  function addFavoriteThing() {
+    // We'll work on this next, nothing to do here yet.
 
-  // Remove the code below 👇 once your ternary is done
-  // if(isGoingOut === true) {
-  //     answer = "Yes"
-  // } else {
-  //     answer = "No"
-  // }
-
-  /**
-   * Ternary operator is just a way to have if/else statement on a single line
-   * let answer = isGoingOut === true ? "Yes" : "No"
-   * Ternary operator is simply asking a question: 
-   * is isGoingOut true ? return "Yes" if true and return "No" if false
-   * it can be written as 'const answer = isGoingOut ? "Yes" : "No"
-   * we change to const bcs we are not in the if else scope anymore
-   * and the isGoingOut is alreadya bollean so no need to equate it to true, 
-   * String is already truthy by default
-   * 
-   * Note that we we are rendering the result as answer in our component.
-   * there is another way to do this and that is to move the ternary into my component.
-  */
-
-  /**
-   * Challenge: move the Ternary directly inside the JSX
-  */
-  const isGoingOut = true
-
-  /**
-   * so we no longer need answer variable
-   * we simple use what the ternary operator returns
-  */
-
+    // You can say I know how to add somthing int a array.. then use:
+    // myFavoriteThings.push("blablan")
+    /**
+     * there are a couple of things wrong with above way
+     * 1: simply modifying the state doesnt re-render the view in React
+     * there is something special about the state setter eg here setMyFavoriteThings... 
+     * that does triger re-render in react
+     * myFavoriteThings.push("blablan") will add blablan to the array but will not trigger rerender
+     * 2: it is an important rul that you never ever want to directly modify state
+     * things like .push does not make duplicate, it modifies the original array
+     * 
+     * just like the way we did not want setCount(count++)
+     * we said it gives setCount(count = count + 1)
+     * and we cannot modify state directly in React, count is a state, count + 1 modifies it
+     * similarly myFavoriteThings.push("blablan") is a bad idea in react
+     * 
+     * to modify a state in React, we have to use the setter function
+     * and when we use it, we have to decide if we need the current state or not
+     * if we need the current state, we use callback fn
+     * 
+    */
+//   setMyFavoriteThings(prevFavThings => [...prevFavThings, "Test"])
+   /**
+    * We need the previous Array here, thats y we use callback fn
+    * [...prevFavThings, "Test"]
+    * here we use desstructure to drop the items in the prev array then join the new item with them
+    * so the final trick to get allFavoriteThings items to display is
+    */
+    
+   setMyFavoriteThings(
+    prevFavThings => [
+      ...prevFavThings, 
+      allFavoriteThings[prevFavThings.length]
+    ])
+    /**
+     * at first click, prevFavThings.length is 0 bcs we started with nothing
+     * this makes allFavoriteThings[0],... 
+     * ...and drop its first item which is "💦🌹" into myFavoriteThings
+     * 
+     * at second click, prevFavThings.length is 1 bcs it now has "💦🌹"
+     * this makes allFavoriteThings[1],... 
+     * ...and drop its second item which is "😺" into myFavoriteThings
+     * 
+     * at the third click, prevFavThings.length is 2 bcs it now has "💦🌹" and "😺"
+     * this makes allFavoriteThings[2],...
+     * ...and drop its third item which is "💡🫖" into myFavoriteThings
+     * 
+     * and so on... 
+     */
+  }
+  
   return (
     <main>
-      <h1 className="title">Do I feel like going out tonight?</h1>
-      <button className="value">{isGoingOut ? "Yes" : "No"}</button>
+      <button onClick={addFavoriteThing}>Add item</button>
+      <section aria-live="polite">
+        {thingsElements}
+      </section>
     </main>
   )
 }
