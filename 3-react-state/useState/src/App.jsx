@@ -3,47 +3,79 @@
 import React from "react"
 
 export default function App() {
-    /**
-     * Challenge: 
-     * Create state to track our count value (initial value is 0)
-     * Don't forget to replace the hard-coded "0" with your new state
-    */
+
     const [count, setCount] = React.useState(0)
-
+   
     /**
-     * Challenge: 
-     * Create a function called 'add' that runs when the + button is clicked
-     * you can just console log "add" for now
-    */
-    // function add(){
-    //   console.log("add")
-    // }
-
-    /**
-     * Challenge: 
-     * see if you can think of a way to add 1 to the count
-     * everytime the button is clicked
-    */    
+     * in the body of the callback fn we need to return.. 
+     * the new value we want to state to be on the next render
+     * we could return count + 1, which is not different from what we had before
+     * the different is that this callback function will passed the oldValue of the state... 
+     * before your setCount ran  
+     * so with this I can use the oldValue in place of wht used to be count. this works!
+     *   
     function add(){
-      console.log("add")
-      setCount(count + 1)
-      // if you try to do setCount(count++) you will get an error that says:
-      // 'you cant assign to a constant variable'
-      // and you then go ahead to change the count declaration to:
-      // let [count, setCount] = React.useState(0)
-      // and it worked partially... bcs 'count' is now declared with 'let'
-      // but this is a no no in React bcs count++ is 'count = count + 1'
-      // and it is directly modifying the count in the LHS
-      // modifying state directly is ano no in react. REMMBER THAT
-      // on the contrary, setCount(count + 1) on gives setCount the value of count + 1
+      setCount(function(oldValue){
+        return oldValue + 1
+      })
+    }
+    * And instead of using oldValue, we can use prev followed by the state variable name
+    * in the case count. so we use prevCount instead of oldValue
+    
+    function add(){
+      setCount(function(prevCount){
+        return prevCount + 1
+      })
+    }
+    * At first this might look like extra work but if we take the more easy sysntax of arrow fn
+    * we can simply say 
+    
+    function add(){
+      setCount(prevCount => prevCount + 1)
+    }
+    * and in the end it is not really different from what we had before
+    * BUT WHY DO WE HAVE TO DO THIS
+    * 
+    * Note: If you eve need the old value of state
+    * to help you determine the new value of state,
+    * you should pass a callback function to your 
+    * state setter function instead of using state directly.
+    * This callback function will recieve the old value 
+    * of state has its parameter, which you can then use
+    * to determine your new value of state.
+    * THIS IS A GENERAL RULE. 
+    * The issue of using state directly is nt something you will 
+    * come accross often but better safe than sorry. 
+    * And the syntax are even similar and simple.
+    * 
+    * lets see the issue with using the state directly
+    *     
+    function add(){
+      setCount(prevCount => prevCount + 1)
+      setCount(prevCount => prevCount + 1)
+      setCount(prevCount => prevCount + 1)
     }
 
-    /**
-     * Challenge: 
-     * Add functionality to the minus 
-    */
     function minus(){
       setCount(count - 1)
+      setCount(count - 1)
+      setCount(count - 1)
+    }
+      the add function will add increament by 3 
+      and the minus will only decrease by 1
+
+      you would expect the minus too to be by 3... but it doesnt work except in the callback fn
+    */
+    function add(){
+      setCount(prevCount => prevCount + 1)
+    }
+
+    // function minus(){
+    //   setCount(count - 1)
+    // }
+
+    function minus(){
+      setCount(prevCount => prevCount -1)
     }
 
     return (
