@@ -1,73 +1,59 @@
+// HERE IS AN APP THAT COUNTS HOW MANY TIMES BOB IS GOING TO SAY STATE IN THIS ENTIRE SECTION
+
 import React from "react"
 
 export default function App() {
+    /**
+     * Challenge: 
+     * Create state to track our count value (initial value is 0)
+     * Don't forget to replace the hard-coded "0" with your new state
+    */
+    const [count, setCount] = React.useState(0)
 
-  // simply changin a local variable is not gonna make react re-run our component
-  // see the code below
-  // if I click the btn on page for it to change to 'Heck Yes', it will not
-  // bcs 'state' here is a local variable. not a useState variable
+    /**
+     * Challenge: 
+     * Create a function called 'add' that runs when the + button is clicked
+     * you can just console log "add" for now
+    */
+    // function add(){
+    //   console.log("add")
+    // }
 
-  // let state = "Yes o"
+    /**
+     * Challenge: 
+     * see if you can think of a way to add 1 to the count
+     * everytime the button is clicked
+    */    
+    function add(){
+      console.log("add")
+      setCount(count + 1)
+      // if you try to do setCount(count++) you will get an error that says:
+      // 'you cant assign to a constant variable'
+      // and you then go ahead to change the count declaration to:
+      // let [count, setCount] = React.useState(0)
+      // and it worked partially... bcs 'count' is now declared with 'let'
+      // but this is a no no in React bcs count++ is 'count = count + 1'
+      // and it is directly modifying the count in the LHS
+      // modifying state directly is ano no in react. REMMBER THAT
+      // on the contrary, setCount(count + 1) on gives setCount the value of count + 1
+    }
 
-  // function handleClick() {
-  //   state = "Heck Yes!"
-  // }
+    /**
+     * Challenge: 
+     * Add functionality to the minus 
+    */
+    function minus(){
+      setCount(count - 1)
+    }
 
-  /**
-   * Instead we have to use a function that is provided by React...
-   * ...to save the variable in an actual 'State'
-   * We need to first import the function from React using
-   * either: import {useState} from "react"
-   * or: import React form "react"
-   */
-  // const result = React.useState() // useState is an array of undefined and a fn: [undefined, ƒ]
-  // console.log(result) // [undefined, ƒ]
-
-  const result2 = React.useState("Hello") // ['Hello', ƒ] . "Hello and fn"
-  console.log(result2) // ['Hello', ƒ]
-
-  // if we are calling useState and we pass in a value like "Hello" here
-  // this value is uses as the initial state.
-  // we use it if we want our state to start from a particular value
-
-  // const [result, func] = React.useState("Yes") 
-
-  // so now 'result' is a state variable instead of a local value
-  // and we use the variable in our code {result[0]} or better {result}
-  // this {result[0]} is bcs when we call React.useState(), we recieve an array in return
-  // and we dont use {result[0]} to reference the array value
-  // instead we distructure the array like this: 
-  // const [result, func] = React.useState("Yes")
-  // what the code above means is that.. we know the content of the rhs is ['Yes', ƒ]
-  // we are only distructuring them to their individual variable name
-  // const [result, func] = ['Yes', ƒ]
-  // in other words: // const result = "Yes"  // const func = f
-  // we can use any variable name unlike in object destructuring that the name is not flexible
-  // const [isImportant, func] = React.useState("Yes")
-
-  // we now that changing a local variabe will not re-render the page, even the default state value
-  // but if we call the function and provide a new value...
-  // ...React will re-render the page with the new value
-  // it will update state and triger React to re-render the page with the updated state
-
-  // there is a naming convention for the func, 
-  // it starts with 'set' and ends with the initial state variable name: isImportant
-  // making 'setIsImportant'
-  const [isImportant, setIsImportant] = React.useState("Yes")
-  // we can call the function by setIsImportant("Heck Yes"), it would work but that would lead to error
-  // bcs each time the page renders, it will re-render again thereby causing a loop
-
-  function handleClick(){
-    setIsImportant("Heck Yes")
-  }
-
-  return (
-    <main>
-      <h1 className="title">Is state important to know?</h1>
-      {/* <button onClick={handleClick} className="value">{state}</button> */}
-      <button onClick={handleClick} className="value">{isImportant}</button>
-    </main>
-  )
+    return (
+        <main className="container">
+            <h1>How many times will Bob say "state" in this section?</h1>
+            <div className="counter">
+                <button onClick={minus} className="minus" aria-label="Decrease count">–</button>
+                <h2 className="count">{count}</h2>
+                <button onClick={add} className="plus" aria-label="Increase count">+</button>
+            </div>
+        </main>
+    )
 }
-
-// but how do we get back to the previous state value??
