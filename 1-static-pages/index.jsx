@@ -2528,3 +2528,54 @@ export default function App() {
 */
 
 //❤️‍🔥 REACT FORM INTRO
+/**
+ * Our Chef Claude has a simple form - if not the simplest. Just an input and a button
+ * But creating forms of different types is one of the most common task thay you will be doing in your React app
+ * maybe something that looks more like a orm eg sign up form 
+ * or something subtle like when you favorite a tweet or upvote a post on reddit
+ * 
+ * Any kind of interaction that exist with a data in the database from your application 
+ * will often times be handled by submitting a form
+ * 
+ * And if you have been developing for the web for a long time, you'll knw that form ahve around like forever
+ * 
+ * In this sample html 5 form, we just have reguar form elements
+ * with couple of labels that are associated with inputs
+ * and input type submit which is the button at the bottom of the form
+ * 
+ * the for form opening tag has a method attribute that you can give to it
+ * this method is "get" by default
+ * get does a full page refresh when u submit
+ * it will also navigate us to a different location 
+ * the location is what is given in the action attr of the form plus the values of the inputs
+ * the location in the action will submit the values and get another page to display for the user
+ * 
+ * fast forward a little bit 
+ * js become what is use to getthe inputs from a orm and send the data to the backend
+ * the js code looks like this
+        document.getElementById("my-form").addEventListener("submit", function(event) {
+            event.preventDefault()
+            const formData = new FormData(event.currentTarget)
+            const firstName = formData.get("firstName")
+            const lastName = formData.get("lastName")
+            submitViaAPI({
+                firstName,
+                lastName
+            })
+        })
+
+        function submitViaAPI(data) {
+            console.log(data)
+            console.log("Submitted!")
+        }
+ */
+
+/**
+ * so ur js code prevent the refresh 
+ * get the formData from events
+ * and subits it to the API/backend
+ * 
+ * WHAT COMES NEXT IN THE HISTORY OF WEBDEVELOPMENT IS A LITTLE BIT ROCKY
+ * 
+ * cont... 6:29:50
+ */
