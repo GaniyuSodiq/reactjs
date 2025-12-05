@@ -1,81 +1,54 @@
-import React from "react"
-import avatar from "./images/user.png"
-import starFilled from "./images/star-filled.png"
-import starEmpty from "./images/star-empty.png"
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 export default function App() {
-  // we are holding this object in state
-  const [contact, setContact] = React.useState({
-    firstName: "John",
-    lastName: "Doe",
-    phone: "+1 (212) 555-1212",
-    email: "itsmyrealname@example.com",
-    isFavorite: true
-  })
+  
+  // there is an attri called 'action' that we can add to a form
+  // this is where we tell the browser to send the form data to
+  // that location will process the data and return another html 
+  // the onSubmit and its fn already does most of this on the client side for us
+  // but we found our self doing imperative stuff and React
+  // we can get rid of the onSubmit and handler
+  // and change the function to something more declarative like signUp()
+  // and bcs we can pass function to React 19 form action attrr, we'll pass signUp
+  // and the fn doesnt recieve an event bcs we are not handling an event 
+  // it automatically recieves the formData
 
-  // we want to click the star icon on the card and make it flip the is Favorite boolean value
-  // when the value is true, we display a filled star icon :starFilled
-  // and when false, an empty star icon : starEmpty
-  // we want the arial-pressed, arial-label, img src n alt to change... 
-  // ...according to the value of isFavorite 
+  // Behind the scene, the action fn is going to prevent default for us
+  // provide the form data from the form DOM
+  // reset the form fields for us
+  // we dont need to speacify the method of post too
+  // so we dont need this imperative commands anymore, React 19 does these automatically
 
-
-  // first i use ternary to drop the image reference 
-  let starIcon = contact.isFavorite ? starFilled : starEmpty
-
-  // the point of this app s to see how we can update our state 
-  // if what is saved in the state is an object
-  /**
-   * We have setup our html markeup below to react to changes in our state
-   * the only thing we are missing is the user interactivity
-   * the goal to click the star icon and have it change the isFavorite value
-   * SOLUTION
-   * we will return a new object state that has all the prev object properties 
-   * but overwrite the property we are changing with a new value
-   * NOTE: the extra () is for us to enjoy the hidden return kw in arrow fn
-   * setContact(prevContact => ({ ...prevContact, isFavorite: !prevContact.isFavorite}) )
-  */
-  function toggleFavorite() {
-    setContact(prevContact => 
-      ({ ...prevContact, isFavorite: !prevContact.isFavorite})       
-    )
+  
+  function signUp(formData) {
+    const email = formData.get("email")
+    // we are able to get the form data in a single line of code
+    console.log(email)
+      /**
+       * Challenge: get the password from the form too and log
+       * it to the console to be sure it came in correctly.
+      */
+    const password = formData.get("password")
+    console.log(password)
   }
-
+  
   return (
-    <main>
-      <article className="card">
-        <img
-          src={avatar}
-          className="avatar"
-          alt="User profile picture of John Doe"
-        />
-        <div className="info">
-          <button
-            onClick={toggleFavorite}
-            /**
-            * the reason we are doing this extra work is to use React's declarative nature
-            * where the state that we are maintaining up above will be what determines the display... 
-            * and the functionality of some of the elements on the page
-            */
-            aria-pressed={contact.isFavorite}
-            aria-label={contact.isFavorite ? "Remove from favorite" : "Add to favorite"}
-            className="favorite-button"
-          >
-            <img
-
-              src={starIcon}
-              alt={contact.isFavorite ? "Filled star icon" : "empty star icon"}
-              className="favorite"
-            />
-          </button>
-          <h2 className="name">
-            {contact.firstName + " " + contact.lastName}
-          </h2>
-          <p className="contact">{contact.phone}</p>
-          <p className="contact">{contact.email}</p>
-        </div>
-
-      </article>
-    </main>
+    <section>
+      <h1>Signup form</h1>
+      <form action={signUp}>
+        <label htmlFor="email">Email:</label>
+        <input id="email" type="email" name="email" placeholder="joe@schmoe.com" />
+        <br />
+        
+        <label htmlFor="password">Password:</label>
+        <input id="password" type="password" name="password" />
+        <br />
+        
+        <button>Submit</button>
+        
+      </form>
+    </section>
   )
 }
+

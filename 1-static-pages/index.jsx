@@ -2576,6 +2576,173 @@ export default function App() {
  * and subits it to the API/backend
  * 
  * WHAT COMES NEXT IN THE HISTORY OF WEBDEVELOPMENT IS A LITTLE BIT ROCKY
+ * It was really cumbersome to deal with form in React until recently.
  * 
- * cont... 6:29:50
+ * React just shifted to using the native capability of Form.
+ * Our chef claude project uses a minimal form 
+ * but we are going to learn about form more than what we need fot the project
+ * 
+ * This will be a close review to HTML form
  */
+/*
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+
+export default function App() {
+  return (
+    <section>
+      <h1>Signup form</h1>
+      <form>
+        <label htmlFor="email">Email:</label>
+        <input id="email" type="email" name="email" placeholder="joe@schmoe.com" />
+        {/* // the name attri is how we are going to get the data in the unput
+        // we need to have a reasonable name here so that we can access the data
+        // we should always use the correct type for our input
+        // REMEBER: a placeholder is not the correct place to label your input 
+        // bad way to use placeholder here: placeholder="Email"
+        // placeholder is use to give example o what the user will type
+        // A placeholder holder does not explain what the input does for screen readers
+        // that is where arial-label attri or lable tag comes in
+        // in React we use 'htmlFor' instead of 'for' in regular js html 
+        // htmlFor="email" means this label is associated with the input that has id of email }
+        <br />
+        {/* /**
+        * Challenge: add another label and input for the password field
+        }
+        <label htmlFor="password">Password:</label>
+        <input type="password" id='password' name='password'/>
+        {/* // the button elelemnt is a little bit unique
+        // there is a different type of input with the type submit
+        // and different types of input can change what is displayed on the screen 
+        // <input type="submit" value="click"/>
+        // if buttons are placed inside of a form, they act like input type="submit"
+        // outside of a form they act like input type="button"
+        // a button makes more sence so we use that here }
+        <button>Submit</button>
+        
+      </form>
+    </section>
+  )
+}
+*/
+
+/**
+ * ❤️‍🔥 FORM SUBMISSION
+ import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+// there are ew things that happen to our form when we try to submit it
+//  when we fill the form and hit enter, we are directed to a different address
+// http://localhost:5173/?email=jdjjd%40a.com&password=jjgjgj
+// the form gets the data and marges it with the url after the query string '?'
+// this happened bcs we did not specify method and the defualt is 'GET'
+// The form tries to get data from the URL by submitting the data we have
+// "GET" works in a lot of cases but not in a password an email case
+// if i use post method, it doesnt put the info in the url
+// instead it creates a post request and put the info in the body of the request
+// this is not what we will see in the UI
+
+// Alright so how can we process this info in javascript 
+// we can add the onSubmit event handler fn and use preventDefault
+// to prevent the page from refresh/reload
+// it is better to watch for the submit on the form than on the button
+// this 'event' that is passed to our function is actually really powerful
+// it has a lot of information in it
+
+function handleSubmit(event){
+  event.preventDefault()
+  // we can also use event to get the form's DOM
+  const formEl = event.currentTarget
+  // and with this form element, we can create a new set of form data
+  // "FormData" is built directly into javascript
+  // we get the data from the form if we pass in the form DOM to FormData
+  const formData = new FormData(formEl)
+  // we can get the values of a input from the formData 
+  // by using js 'get' method with the name of the input
+  const email = formData.get("email")
+  // WE CAN USE THIS TO GATHER ALL THE INFO FROM THE FORM
+  // there is a method on form element/DOM that we can use to reset all the input field
+  // event.currentTarget.reset()
+  formEl.reset()
+}
+
+export default function App() {
+  return (
+    <section>
+      <h1>Signup form</h1>
+      <form method='post' onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input id="email" type="email" name="email" placeholder="joe@schmoe.com" />
+        <br />
+        
+        <label htmlFor="password">Password:</label>
+        <input id="password" type="password" name="password" />
+        <br />
+        
+        <button>Submit</button>
+        
+      </form>
+    </section>
+  )
+}
+*/
+
+
+/**
+ * ❤️‍🔥 FORM ACTION
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+export default function App() {
+  
+  // there is an attri called 'action' that we can add to a form
+  // this is where we tell the browser to send the form data to
+  // that location will process the data and return another html 
+  // the onSubmit and its fn already does most of this on the client side for us
+  // but we found our self doing imperative stuff and React
+  // we can get rid of the onSubmit and handler
+  // and change the function to something more declarative like signUp()
+  // and bcs we can pass function to React 19 form action attrr, we'll pass signUp
+  // and the fn doesnt recieve an event bcs we are not handling an event 
+  // it automatically recieves the formData
+
+  // Behind the scene, the action fn is going to prevent default for us
+  // provide the form data from the form DOM
+  // reset the form fields for us
+  // we dont need to speacify the method of post too
+  // so we dont need this imperative commands anymore, React 19 does these automatically
+
+  
+  function signUp(formData) {
+    const email = formData.get("email")
+    // we are able to get the form data in a single line of code
+    console.log(email)
+      /**
+       * Challenge: get the password from the form too and log
+       * it to the console to be sure it came in correctly.
+      
+    const password = formData.get("password")
+    console.log(password)
+  }
+  
+  return (
+    <section>
+      <h1>Signup form</h1>
+      <form action={signUp}>
+        <label htmlFor="email">Email:</label>
+        <input id="email" type="email" name="email" placeholder="joe@schmoe.com" />
+        <br />
+        
+        <label htmlFor="password">Password:</label>
+        <input id="password" type="password" name="password" />
+        <br />
+        
+        <button>Submit</button>
+        
+      </form>
+    </section>
+  )
+}
+*/
+
