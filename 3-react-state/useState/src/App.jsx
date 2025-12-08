@@ -2,15 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 export default function App() {
-
-  // sure our chef d=claude doesnt need more form code
-  // but lets cover more about form incase we need them in other projects
+  /**
+   * Challenge: grab the employment status from the form and log it
+   * to the console. (Remember to select one of the radios before submitting)
+   * 
+   * Note: This won't work the way you might expect quite yet!
+   */
 
   function signUp(formData) {
     const email = formData.get("email")
     const password = formData.get("password")
     const employmentStatus = formData.get("employmentStatus")
-    console.log(employmentStatus)
+    const dietaryRestrictions = formData.getAll("dietaryRestrictions")
+    console.log(dietaryRestrictions)
   }
 
   return (
@@ -24,47 +28,50 @@ export default function App() {
         <label htmlFor="password">Password:</label>
         <input id="password" defaultValue="password123" type="password" name="password" />
 
-        {/* // textarea is not input type textarea and has closing tag unlike input
-        // it is intended for longer text unlike unput type text thats for short text 
-        // by default, users can drag the textarea to increase its width or height
-        // you can set a fixe size in css or use rows and cols attr in the html/jsx tag  
-        // if you noticed the defaultValue attri, 
-        // they are used so we dont type in the values on the UI whentesting the code 
-        // this can be usefulif u were creating a form that will have default data or the user */}
-        <label htmlFor="description">Description: </label>
-        <textarea name="description" id="description" defaultValue="description"></textarea>
+        <label htmlFor="description">Description:</label>
+        <textarea id="description" name="description" defaultValue="This is a description"></textarea>
 
-        {/* // the next input is radio button 
-        // they are used when you have multiple options fro the user to choose from 
-        // and u want them to be able to select only one at a time
-        // radios button look better when u have the button at the left and lables at the right 
-        // if we want users to be able to select only one of the radios, 
-        // we have to give them the same name
-        // a good thing to do when using radio input is to put them in a fieldset
-        // the fieldset gives the entire selection a border, 
-        // we use legend to give the fiedset label
-        // and bcs they have the same name, we only select one at a time
-        // picking the name of these radio inputs only show 'on' at the backend,
-        // if each one does not have its distinct value.
-        // if we want a value to be selected by default, we use 'defaultChecked' on the input
-        // this attribute can have {true} or just "true" 
-        */}
         <fieldset>
-          <legend>Employment Status: </legend>
-          <label >
-            <input type="radio" name="employmentStatus" value="umemployed"/>
+          <legend>Employment Status:</legend>
+          <label>
+            <input type="radio" name="employmentStatus" value="unemployed" />
             Unemployed
-          </label>
-          <label >
-            <input type="radio" name="employmentStatus" value="part-time"/>
-            Part time
-          </label>
-          <label >
-            <input type="radio" name="employmentStatus" defaultChecked={true} value="full-time"/>
-            Full time
-          </label>
+        </label>
+          <label>
+            <input type="radio" name="employmentStatus" value="part-time" />
+            Part-time
+        </label>
+          <label>
+            <input type="radio" name="employmentStatus" defaultChecked={true} value="full-time" />
+            Full-time
+        </label>
         </fieldset>
-        
+
+        {/* // a very close relative to the radio button is checkbox
+        // with checkbox we can have multiple items checked at the same time
+        // which means we can also have more than one defaultChecked items
+        // one issue here is that when we select 2 values like checkbox allows
+        // our formData.get only icks the first value on the list 
+        // this is unique to checkbox and there is a simple way around it
+        // the .get method we are calling on formData.get also have .getAll
+        // .getAll gets the values and gives them to us in an array*/}
+
+        <fieldset>
+          <legend>Dietary Restrictions:</legend>
+          <label>
+            <input type="checkbox" name="dietaryRestrictions" value="kosher" />
+            Kosher
+        </label>
+          <label>
+            <input type="checkbox" name="dietaryRestrictions" defaultChecked={true} value="vegan" />
+            Vegan
+        </label>
+          <label>
+            <input type="checkbox" name="dietaryRestrictions" defaultChecked={true} value="glutton-free" />
+            Glutton-free
+        </label>
+        </fieldset>
+
         <button>Submit</button>
 
       </form>
