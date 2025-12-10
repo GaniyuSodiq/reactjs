@@ -3042,4 +3042,141 @@ export default function App() {
 
 // ❤️‍🔥 CONDITIONAL RENDERING
 // Lets see multiple diferent ways you can use conditional rendering
-// 
+// and conditional rendering is not difficult to understand
+// on our chef claude app we have many parts that we dont want to display on page immediately the page loads
+// we have the input and button that displays by default
+// the ingredients title will only display with a condition that user have provided some input
+// and the cta will only display with a condition user have given few inputs
+// the ai result will display only if user have clicked the cta
+// THIS IS WHERE CONDITIONAL RENDERING COMES IN
+// It means we will render part of our page base on a condition
+/**
+ import React from "react"
+
+export default function Joke(props) {
+    /**
+     * Challenge 1:
+     * - Create state `isShown` (boolean, default to `false`)
+     * - Add a button that toggles the value back and forth
+     
+    const [isShown, setIsShown] = React.useState(false)
+    function handleToggle(){
+        setIsShown(prevIsShown => !prevIsShown)
+    }
+    console.log(isShown)
+
+
+    return (
+        <div>
+            {props.setup && <h3>{props.setup}</h3>}
+            {/* 
+                 * Challenge2:
+                 * only display the puchline parapgh if isShown is true
+            */ 
+            /*ONE WAY {isShown ? <p>{props.punchline}</p> : <p></p> } }
+            {isShown && <p>{props.punchline}</p>}
+            {/* // why did the above code too work?
+            // we always use && to check if the LHS and RHS are true then run the code
+            if (true && true) {
+                console.log("Everything was true")
+            }
+            // however it is not entirely tru that both have to true before th code would work
+            // (true && true)
+            // what is really happening in the condition is left to right evaluation
+            // the cpt checks the LHS, if it is truthy value, it checks the RHS too
+            // if the LHS is falsy value, the execution stopped, the next line of code would not work
+            // if we have (true && console.log("this code is running"))
+            // the RHS will run bcs the LHS is truthy 
+
+            // so the sign '&&' is a quick way to display / not display something }
+            <button onClick={handleToggle}>{isShown ? "Close" : "Open"}</button>
+            <hr />
+        </div>
+    )
+}
+ */
+
+
+// ❤️‍🔥 && CONDITIONAL RENDERING PRACTICE
+/**
+ import React from "react"
+
+export default function App() {
+    const [unreadMessages, setUnreadMessages] = React.useState([])
+    
+    /**
+     * Challenge 1:
+     * Only display the <h1> below if there are unread messages
+     
+    
+    return (
+        <div>
+            {/* // MY SOLUTION
+            {unreadMessages.length && <h1>You have _ unread messages!</h1>}
+
+            // TUTOR SOLUTION AND EXPLANATION
+            // const [unreadMessages, setUnreadMessages] = React.useState([]) above
+            // in this case unreadMessages is not a boolean value
+            // and even an empty array is a truthy value
+            // we cant do  {unreadMessages && <h1>You have _ unread messages!</h1>} in any way
+            // so what we need to check the lenght if it is greater than zero *
+            {/* {unreadMessages.length > 0 && <h1>You have _ unread messages!</h1>}
+            // and to make the messaged we are displaying even better
+            // we put the number of unread messages *
+            {/* {unreadMessages.length > 0 && <h1>You have {unreadMessages.length} unread messages!</h1>} *
+
+            {/* // so the point of the excerise: && gives us the chance to determine if something should..
+            // or should not be rendered at all
+
+            //But there are some limitations to this as well *
+
+            {/*
+            * Challenge 2:
+            * If there are 0 unread messages, display a paragraph that says: 
+            * 'You have no unread messages'
+            *
+            {/* // MY SOLUTION 
+            {unreadMessages.length = 0 && <p>You have no unread messages!</p>}
+            // shit- one equals-to is assignment, three equals-to is comparism-right ans *
+
+            {/* // TUTOR SOLUTION *
+            {/* {unreadMessages.length === 0 && <p>You have no unread messages!</p>} *
+
+
+            {/* // SO WHATS UP?
+            // so what we've done here is display a situation where we have if else stament
+            // if unread messages is greater than 0 and the remaining only option is it is equals to 0 *
+            {/* 
+            {unreadMessages.length > 0 && <h1>You have {unreadMessages.length} unread messages!</h1>}
+            {unreadMessages.length === 0 && <p>You have no unread messages!</p>}
+
+            // so what we are doing above is a litle verbose
+            // IN A SITUATION WHEN WE ARE TRYING TO DISPLAY ONE THING OR NOTHER THING
+            // && IS NOT IDEAL *
+
+            {/* // ANOTHER ISSUE 
+            // we can see unreadMessages.lenght and try to infer a truthiness out of it 
+            // like i did in my solution to the first challenge
+            {unreadMessages.length && <h1>You have _ unread messages!</h1>}
+
+            // Yes unreadMessages.length will be true if greater than 0
+            // but if it is 0, React will diaply the zero on page
+            // so we need to be explicit in our condition
+            // so we are sure the expression will lead to a true or false and not truthy or falsy value
+            // in order to not invite bug into our code 
+
+            // && is a quick way to display someting or not display it
+            // if u use it, make sure your expression aleays evaluates to a boolean
+            // simply put, we use && when we one to display one thing or nothing - 1 or nothing
+            // display burger or nothing
+            // not when we can display 1 thing on another 1 thing
+            // not display burger or fish pie
+
+            // there is another experession we can use to conditionally render something in React 
+
+        </div>
+    )
+}
+ */
+
+// ❤️‍🔥 ? : TERNARY OPERATOR
