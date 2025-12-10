@@ -3180,3 +3180,161 @@ export default function App() {
  */
 
 // ❤️‍🔥 ? : TERNARY OPERATOR
+/**
+ import React from "react"
+
+export default function Joke(props) {
+    const [isShown, setIsShown] = React.useState(false)
+    function handleToggle(){
+        setIsShown(prevIsShown => !prevIsShown)
+    }
+    console.log(isShown)
+
+
+    return (
+        <div>
+            {props.setup && <h3>{props.setup}</h3>}
+            {isShown && <p>{props.punchline}</p>}
+            {<button onClick={handleToggle}>{isShown ? "Hide " : "View "}punchline</button>}
+            {/* // now that we have 2 different options to chse what to display from, we use ternary operator
+
+
+            // There is a little bit of pushback in the react community to using the && operatr at all
+            // bcs of that 0 bug we saw earliear
+            // bugs like this can be easily dodge if we use ternary operator 
+            // and inplaces where the answer can be either one thing on nothing,
+            // we use null as the nothing/false part
+            // using the above samples - can turn them to ternary like below
+            {props.setup ? <h3>{props.setup}</h3> : null}
+            {isShown ? <p>{props.punchline}</p> : null} 
+            // these 2 rendering types will solve 90% of ur conditional rendering taks
+            // in the other 10%, where the options are 3 or more, u can use if-else or others
+            *}
+            <hr />
+        </div>
+    )
+}
+ */
+
+// ❤️‍🔥 CONDITIONAL RENDERING EXERCISE
+
+/**
+ import React from "react"
+
+export default function App() {
+    const [messages, setMessages] = React.useState(["a", "b"])
+    /**
+     * Challenge:
+     * - If there are no unread messages, display "You're all caught up!"
+     * - If there's exactly 1 unread message, it should read "You have 
+     *   1 unread message" (singular)
+     * - If there are > 1 unread messages, display "You have <n> unread
+     *   messages" (plural)
+     */
+
+    // there are couple of ways to achieve these results
+    // I used nested ternary but the if statement is what the tutor used
+
+    /**
+        let text
+    
+        if (messages.length === 0){
+            text = "You're all caught up!"
+        } else if(messages.length === 1){
+            text = "Yoo have an unread message"
+        } else {
+            text = `You have ${messages.length} unread messages`
+        }
+     
+
+    // if these conditions are even more than 3 
+    // we caould have them in a function like below that returns the text result
+    function determineText() {
+        if (messages.length === 0) {
+            return "You're all caught up!"
+        } else if (messages.length === 1) {
+            return "Yoo have an unread message"
+        } else {
+            return `You have ${messages.length} unread messages`
+        }
+    }
+
+
+    return (
+        <div>
+            {//* <h1>{messages.length === 0 ?
+                "You're all caught up!" : messages.length === 1
+                    ? "Yoo have an unread message" : `You have ${messages.length} unread messages`}
+            </h1> 
+
+            {//* <h1>{text}</h1> 
+
+            <h1>{determineText()}</h1>
+        </div>
+    )
+}
+
+ */
+
+
+
+// ❤️‍🔥 // USING CONDITIONAL RENDERING ON CHEF CLAUDE
+
+/**
+import React from "react"
+
+export default function Main() {
+
+    const [ingredients, setIngredients] = React.useState([])
+
+    const ingredientsListItems = ingredients.map(ingredient => (
+        <li key={ingredient}>{ingredient}</li>
+    ))
+
+    function addIngredient(formData) {
+        const newIngredient = formData.get("ingredient")
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+    }
+    
+    /**
+     * Challenge 1:
+     * Using conditional rendering, only render the new <section> IF
+     * there are ingredients added to the list of ingredients.
+     */
+
+    /**
+     * Challenge 2:
+     * Only display the div.get-recipe-container if the ingredients list
+     * has more than 3 items in it. (Fewer than that and it might not
+     * give great results from the chef 🤖👩‍🍳)
+     *
+    return (
+        <main>
+            <form action={addIngredient} className="add-ingredient-form">
+                <input
+                    type="text"
+                    placeholder="e.g. oregano"
+                    aria-label="Add ingredient"
+                    name="ingredient"
+                />
+                <button>Add ingredient</button>
+            </form>
+
+            {/* // CHALLENGE 1 *}
+            {ingredients.length > 0 && <section>
+                <h2>Ingredients on hand:</h2>
+                <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
+
+                {/* // CHALLENGE 2 *}
+                {ingredients.length > 3 && <div className="get-recipe-container">
+                    <div>
+                        <h3>Ready for a recipe?</h3>
+                        <p>Generate a recipe from your list of ingredients.</p>
+                    </div>
+                    <button>Get a recipe</button>
+                </div>}
+            </section>}
+        </main>
+    )
+}
+ */
