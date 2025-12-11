@@ -1,54 +1,68 @@
 import React from "react"
+import avatar from "./images/user.png"
+import starFilled from "./images/star-filled.png"
+import starEmpty from "./images/star-empty.png"
 
 export default function App() {
-    const [messages, setMessages] = React.useState(["a", "b"])
-    /**
-     * Challenge:
-     * - If there are no unread messages, display "You're all caught up!"
-     * - If there's exactly 1 unread message, it should read "You have 
-     *   1 unread message" (singular)
-     * - If there are > 1 unread messages, display "You have <n> unread
-     *   messages" (plural)
-     */
-
-    // there are couple of ways to achieve these results
-    // I used nested ternary but the if statement is what the tutor used
-
-    /**
-        let text
+    const [contact, setContact] = React.useState({
+        firstName: "John",
+        lastName: "Doe",
+        phone: "+1 (212) 555-1212",
+        email: "itsmyrealname@example.com",
+        isFavorite: false
+    })
     
-        if (messages.length === 0){
-            text = "You're all caught up!"
-        } else if(messages.length === 1){
-            text = "Yoo have an unread message"
-        } else {
-            text = `You have ${messages.length} unread messages`
-        }
-     */
+    let starIcon = contact.isFavorite ? starFilled : starEmpty
 
-    // if these conditions are even more than 3 
-    // we caould have them in a function like below that returns the text result
-    function determineText() {
-        if (messages.length === 0) {
-            return "You're all caught up!"
-        } else if (messages.length === 1) {
-            return "Yoo have an unread message"
-        } else {
-            return `You have ${messages.length} unread messages`
-        }
+    function toggleFavorite() {
+        setContact(prevContact => ({
+            ...prevContact,
+            isFavorite: !prevContact.isFavorite
+        }))
     }
-
+    
+    /**
+     * we can see a more likely state passing example using our card appplication
+     * 
+     * Challenge: Move the star image into its own component (Star)
+     * - It should receive a prop called `isFilled` that it
+     *   uses to determine which icon it will display. (You'll
+     *   need to import the 2 star icons into that new component first).
+     * - Import and render that component, passing the value of
+     *   `isFavorite` to the new `isFilled` prop.
+     * - Don't worry about the abiliity to flip this value quite yet.
+     *   Instead, you can test if it's working by manually changing
+     *   `isFavorite` in state above.
+     */
 
     return (
-        <div>
-            {/* <h1>{messages.length === 0 ?
-                "You're all caught up!" : messages.length === 1
-                    ? "Yoo have an unread message" : `You have ${messages.length} unread messages`}
-            </h1> */}
+        <main>
+            <article className="card">
+                <img
+                    src={avatar}
+                    className="avatar"
+                    alt="User profile picture of John Doe"
+                />
+                <div className="info">
+                    <button
+                        aria-pressed={contact.isFavorite}
+                        aria-label={contact.isFavorite ? "Remove from favorites" : "Add to favorites"}
+                        className="favorite-button"
+                    >
+                        <img
+                            src={starIcon}
+                            alt={contact.isFavorite ? "filled star icon" : "empty star icon"}
+                            className="favorite"
+                        />
+                    </button>
+                    <h2 className="name">
+                        {contact.firstName} {contact.lastName}
+                    </h2>
+                    <p className="contact">{contact.phone}</p>
+                    <p className="contact">{contact.email}</p>
+                </div>
 
-            {/* <h1>{text}</h1> */}
-
-            <h1>{determineText()}</h1>
-        </div>
+            </article>
+        </main>
     )
 }

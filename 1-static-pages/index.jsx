@@ -3555,3 +3555,88 @@ ul.ingredients-list > li {
 }
 
  *  */ 
+
+
+///❤️‍🔥 PASSING STATE AS PROPS
+/**
+    import React from "react"
+import Count from "./Count"
+
+export default function App() {
+    const [count, setCount] = React.useState(0)
+
+    function add() {
+        setCount(prevCount => prevCount + 1)
+    }
+
+    function subtract() {
+        setCount(prevCount => prevCount - 1)
+    }
+    
+    
+    /**
+     * Challenge:
+     * - Create a new component called `Count`
+     *    - It should receive a prop called `number`, whose value
+     *      is the current value of our count
+     *    - Have the component render the h2.count element below
+     *      and display the incoming prop `number`
+     * - Replace the h2.count below with an instance of
+     *   the new Count component, passing the correct value
+     *   to its `number` prop.
+     * - After doing this, everything should be working the
+     *   same as before.
+     *
+
+    console.log("App rendered")
+    
+    return (
+        <main className="container">
+            <div className="counter">
+                <button
+                    className="minus"
+                    onClick={subtract}
+                    aria-label="Decrease count"
+                >-</button>
+
+                {/* <h2 className="count">{count}</h2> *
+                <Count number = {count}/>
+
+                <button
+                    className="plus"
+                    onClick={add}
+                    aria-label="Increase count"
+                >+</button>
+            </div>
+        </main>
+    )
+}
+
+
+
+export default function Count(props){
+    console.log("Count rendered")
+    return <h2 className="count">{props.number}</h2>
+}
+
+// a component that just renders h2 is probably over kill 
+// just to explain React rendering again
+
+// the App component is passed to the main.jsx, main is linked to index.html
+// so the content of App is what we display on the page
+
+// remember our App has some code including calling this Count component
+// what that means is the the App components will run before this Count
+
+// the count state is in App, and if we update the state, 
+// bothe App and Count componets will reload....
+// we test this by having console log in the APP and Count component
+
+// POINT TO REMEMBER
+// if we have a state change inside a component,
+// React will re-render the component, 
+// and so doing re-render all the components in that component
+
+*/
+
+// ❤️‍🔥 SETTING STATE FROM CHILD COMPONENT
