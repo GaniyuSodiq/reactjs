@@ -3786,3 +3786,102 @@ export default function Star(props) {
 }
 
  */
+
+//❤️‍🔥 PASSING DATA FROM ONE COMPONENT TO ANOTHER
+
+/**
+ 
+A
+!\
+B-C
+!\
+D-E
+
+this is a sample diagram of a react application 
+where A is the parent component, 
+B and C are the children component
+D and E are B's children and A's grand-children
+
+assume that we have a state in D
+you later realise that E, which is a sibling to D, needs the same state's change too
+React cannot pass state from D to E, or E to D. 
+Siblings cannot pass state between each other
+
+In react, data can only flow downwards
+no upward, no sideways
+
+So if D and E needs a state, we will create the state in their parent B
+and pass the state down to D and E as props
+
+if C needs this same state, we will need to create the state in A 
+and pass it down from there
+
+This can get cumbersome overtime so there are some ways to manage data in Reac like Redux, context etc
+
+Context and Redux and beyond the scope of this training
+
+so we will go with the default React 
+
+
+// APP - 
+import React from "react"
+import Header from "./Header"
+import Body from "./Body"
+export default function App() {
+
+    const [userName, setUserName] = React.useState("Joe")
+
+    return (
+        <main>
+            <Header userName={userName}/>
+            <Body userName={userName} />
+        </main>
+    )
+}
+
+
+// BODY
+import React from "react"
+export default function Body(props) {
+    return (
+        <section>
+            <h1>Welcome back, {props.userName}!</h1>
+        </section>
+    )
+}
+
+// HEADER
+import React from "react"
+import avatar from "./icons/user.png"
+export default function Header(props) {
+
+    /**
+     * Challenge:
+     * Raise this state up a level
+     * so you can pass it down to both this header and the body
+     * as props
+     
+
+    // const [userName, setUserName] = React.useState("Joe")
+
+    return (
+        <header>
+            <img src={avatar} />
+            <p>{props.userName}</p>
+        </header>
+    )
+}
+
+undertsnading that data flow from top to bottom will assit you 
+when architecting your own React applications
+
+And you should make your state as locally redundant as possible.
+dont put a state the parent if it is just a sibling that needs it.
+If 2 siblings need it, then put in a parent - not the grand parent - etc
+*/
+
+
+// ❤️‍🔥 SOUND PADS CHALLENGE
+/**
+ * This will be a series of challenges to re-force what what we have learned
+ */
