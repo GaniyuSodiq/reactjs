@@ -4003,7 +4003,114 @@ export default function Pad(props) {
     )
 }
 
+we are recieving the on value from a default file but we want the user to be able to flip the on from true to false
 
- */
+we are goung to do this in two diferent ways
+
+these are the things we have right now
+
+
+<App /> : this is where we import the pads.js array data. we map over the data to display <Pad />
+<Pad /> <Pad /> <Pad /> : we get these from mapping over pads.js data
+
+the first option that we have this <Pad /> components control their 'on' state
+is by initializing a new state in each of the component
+we will then take the value of props.on that is coming from our App component 
+and set that as the initial value of the 'on' state
+the we would have a fn defined inside the <Pad /> component that would it to flip the state
+each of the <Pad /> component will have its own on state that React will keep tract of
+so changing the state in of 'on' in one component will not affect the other
+
+
+ONE WAY - LOCAL STATE
+import React from "react"
+export default function Pad(props) {
+    /**
+     * Challenge 4: 
+     * Create state controlling whether
+     * this pad is "on" or "off". Use the incoming
+     * `props.on` to determine the initial state.
+     * 
+     * Create an event listener so when the pad is clicked,
+     * it toggles from "on" to "off".
+     * 
+     * Goal: clicking each pad should toggle it on and off.
+     /
+    const [onState, setOnState] = React.useState(props.on)
+
+    function toggleState(){
+        setOnState(prevOn => !prevOn)
+    }
+    return (
+        <button
+            style={{ backgroundColor: props.color }}
+            className={onState ? "on" : undefined}
+            onClick={toggleState}
+        ></button>
+    )
+}
+
+So as simple as this code is, why would I care for a different way of doing this?
+
+ANOTHER WAY - SHARED STATE
+there is actually a name for how we set up the last code - derive state
+it is deriving it's initial state based on incoming prop. 
+You know we determine the initial state based on the prop from App
+and App gets the value from the defaul pads.js array data
+
+But there is an issue with derive state.
+You can end up getting multiple sources of truth. 
+bcs the initial state soyrce is from <App /> 
+then once this states gets updated from the <pad />, the source chages to be the <Pad />
+so there are 2 soyrces like this and there can be more
+
+But our code works fine. 
+Yes, it works fine now but certains features in future becomes more difficult to add.
+Imagine we want to add a button in the <App /> to turn all the buttons off
+and bcs this state exists in each individual <Pad />
+It does not work as you would expect. See the example below
+
+
+
+import React from "react"
+import padsData from "./pads"
+import Pad from "./Pad"
+
+export default function App() {
+    const [pads, setPads] = React.useState(padsData)
+
+    const buttonElements = pads.map(pad => (
+        <Pad key={pad.id} color={pad.color} on={pad.on}/>
+    ))
+
+    function toggleAllOff(){
+        console.log("toggle all off")
+        setPads(prevPads => prevPads.map(pad => ({...pad, on: false})))
+    }
+    
+    return (
+        <main>
+            <div className="pad-container">
+                {buttonElements}
+            </div>
+            <button 
+             style={{opacity:"1"}}
+             onClick={toggleAllOff}
+            >Turn all off</button>
+        </main>
+    )
+}
+
+from the toggleAllOff fn, it is only the cocole log("togle all off") that took efect
+
+the point is:
+
+If we need a better control ober all the <Pad /> components we will to architect our code in a different way
+we will remove the state from the individual compnent
+we will use the state that already exist in our <App /> 
+8:52ss
+
+
+*/
 
 

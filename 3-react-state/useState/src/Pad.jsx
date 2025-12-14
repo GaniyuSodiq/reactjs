@@ -1,16 +1,26 @@
+import React from "react"
 export default function Pad(props) {
     /**
-     * Challenge part 3:
-     * Our buttons got turned off by default from css code (opacity of 0.1)! Update the code
+     * Challenge 4: 
+     * Create state controlling whether
+     * this pad is "on" or "off". Use the incoming
+     * `props.on` to determine the initial state.
      * 
-     * so if the button is "on", it has the className of "on".
-     * this 'on' class has opacity of 1
+     * Create an event listener so when the pad is clicked,
+     * it toggles from "on" to "off".
+     * 
+     * Goal: clicking each pad should toggle it on and off.
      */
-    
+    const [onState, setOnState] = React.useState(props.on)
+
+    function toggleState(){
+        setOnState(prevOn => !prevOn)
+    }
     return (
-        <button 
-            style={{backgroundColor: props.color}}
-            className = {props.on ? "on" : undefined}
+        <button
+            style={{ backgroundColor: props.color }}
+            className={onState ? "on" : undefined}
+            onClick={toggleState}
         ></button>
     )
 }
