@@ -4101,15 +4101,93 @@ export default function App() {
     )
 }
 
-from the toggleAllOff fn, it is only the cocole log("togle all off") that took efect
+from the toggleAllOff fn, it is only the console log("togle all off") that took efect
 
 the point is:
 
-If we need a better control ober all the <Pad /> components we will to architect our code in a different way
+If we need a better control to toggle over all the <Pad /> components we will have to architect our code in a different way
 we will remove the state from the individual compnent
 we will use the state that already exist in our <App /> 
 8:52ss
+We will create a toggle function inside the app
+we will update the local components in the array using (setPads)
+and bcs we updating the setPads local state, 
+it is going to rerender all the pads
+all the pads will rerender as they are except the one that got clicked
+how do we know the one that got clicked? 
+we will pass the toggle fn from the app to the pads as props
+when the pad gets clicked, it will send signal to the parent component, app
 
+This sounds complex but it is the right way to do this.
+it is best to have a unified source of truth
+bcs one we dont have a source of truth in the pads
+we are simply reflecting what we have in the parent
+
+
+See a short way of tranfering fn to another component
+
+//THIS IS APP COMPONENT
+    function togglePad(){
+        console.log("Clicked")
+    }
+
+    const buttonElements = pads.map(pad => (
+        <Pad key={pad.id} color={pad.color} on={pad.on} togglePadFn={togglePad}/>
+    ))
+    
+    return (
+        <main>
+            <div className="pad-container">
+                {buttonElements}
+            </div>
+            
+        </main>
+    )
+
+//THIS IS PAD
+export default function Pad(props) {
+
+    return (
+        <button
+            style={{ backgroundColor: props.color }}
+            className={props.on ? "on" : undefined}
+            onClick={props.togglePadFn}
+        ></button>
+    )
+}
+
+each of the button in Pad has access to the toggle fn
+and bcs the toggle is defined in the parent component, 
+there is really only one toggle fn
+in other words
+there is not really any connection between each button and the fn
+the function doesnt know which button triggered it
+
+lets say in our toggle fn, we recieved the id of which btn was clicked
+then we will be able to look through the array of our pads
+find the one with the id that was clicked
+and flip its on value to opposite of whatever it is
+
+
+we have another issue... 
+hw can we pass and id to the fn when we call it from a btn in the pad?
+we know that 'event' get passed to a fn when called
+but how can we pass in 'id' to the fn instead of it automatically passing 'event' 
+
+super easy way to solve this is to create an anonimous inline fn
+onClick={(event) => props.togglePadFn(id)}
+RHS is what the event handler will run : props.togglePadFn(id)
+LHS is the one that will recieve the event as its parameter : (event) =>
+
+    we dont need the event word. 
+    the onlything the LHS funtion will do is run the RHS function
+    and bcs RHS is outside the event handler fn, we can pass 'id' to it
+
+    so how can we get access to the id?
+    we cant use props.id key that we are getting from App as key={pad.id} 
+    --- React doesnt work like that
+    if you need to access the same value, then you should pass it a diferent prop
+    <Pad key={pad.id} id={pad.id} color={pad.color} on={pad.on} togglePadFn={togglePad}/>
 
 */
 
