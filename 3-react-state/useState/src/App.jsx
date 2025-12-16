@@ -31,7 +31,25 @@ export default function App() {
 
     function togglePad(id){
         console.log(id)
-        setPads(prevPads => prevPads.map(pad => pad.id === id ? {...pad, on: !on} : pad))
+        // setPads(prevPads => prevPads.map(pad => pad.id === id ? {...pad, on: !on} : pad))
+        
+        // 😁😁😁😁😁 ANOTHER HAPPY FEELING MOMENT
+        // did you know that i was strucgling to get this code to work since yesteday
+        // i kept getting error and i knew that i understand what the syntax is doing 
+        // but couldnt identity the lapse
+        // i went online and do some research on my own - without checing the tutors code
+        // i got a semilar scenerio that wasnt using state but mapping over array of obj and modify one
+        // i look thru their code, understand it, and see what i was doing wrong
+        // their code wasnt even using ternery op or arro fn, but i understand        
+        setPads(prevPads => prevPads.map(pad => pad.id === id ? ({...pad, on: !pad.on}) : pad))
+        // below is the tutor's solution
+        /**
+        function toggle(id){
+            setPads(prevPads => prevPads.map(item => {
+                return item.id === id ? {...item, on: item.on}, item   
+            }))
+        } 
+        */
     }
 
     const buttonElements = pads.map(pad => (
