@@ -4502,3 +4502,88 @@ all we need to do is import one of the 2 functions in our ai.js file
 then call the function and pass in the ingredient array
  */
 
+
+/** ❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥 THE END OF CHEF CLAUDE -
+ * MAIN.JS FILE
+ * 
+ 
+import React from "react"
+import IngredientsList from "./components/IngredientsList"
+import ClaudeRecipe from "./components/ClaudeRecipe"
+import { getRecipeFromChefClaude, getRecipeFromMistral } from "./ai"
+
+export default function Main() {
+    const [ingredients, setIngredients] = React.useState(
+        ["chicken", "all the main spices", "corn", "heavy cream", "pasta"]
+    )
+    const [recipe, setRecipe] = React.useState("")
+
+    async function getRecipe() {
+        const recipeMarkdown = await getRecipeFromChefClaude(ingredients)
+        setRecipe(recipeMarkdown)
+    }
+
+    function addIngredient(formData) {
+        const newIngredient = formData.get("ingredient")
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+    }
+
+    return (
+        <main>
+            <form action={addIngredient} className="add-ingredient-form">
+                <input
+                    type="text"
+                    placeholder="e.g. oregano"
+                    aria-label="Add ingredient"
+                    name="ingredient"
+                />
+                <button>Add ingredient</button>
+            </form>
+
+            {ingredients.length > 0 &&
+                <IngredientsList
+                    ingredients={ingredients}
+                    getRecipe={getRecipe}
+                />
+            }
+
+            {recipe && <ClaudeRecipe recipe={recipe} />}
+        </main>
+    )
+}
+
+* ❤️‍🔥INGREDIENTSLISTJSX FILE
+*
+export default function IngredientsList(props) {
+    const ingredientsListItems = props.ingredients.map(ingredient => (
+        <li key={ingredient}>{ingredient}</li>
+    ))
+    return (
+        <section>
+            <h2>Ingredients on hand:</h2>
+            <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
+            {props.ingredients.length > 3 && <div className="get-recipe-container">
+                <div>
+                    <h3>Ready for a recipe?</h3>
+                    <p>Generate a recipe from your list of ingredients.</p>
+                </div>
+                <button onClick={props.getRecipe}>Get a recipe</button>
+            </div>}
+        </section>
+    )
+}
+
+* ❤️‍🔥CLAUDERECIPEJSX FILE
+*
+import ReactMarkdown from "react-markdown"
+
+export default function ClaudeRecipe(props) {
+    return (
+        <section className="suggested-recipe-container" aria-live="polite">
+            <h2>Chef Claude Recommends:</h2>
+            <ReactMarkdown>{props.recipe}</ReactMarkdown>
+        </section>
+    )
+}
+ 
+ */
