@@ -4587,3 +4587,1353 @@ export default function ClaudeRecipe(props) {
 }
  
  */
+
+ 
+/** ❤️‍🔥❤️‍🔥❤️‍🔥 INTRO TO AI ENGINEERING
+<!doctype html>
+<html>
+
+	<head>
+		<title>Dodgy Dave's Stock Predictions</title>
+		<link rel="stylesheet" href="index.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<header>
+			<img src="images/logo-dave-text.png" alt="Dodgy Dave's Stock Predictions">
+		</header>
+		<main>
+			<section class="action-panel">
+				<form id="ticker-input-form">
+					<label for="ticker-input"> Add up to 3 stock tickers below to get a super accurate stock predictions report👇 </label>
+					<div class="form-input-control">
+						<input type="text" id="ticker-input" placeholder="MSFT">
+						<button class="add-ticker-btn">
+							<img src="images/add.svg" class="add-ticker-svg" alt="add"> 
+						</button>
+					</div>
+				</form>
+				<p class="ticker-choice-display">
+					Your tickers will appear here...
+				</p>
+				<button class="generate-report-btn" type="button" disabled>
+					Generate Report
+				</button>
+				<p class="tag-line">Always correct 15% of the time!</p>
+			</section>
+			<section class="loading-panel">
+				<img src="images/loader.svg" alt="loading">
+				<div id="api-message">Querying Stocks API...</div>
+			</section>
+			<section class="output-panel">
+				<h2>Your Report 😜</h2>
+			</section>
+		</main>
+		<footer>
+			&copy; This is not real financial advice!
+		</footer>
+		<script src="index.js" type="module"></script>
+	</body>
+
+</html>
+*/
+
+/** ❤️‍🔥❤️‍🔥❤️‍🔥 CSS OF THE PROGRAM
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f6f6f6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    background-color: black;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+header img {
+    width: 340px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+/* Panels /
+
+.action-panel, .output-panel {
+    line-height: 1.4em;
+    display: flex;
+    height: 350px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1.5em 2em;
+}
+
+.output-panel {
+    display: none;
+    justify-content: flex-start;
+    border: 2px solid;
+    padding: 1em 2em;
+}
+
+.loading-panel {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 400px;
+    text-align: center;
+}
+
+.output-panel p{
+    overflow-y: scroll;
+}
+
+/* text /
+
+h2 {
+    text-align: center;
+    font-weight: 400; 
+    margin-top: -26px;
+    background-color: #f6f6f6;
+    padding: 0 10px;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+p.tag-line {
+    font-family: 'Comic Neue';
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.ticker-choice-display {
+    display: flex;
+    align-items: center;
+    height: 3em; 
+}
+
+/* controls /
+
+form {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    text-align: center;
+    padding: .43em;
+    font-size: 15px;
+    margin-bottom: 1em;
+    width: 80%;
+}
+
+.form-input-control {
+    display: flex;
+    width: 70%;
+}
+
+input[type="text"] {
+    padding: 1em;
+    border: 2px solid black;
+    border-right: none;
+}
+
+/* Buttons /
+
+.add-ticker-btn {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    font-size: 3em;
+    padding: 0 .35em;
+    cursor: pointer;
+    border: 2px solid;
+}
+
+.add-ticker-svg {
+    width: 14px;
+}
+
+.generate-report-btn {
+    width: 70%;
+    padding: 1em 1.5em;
+    cursor: pointer;
+    font-family: 'Poppins', sans;
+    border: 2px solid #000000;
+    background-color: #46ff90;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: .09em;
+    font-size: 105%;
+}
+
+/* ticker display (ensure comma separated) /
+
+.ticker {
+    margin: 0 .1em;
+    content: '';
+}
+
+.ticker:after {
+    content: ',';
+}
+
+.ticker:last-child::after {
+    content: '';
+}
+
+/* footer /
+
+footer {
+    font-size: 14px;
+    text-align: center;
+}
+
+/* stop ugly scroll bar on some browsers /
+.output-panel p::-webkit-scrollbar {
+    display: none;
+}
+
+.output-panel p::-moz-scrollbar {
+    display: none;
+}
+*/
+
+
+
+/** ❤️‍🔥Let’s understand try...catch in JavaScript by following pure first-principles thinking, 
+ * exactly like a human discovering why this concept had to exist.
+
+Step 1: What problem do we face without try...catch?
+
+Imagine you write a JavaScript program.
+The program runs line by line, top to bottom.
+
+Now ask yourself a simple question:
+
+What happens if something goes wrong while the code is running?
+
+Examples of things that can go wrong:
+
+You try to use a variable that doesn’t exist
+
+You try to access a property on undefined
+
+You try to parse invalid JSON
+
+An API response is broken or unexpected
+
+Without any protection, JavaScript does this:
+
+The program crashes immediately and stops running.
+
+This creates several serious problems:
+
+The entire app stops working because of one mistake
+
+The user sees a broken page or blank screen
+
+You don’t get a chance to explain the error or recover
+
+One bad line kills everything that comes after it
+
+So the big problem is not just that errors happen —
+it’s that errors stop the whole program.
+
+Step 2: What is the root cause of this problem?
+
+Let’s boil it down.
+
+The root cause is:
+
+JavaScript does not know what you want to do when an error happens, so it stops everything by default.
+
+JavaScript assumes:
+
+“An error means something is very wrong”
+
+“I should stop before things get worse”
+
+But as developers, we often think:
+
+“Yes, this might fail — and that’s okay”
+
+“If it fails, I want to handle it gracefully”
+
+So the real issue is:
+
+We have no way to tell JavaScript how to behave when risky code fails.
+
+Step 3: So how can we solve this problem?
+
+We need a way to say:
+
+“Try running this code”
+
+“If it works, great — continue”
+
+“If it fails, don’t crash — do this instead”
+
+In other words, we need controlled failure.
+
+That leads us directly to try...catch.
+
+Step 4: What is try...catch?
+
+try...catch is a JavaScript mechanism that lets you:
+
+Safely run risky code and handle errors without crashing your program
+
+Think of it like a safety net.
+
+try = “This might break — attempt it”
+
+catch = “If it breaks, handle the problem here”
+
+Step 5: How does try...catch actually work?
+
+Let’s walk through the thinking step by step.
+
+Step 1: Identify risky code
+
+What kind of code is risky?
+
+Code that depends on external data
+
+Code that assumes something exists
+
+Code that can throw an error
+
+Step 2: Wrap it in try
+
+This tells JavaScript:
+
+“Run this code carefully.”
+
+Step 3: If an error occurs…
+
+JavaScript immediately:
+
+Stops executing the try block
+
+Jumps to the catch block
+
+Passes the error object to catch
+
+Step 4: Handle the error in catch
+
+Now you decide:
+
+Show a friendly message
+
+Log the error
+
+Use a fallback value
+
+Keep the app running
+
+Step 6: Why is this better than not using it?
+
+Let’s connect cause → effect.
+
+Without try...catch	With try...catch
+App crashes	App survives
+User sees broken page	User sees controlled message
+Code stops	Code continues
+No recovery	Graceful recovery
+
+So the why is clear:
+
+try...catch exists so one failure doesn’t destroy the entire program.
+
+Step 7: A simple analogy (absolute beginner level)
+
+Imagine a child carrying a glass of water.
+
+Without a tray:
+If the glass falls → water spills everywhere → mess.
+
+With a tray (like try...catch):
+If the glass falls → water stays on the tray → no disaster.
+
+try is carrying the glass.
+catch is the tray underneath.
+
+Step 8: Important beginner truths (very CCNA-style clarity)
+
+try...catch only catches runtime errors, not syntax errors
+
+JavaScript errors are called exceptions
+
+Once an error happens inside try, JavaScript immediately jumps to catch
+
+Code after the error in try will not run
+
+Code after try...catch will continue running
+
+Step 9: Final cause-and-effect summary
+
+Errors are unavoidable in real programs
+
+Crashing the entire app for one error is bad
+
+The root cause is lack of controlled error handling
+
+try...catch gives us control over failure
+
+Control leads to stability, better user experience, and safer code
+
+If you want, the next natural questions we can explore using the same thinking style are:
+
+“What is finally and why does it exist?”
+
+“What does throw mean in JavaScript?”
+
+“Why try...catch doesn’t catch async errors without await?”
+
+“How error handling worked before try...catch”
+
+Just tell me what to explain next.
+*/
+
+
+
+/** ❤️‍🔥ASYNC AWAIT
+Let’s understand **`async` / `await` in JavaScript** by discovering *why* it exists, step by step, from first principles — exactly the way a beginner’s curiosity would naturally lead us there.
+
+---
+
+## Step 1: What problem do we face *without* `async` / `await`?
+
+Modern JavaScript apps do many slow things:
+
+* Fetch data from an API
+* Read files
+* Talk to a database
+* Wait for a timer
+* Load images
+
+Now ask a very natural question:
+
+**What happens if JavaScript waits for these slow tasks to finish before moving on?**
+
+Everything would freeze:
+
+* The page stops responding
+* Buttons stop clicking
+* Animations stop
+* The app feels “broken”
+
+So JavaScript made a smart decision:
+
+> **Never block the main thread.**
+
+Instead, it runs slow tasks in the background.
+
+Good idea — but this creates a new problem.
+
+---
+
+## Step 2: The new problem created by non-blocking code
+
+If JavaScript does not wait, then:
+
+* Code does **not run in the order you read it**
+* Results are not available immediately
+* You can’t just say `const data = fetchData()`
+
+So beginners hit problems like:
+
+* “Why is my variable `undefined`?”
+* “Why is this console.log running first?”
+* “Why is my code so hard to follow?”
+
+---
+
+## Step 3: What is the root cause of this problem?
+
+Let’s boil it down.
+
+The root cause is:
+
+> JavaScript runs asynchronous tasks **later**, but our code is written **top-to-bottom**.
+
+There is a mismatch between:
+
+* **How humans think** (step-by-step)
+* **How async JavaScript executes** (now vs later)
+
+This mismatch makes code confusing and error-prone.
+
+---
+
+## Step 4: So how did we solve this *before* `async` / `await`?
+
+Before `async` / `await`, JavaScript used **callbacks**.
+
+Example idea:
+
+> “When you’re done, call this function.”
+
+But callbacks caused new problems:
+
+* Deep nesting (callback hell)
+* Hard-to-read code
+* Difficult error handling
+* Mental overload
+
+So we fixed callbacks with **Promises**.
+
+Promises were better, but still:
+
+* `.then().then().then()` chains
+* Logic split across many lines
+* Still not very “human-readable”
+
+---
+
+## Step 5: So how can we solve this problem *properly*?
+
+Let’s ask the key question:
+
+**What if asynchronous code could be written like synchronous code?**
+
+What if we could:
+
+* Pause execution *without blocking*
+* Read code top-to-bottom
+* Handle errors with normal `try...catch`
+
+That exact desire gave birth to `async` / `await`.
+
+---
+
+## Step 6: What is `async` / `await`?
+
+`async` / `await` is **syntax sugar** built on top of Promises that lets you:
+
+> **Write asynchronous code that looks and feels synchronous**
+
+Important beginner truth:
+
+* It does **not** make JavaScript block
+* It does **not** make things faster
+* It makes code **easier to understand**
+
+---
+
+## Step 7: How does `async` work?
+
+When you mark a function as `async`, you’re telling JavaScript:
+
+> “This function will deal with something that takes time.”
+
+Key effects:
+
+* The function always returns a **Promise**
+* You are allowed to use `await` inside it
+
+Why this matters:
+
+* JavaScript now knows this function is special
+* It prepares to handle “pause points”
+
+---
+
+## Step 8: What does `await` actually do?
+
+Let’s reason carefully.
+
+### Question:
+
+Does `await` stop JavaScript?
+
+**No.**
+
+### What does it do then?
+
+`await`:
+
+* Pauses **only the async function**
+* Lets JavaScript continue doing other work
+* Resumes the function when the Promise resolves
+
+Think of it like saying:
+
+> “Wait here until the result is ready — then continue from this exact spot.”
+
+This is why code stays readable.
+
+---
+
+## Step 9: Why is this better than `.then()`?
+
+Cause → effect:
+
+* Humans think step-by-step
+* `await` matches that thinking
+* Error handling becomes normal (`try...catch`)
+* Code flows top-to-bottom
+* No nesting
+* No chaining confusion
+
+So the **why** is clear:
+
+> `async` / `await` exists to align asynchronous execution with human thinking.
+
+---
+
+## Step 10: Simple analogy (absolute beginner friendly)
+
+Imagine ordering food at a restaurant.
+
+### Without `await`:
+
+* You place an order
+* You immediately ask, “Where’s my food?”
+* It’s not ready yet — confusion
+
+### With `await`:
+
+* You place an order
+* You wait calmly
+* Food arrives
+* You eat
+* Life is good
+
+The restaurant doesn’t stop working — other orders continue.
+Only *you* are waiting.
+
+---
+
+## Step 11: Error handling with `async` / `await` (why it’s powerful)
+
+Because async code *looks* synchronous, we can use:
+
+```js
+try {
+  await somethingRisky()
+} catch (error) {
+  // handle error
+}
+```
+
+Why this is huge:
+
+* No `.catch()` chains
+* Errors are handled where they happen
+* Logic stays together
+
+---
+
+## Step 12: Final cause-and-effect summary
+
+* JavaScript must stay non-blocking
+* Async tasks run later
+* Callbacks were hard to manage
+* Promises improved things but still felt unnatural
+* Root problem: mismatch between async execution and human reasoning
+* `async` / `await` solves this by making async code readable and linear
+
+---
+
+### Next natural questions (same thinking style):
+
+* Why does `async` always return a Promise?
+* Why can’t we use `await` outside an async function?
+* What happens under the hood (event loop + microtasks)?
+* Why `await` doesn’t block the main thread?
+
+
+EXAMPLE AND MORE INFO\
+
+Async/await in JavaScript provides a cleaner, more intuitive syntax for handling asynchronous operations that are built on top of Promises. It allows you to write asynchronous code that reads like synchronous, top-down code. 
+Here are some common code examples and patterns using async/await:
+1. Basic Async Function
+An async function always returns a Promise. The await keyword can only be used inside an async function to pause its execution until a Promise settles (resolves or rejects). 
+javascript
+// A function that returns a Promise (simulating an async operation)
+function resolveAfter2Seconds() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve("Operation completed");
+    }, 2000); // Resolves after 2 seconds
+  });
+}
+
+// An async function using await
+async function getData() {
+  console.log("Fetching data...");
+  // Pause execution until the promise resolves
+  const result = await resolveAfter2Seconds();
+  console.log(result); // "Operation completed"
+  return result;
+}
+
+getData();
+// Output:
+// Fetching data...
+// (after 2 seconds)
+// Operation completed
+2. Fetching Data from an API
+This is a very common use case, often involving two await calls: one for the fetch itself, and another for parsing the response body as JSON. 
+javascript
+async function fetchUserData(userId) {
+  try {
+    const response = await fetch(`https://api.example.com/users/${userId}`);
+
+    if (!response.ok) { // Check for a successful HTTP status
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    const user = await response.json(); // Parse the JSON data
+    console.log(user);
+  } catch (error) {
+    // Catches any error in the try block, including network errors or HTTP errors
+    console.error("Could not get user data:", error);
+  }
+}
+
+fetchUserData(1);
+3. Error Handling with try...catch
+Async/await allows the use of standard try...catch blocks for error handling, which is much cleaner than using .catch() with Promises. 
+javascript
+async function performComplexOperation() {
+  try {
+    const stepOneResult = await asyncStepOne();
+    const stepTwoResult = await asyncStepTwo(stepOneResult);
+    console.log("Success:", stepTwoResult);
+  } catch (error) {
+    // Catches errors from either asyncStepOne or asyncStepTwo
+    console.error("An error occurred in the sequence:", error);
+  }
+}
+4. Parallel Operations with Promise.all() 
+When you have multiple asynchronous operations that do not depend on each other, you can run them in parallel using Promise.all() and await the result. This is significantly faster than awaiting them sequentially. 
+javascript
+async function fetchUserAndPosts(userId) {
+  try {
+    // Start both promises immediately, then await them simultaneously
+    const userPromise = fetchUser(userId);
+    const postsPromise = fetchUserPosts(userId);
+
+    const [user, posts] = await Promise.all([userPromise, postsPromise]);
+
+    console.log("User:", user, "Posts:", posts);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+5. Immediately Invoked Function Expressions (IIFE)
+In environments where top-level await is not supported (like older Node.js versions or non-module scripts), you can wrap your code in an asynchronous IIFE to use await at the top level of a file. 
+javascript
+(async () => {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  console.log(data);
+})();
+*/
+
+
+/**❤️‍🔥DATE IN JS
+Let’s understand **Dates in JavaScript** by following first-principles thinking, exactly the way a beginner’s curiosity would naturally unfold.
+
+---
+
+## Step 1: What problem do we face *without* dates?
+
+Imagine you are building any real application:
+
+* A login system
+* A banking app
+* A todo list
+* A chat app
+
+Now ask a simple question:
+
+**How do we know *when* something happened?**
+
+Without dates, we immediately run into problems:
+
+* We can’t tell **when a user logged in**
+* We can’t know **when a message was sent**
+* We can’t schedule things like reminders or payments
+* We can’t compare events (Which came first? Which expires later?)
+
+Everything would be timeless — just data with **no sense of time**.
+
+That makes real applications impossible.
+
+---
+
+## Step 2: What is the root cause of this problem?
+
+Let’s boil it down.
+
+The root cause is:
+
+> Computers do not naturally understand human time (days, months, years).
+
+Humans think in:
+
+* “Today”
+* “Tomorrow”
+* “5 minutes ago”
+* “Next week”
+
+Computers, however, only understand **numbers**.
+
+So the real problem is:
+
+> We need a way to represent **time as numbers**, but still work with it like humans do.
+
+---
+
+## Step 3: So how can we solve this problem?
+
+We need:
+
+* A standard way to represent time numerically
+* A way to convert that number into human-readable dates
+* Tools to compare, format, and manipulate time
+
+This leads us to JavaScript’s **Date object**.
+
+---
+
+## Step 4: What is the Date object in JavaScript?
+
+The `Date` object is JavaScript’s built-in way to:
+
+> **Store, represent, and work with time**
+
+Internally, JavaScript stores time as:
+
+> **The number of milliseconds since January 1, 1970 (UTC)**
+
+This moment is called the **Unix Epoch**.
+
+Why this matters:
+
+* Numbers are easy for computers
+* A single number lets us compare time easily
+* Everything can be calculated from this reference point
+
+---
+
+## Step 5: How does JavaScript think about time?
+
+Let’s reason step by step.
+
+### Question: What is the smallest useful unit of time?
+
+Milliseconds.
+
+### Question: From when should we start counting?
+
+From a fixed, global point everyone agrees on → **Jan 1, 1970**
+
+### Result:
+
+Every date is just a **big number** like:
+
+```
+1712345678901
+```
+
+That number represents **milliseconds since the epoch**.
+
+So when you create a date in JavaScript, you’re really creating a wrapper around that number.
+
+---
+
+## Step 6: Creating dates (and why there are multiple ways)
+
+### 1. Current date and time
+
+```js
+const now = new Date()
+```
+
+Why this exists:
+
+* We often need “what time is it right now?”
+
+---
+
+### 2. Specific date
+
+```js
+const birthday = new Date("1995-08-20")
+```
+
+Why this exists:
+
+* Humans think in calendar dates, not milliseconds
+
+---
+
+### 3. Using numbers
+
+```js
+const date = new Date(2025, 0, 1)
+```
+
+Important beginner detail:
+
+* Months start at **0** (January = 0)
+  Why?
+* Because JavaScript is built on zero-based indexing
+
+---
+
+## Step 7: Reading information from a date
+
+Once you have a date, you naturally ask:
+
+> “How do I get the year, month, day, or time?”
+
+JavaScript provides methods:
+
+* `getFullYear()` → year
+* `getMonth()` → month (0–11)
+* `getDate()` → day of the month
+* `getDay()` → day of the week (0–6)
+* `getHours()`, `getMinutes()`, `getSeconds()`
+
+Why so many methods?
+Because time has **many dimensions**, and we often need them separately.
+
+---
+
+## Step 8: Comparing dates (the real power)
+
+Ask yourself:
+
+**How do we know which date comes first?**
+
+Since dates are numbers internally:
+
+* Bigger number → later time
+* Smaller number → earlier time
+
+So:
+
+```js
+date1 > date2
+```
+
+works naturally.
+
+This is why storing time as milliseconds was such a smart design.
+
+---
+
+## Step 9: Common beginner mistakes (and why they happen)
+
+### 1. Month confusion
+
+```js
+new Date(2025, 1, 1) // February, not January
+```
+
+Root cause: zero-based indexing.
+
+---
+
+### 2. Timezone confusion
+
+Dates are affected by:
+
+* Local timezone
+* UTC
+
+This is why:
+
+```js
+toISOString()
+```
+
+exists — it gives a **timezone-safe** representation.
+
+---
+
+## Step 10: Simple analogy
+
+Think of time like a **stopwatch**:
+
+* The stopwatch starts at Jan 1, 1970
+* It counts milliseconds non-stop
+* JavaScript just reads the number on the stopwatch
+* The Date object converts it into:
+
+  * Year
+  * Month
+  * Day
+  * Time
+
+---
+
+## Step 11: Final cause-and-effect summary
+
+* Real apps need to understand time
+* Computers only understand numbers
+* The root problem is converting human time to numbers
+* JavaScript solves this with the Date object
+* Dates are stored as milliseconds since the Unix Epoch
+* Everything else is just **different views of that number**
+
+---
+
+### Next natural questions (using the same thinking style):
+
+* Why are months zero-based in JavaScript?
+* What is UTC vs local time?
+* Why is Date considered “hard” in JavaScript?
+* Why do libraries like Moment, Day.js, or Luxon exist?
+
+Tell me which one you want next.
+
+*/
+
+
+/** ❤️‍🔥 THE DATE FORMATTER
+function formatDate(date) {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+}
+
+function getDateNDaysAgo(n) {
+    const now = new Date(); // current date and time
+    now.setDate(now.getDate() - n); // subtract n days
+    return formatDate(now);
+}
+
+export const dates = {
+    startDate: getDateNDaysAgo(3), // alter days to increase/decrease data set
+    endDate: getDateNDaysAgo(1) // leave at 1 to get yesterday's data
+}
+ */
+
+
+/** ❤️‍🔥 
+ function formatDate(date) {
+This starts a little helper that knows how to dress up a date nicely.
+
+const yyyy = date.getFullYear();
+This takes the year from the date, like 2025.
+
+const mm = String(date.getMonth() + 1).padStart(2, '0');
+This takes the month, adds one because computers start counting months at zero, and makes sure it has two numbers.
+
+const dd = String(date.getDate()).padStart(2, '0');
+This takes the day of the month and makes sure it also has two numbers.
+
+**return \${yyyy}-${mm}-${dd}`;** This puts the year, month, and day together like 2025-01-15`.
+
+}
+This ends the date-dressing helper.
+
+function getDateNDaysAgo(n) {
+This starts a helper that can go back in time by a few days.
+
+const now = new Date();
+This gets today’s date right now.
+
+now.setDate(now.getDate() - n);
+This moves the date backward by n days.
+
+return formatDate(now);
+This sends the date to the first helper to make it look nice.
+
+}
+This ends the time-travel helper.
+
+export const dates = {
+This shares some dates so other files can use them.
+
+startDate: getDateNDaysAgo(3),
+This sets the start date to three days ago.
+
+endDate: getDateNDaysAgo(1)
+This sets the end date to yesterday.
+
+}
+This finishes the dates box.
+ */
+
+
+
+/** ❤️‍🔥JAVASCRIPT CODE
+import { dates } from '/utils/dates'
+
+const tickersArr = []
+
+const generateReportBtn = document.querySelector('.generate-report-btn')
+
+generateReportBtn.addEventListener('click', fetchStockData)
+
+document.getElementById('ticker-input-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const tickerInput = document.getElementById('ticker-input')
+    if (tickerInput.value.length > 2) {
+        generateReportBtn.disabled = false
+        const newTickerStr = tickerInput.value
+        tickersArr.push(newTickerStr.toUpperCase())
+        tickerInput.value = ''
+        renderTickers()
+    } else {
+        const label = document.getElementsByTagName('label')[0]
+        label.style.color = 'red'
+        label.textContent = 'You must add at least one ticker. A ticker is a 3 letter or more code for a stock. E.g TSLA for Tesla.'
+    }
+})
+
+function renderTickers() {
+    const tickersDiv = document.querySelector('.ticker-choice-display')
+    tickersDiv.innerHTML = ''
+    tickersArr.forEach((ticker) => {
+        const newTickerSpan = document.createElement('span')
+        newTickerSpan.textContent = ticker
+        newTickerSpan.classList.add('ticker')
+        tickersDiv.appendChild(newTickerSpan)
+    })
+}
+
+const loadingArea = document.querySelector('.loading-panel')
+const apiMessage = document.getElementById('api-message')
+
+async function fetchStockData() {
+    document.querySelector('.action-panel').style.display = 'none'
+    loadingArea.style.display = 'flex'
+    try {
+        const stockData = await Promise.all(tickersArr.map(async (ticker) => {
+            const url = `https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${dates.startDate}/${dates.endDate}?apiKey=${process.env.POLYGON_API_KEY}`
+            const response = await fetch(url)
+            const data = await response.text()
+            const status = await response.status
+            if (status === 200) {
+                apiMessage.innerText = 'Creating report...'
+                return data
+            } else {
+                loadingArea.innerText = 'There was an error fetching stock data.'
+            }
+        }))
+        fetchReport(stockData.join(''))
+    } catch(err) {
+        loadingArea.innerText = 'There was an error fetching stock data.'
+        console.error('error: ', err)
+    }
+}
+
+async function fetchReport(data) {
+    /** AI goes here **
+}
+
+function renderReport(output) {
+    loadingArea.style.display = 'none'
+    const outputArea = document.querySelector('.output-panel')
+    const report = document.createElement('p')
+    outputArea.appendChild(report)
+    report.textContent = output
+    outputArea.style.display = 'flex'
+}
+*/
+
+
+/** ❤️‍🔥 JAVASCRIPT CODE explanantion
+import { dates } from '/utils/dates'
+This brings a calendar helper from another box so we know which days to use.
+
+const tickersArr = []
+This makes an empty basket to store stock names.
+
+const generateReportBtn = document.querySelector('.generate-report-btn')
+This finds the “Make Report” button on the screen.
+
+generateReportBtn.addEventListener('click', fetchStockData)
+When the button is clicked, it starts getting stock information.
+
+document.getElementById('ticker-input-form').addEventListener('submit', (e) => {
+When the form is sent, we listen and do something special.
+
+e.preventDefault()
+This stops the page from refreshing like it normally would.
+
+const tickerInput = document.getElementById('ticker-input')
+This looks at what the child typed into the box.
+
+if (tickerInput.value.length > 2) {
+If the name is long enough, we say “okay”.
+
+generateReportBtn.disabled = false
+We turn the button back on so it can be clicked.
+
+const newTickerStr = tickerInput.value
+We take the typed stock name.
+
+tickersArr.push(newTickerStr.toUpperCase())
+We put the stock name into the basket using big letters.
+
+tickerInput.value = ''
+We clear the box so it’s empty again.
+
+renderTickers()
+We show all the stock names on the screen.
+
+} else {
+If the name is too short…
+
+label.style.color = 'red'
+We make the message red.
+
+label.textContent = 'You must add at least one ticker...'
+We tell the child what they did wrong.
+
+Showing the stock names
+
+function renderTickers() {
+This helper shows all chosen stocks.
+
+tickersDiv.innerHTML = ''
+We erase what was there before.
+
+tickersArr.forEach((ticker) => {
+We look at each stock name one by one.
+
+const newTickerSpan = document.createElement('span')
+We make a little label.
+
+newTickerSpan.textContent = ticker
+We put the stock name on it.
+
+tickersDiv.appendChild(newTickerSpan)
+We add it to the screen.
+
+Loading and messages
+
+const loadingArea = document.querySelector('.loading-panel')
+This finds the “loading” area.
+
+const apiMessage = document.getElementById('api-message')
+This finds the message area.
+
+Getting stock data
+
+async function fetchStockData() {
+This helper goes to the internet to get stock data.
+
+loadingArea.style.display = 'flex'
+We show the “please wait” screen.
+
+Promise.all(tickersArr.map(...))
+We ask for data for all stocks at the same time.
+
+fetch(url)
+We knock on the internet’s door to ask for stock numbers.
+
+if (status === 200)
+If the internet says “okay”…
+
+apiMessage.innerText = 'Creating report...'
+We say we’re making the report.
+
+fetchReport(stockData.join(''))
+We send all the data to another helper.
+
+catch(err)
+If something breaks…
+
+loadingArea.innerText = 'There was an error...'
+We tell the child something went wrong.
+
+Making and showing the report
+
+function fetchReport(data) {
+This is where the smart AI will write the report.
+
+function renderReport(output) {
+This shows the final story on the screen.
+
+report.textContent = output
+We put the report words on the page.
+*/
+
+
+/**
+ * we are going to need the stocks data for the project... we will use Polygon.io stock data
+ * get the API key and save it in your environment variable
+ * 
+ * Now lets get the OpenAI API key... we will it.
+ */
+
+//❤️‍🔥 HOW THE OPEN AI REQUEST WORKS?
+/**
+ * each time we make a request to the API
+ * we need to include 2 pieces of infomation
+ * we need to pass it a Model and an array of messages
+ * and some times we add optional settings
+ * 
+ * What is  Model in AI?
+ * we will be using LLM, Large Language Model
+ * LLM is an algorithm that uses training data to recognize patterns
+ * and make predictions or decisions.
+ * 
+ * OpenAI ha different models geared for different tasks like speech or text moderation etc.
+ * But what we want in this project is text generation, gpt4 is the model to go for.
+ * 
+ * What is the Array of Messages?
+ * Imagine a box that conatains objects 
+ * 
+ * The first object is system objects and it contains instructions
+ * this is where we tell the AI how we want it to be behave and 
+ * what sort of output we are expecting from it. This one will actually be hardcoded.
+ * if we were building an app to give holiday recommendations it might look something like this,
+ * "You will be asked for holiday recommendations by a tourist. 
+ * Answer as if you were an experienced tour operator 
+ * and give no more than three recommendations per answer.
+ * Always give friendly chatty answers."
+ * 
+ * We tell the AI what we want, what we are expecting, and hw we want it to behave.
+ * 
+ * and the next object in the array is user Object.
+ * 
+ * What is User object?
+ * This is what contains the user input we can imagine that the user comes up and say:
+ * "Can you recommend a holiday destination for January. 
+ * I like warm weather and want to swim in the sea. But no sharks"
+ * 
+ *  
+ * Then we will send this array of objects to the OpenAI API
+ * OpenAI will give back to us what is called an Assistant Object.
+ * 
+ * The Assistant Object conatins the output from the AI.
+ * and within the output, we will find the answer to our query.
+ * "Why not go to morrocco, greece or turkey. January temperatures should be fine
+ * and they are great for sea swimming with few sharks"
+ * 
+ * Now if we were building a chat bot, we could add this Assistant object back into the messaging array 
+ * and continue the process.
+ * 
+ * This ia how a simple request to the API works in theory.
+ * 
+ */
