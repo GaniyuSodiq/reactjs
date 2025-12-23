@@ -5934,6 +5934,243 @@ We put the report words on the page.
  * Now if we were building a chat bot, we could add this Assistant object back into the messaging array 
  * and continue the process.
  * 
- * This ia how a simple request to the API works in theory.
+ * This is how a simple request to the API works in theory.
  * 
+ */
+
+/**❤️‍🔥THE OPEN AI DEPENDENCY
+ * npm install openai - to install the dependency in our environment
+ * 
+ * the we will setup an instance of the openai class and save it to a const openai
+ * 
+ * 
+import OpenAI from 'openai'
+
+const openai = new OpenAI({
+    dangerouslyAllowBrowser: true
+})
+
+console.log(openai.apiKey)
+
+//Error: It looks like you're running in a browser-like environment. T
+// his is disabled by default, as it risks exposing your secret API credentials to attackers. 
+// If you understand the risks and have appropriate mitigations in place, 
+// you can set the `dangerouslyAllowBrowser` option to `true`, 
+// e.g., new OpenAI({ apiKey, dangerouslyAllowBrowser: true }); 
+// https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety
+
+// the api page gives the code below. it passed an object into a async/await function
+// the object contains 2 things. the AI model and message
+// the model takes a string of the AI name
+// the message is an arry of objects. and each objects has 2 key/value pairs. role and content
+// the model is actually built for chat so we have the roles: system, user and assistant. content is the string chat
+// assistant is the response from the AI. so user can keep chatiing and the assistant will keep replying 
+// we can have the message array outside the asyn function
+// we use the system content to tell the model how we want it to behave
+// we use the user content to give the model task to complete
+
+const message = [
+    {
+        role: "system",
+        constent: "You are a helpful general knowledge expert"
+    },
+        {
+        role: "user",
+        constent: "Who invented Television"
+    }
+]
+
+const response = await openai.chat.completions.create({
+    model: 'gpt-4',
+    // messages: [{}]
+    messages: message
+})
+
+console.log(response)
+
+{
+ id: "chatcmpl-8Go69bvmGWV8JHvZ9uxYXSUAimEb8",  object: "chat.completion", created: 1699016517, 
+ model: "gpt-4-0613",  choices: [{index: 0, message: 
+ {role: "assistant", content: "The invention of television was the work of many individuals in the late 19th century and early 20th century. 
+ However, Scottish engineer John Logie Baird is often associated with creating the first mechanical television. 
+ He demonstrated his working device in January 1926 in London. 
+ Concurrently in the United States, Philo Farnsworth is credited with inventing the first fully electronic television in the late 1920s."}, 
+ finish_reason: "stop"}], usage: {prompt_tokens: 24, completion_tokens: 86, total_tokens: 110}
+}
+
+// Below is the part of the code that has the actual answer
+ {role: "assistant", content: "The invention of television was the work of many individuals in the late 19th century and early 20th century. 
+ However, Scottish engineer John Logie Baird is often associated with creating the first mechanical television. 
+ He demonstrated his working device in January 1926 in London. 
+ Concurrently in the United States, Philo Farnsworth is credited with inventing the first fully electronic television in the late 1920s."}
+
+
+ // if we are building a chat box, we can take this object back into our conversation in the reponse asyync/await function
+ // but we dont need that. All we need is get our reponse with
+
+ console.log(response.choices[0].message.content)
+
+ The invention of the television was the work of many inventors over several decades. However, Scot John Logie Baird and Russian-born American inventor Vladimir Zworykin are most associated with its invention. Baird was the first to produce a live, moving, greyscale television image from reflected light. Zworykin was a pioneer in television technology, particularly in the development of the cathode ray tube for the reception of televised images. He is often referred to as the "father of television."
+
+
+// if u look closely, the answer we got the second time is diferent from the first one.
+// that is nor mal and we will talk more about that soon
+
+// if we delete the system object, we would get the same asnwer as the second one
+// you dont necessary need the system object when dealing with generic stuff like this
+
+*/
+
+// OpwnAI's chat completion Endpoint is the one to use for any text generation
+// there are other endpoint for other things like image generation etc 
+
+/** ❤️‍🔥❤️‍🔥❤️‍🔥A Quick Word About Models
+ * what is snapshot?
+ * in our object, we used model: 'gpt-4', but when the resonse came we saw "gpt-4-0613",
+ * this number at the end: 0613, is the snapshot
+ * it means as GPT evolves, OpenAi will switch to the model that has the best performance
+ * so by setting model: 'gpt-4', we are saying give us your best GPT4 snapshot
+ * 
+ * What is context length?
+ * if we go to the docs, we will see that some of the models have got K in their name e.g gpt-4-32k
+ * this k here is the context lenght, it is how many tokens the model can handle
+ * so the higher the number, the bigger your prompt can be
+ * 
+ * What is knowledge cut-off dates of models?
+ * if you look at the doc, you will see 'Training Data' column with a particular date
+ * it means that they have cutoff dates and anything you ask it after the date will not be known about
+ * check the OpenAi doc for the cutoff date of the model you are using
+ * 
+ * What is memory
+ * If we pass in a user content: "My name is Tom" 
+ * We will get a response from the Ai greeting us by name: "Hello Tom, how can I assist you today"
+ * if we pass in a another user content: "what is my name"
+ * We get a response saying it doesnt now our name. 
+ * But that aint 100% true, it just doesnt remember our chat.
+ * In later part we will look at memory solutions
+ */
+
+
+/**❤️‍🔥❤️‍🔥❤️‍🔥Prompt Engineering
+ * Prompt engineering is the art or science of designing inputs for generatice AI tools like gpt4
+ * to produce optimal outputs.
+ *
+ * 
+ */
+
+/**Lets continue our finace projects
+ * challenge below
+ * 
+import { dates } from '/utils/dates'
+import OpenAI from "openai"
+
+const tickersArr = []
+
+const generateReportBtn = document.querySelector('.generate-report-btn')
+
+generateReportBtn.addEventListener('click', fetchStockData)
+
+document.getElementById('ticker-input-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const tickerInput = document.getElementById('ticker-input')
+    if (tickerInput.value.length > 2) {
+        generateReportBtn.disabled = false
+        const newTickerStr = tickerInput.value
+        tickersArr.push(newTickerStr.toUpperCase())
+        tickerInput.value = ''
+        renderTickers()
+    } else {
+        const label = document.getElementsByTagName('label')[0]
+        label.style.color = 'red'
+        label.textContent = 'You must add at least one ticker. A ticker is a 3 letter or more code for a stock. E.g TSLA for Tesla.'
+    }
+})
+
+function renderTickers() {
+    const tickersDiv = document.querySelector('.ticker-choice-display')
+    tickersDiv.innerHTML = ''
+    tickersArr.forEach((ticker) => {
+        const newTickerSpan = document.createElement('span')
+        newTickerSpan.textContent = ticker
+        newTickerSpan.classList.add('ticker')
+        tickersDiv.appendChild(newTickerSpan)
+    })
+}
+
+const loadingArea = document.querySelector('.loading-panel')
+const apiMessage = document.getElementById('api-message')
+
+async function fetchStockData() {
+    document.querySelector('.action-panel').style.display = 'none'
+    loadingArea.style.display = 'flex'
+    try {
+        const stockData = await Promise.all(tickersArr.map(async (ticker) => {
+            const url = `https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${dates.startDate}/${dates.endDate}?apiKey=${process.env.POLYGON_API_KEY}`
+            const response = await fetch(url)
+            const data = await response.text()
+            const status = await response.status
+            if (status === 200) {
+                apiMessage.innerText = 'Creating report...'
+                return data
+            } else {
+                loadingArea.innerText = 'There was an error fetching stock data.'
+            }
+        }))
+        fetchReport(stockData.join(''))
+    } catch(err) {
+        loadingArea.innerText = 'There was an error fetching stock data.'
+        console.error('error: ', err)
+    }
+}
+
+async function fetchReport(data) {
+    console.log(data)
+/** 
+ * Challenge:
+ * 1. Use the OpenAI API to generate a report advising 
+ * on whether to buy or sell the shares based on the data 
+ * that comes in as a parameter.
+ * 
+ * 🎁 See hint.md for help!
+ * 
+ * 🏆 Bonus points: use a try catch to handle errors.
+ * **
+ * 
+ * SOLUTION
+ 
+    const messages = [
+        {
+            role: 'system',
+            content: 'You are a trading guru. Given data on share prices over the past 3 days, write a report of no more than 150 words describing the stocks performance and recommending whether to buy, hold or sell.'
+        },
+        {
+            role: 'user',
+            content: data
+        }
+    ]
+
+    try {
+        const openai = new OpenAI({
+            dangerouslyAllowBrowser: true
+        })
+        const response = await openai.chat.completions.create({
+            model: 'gpt-4',
+            messages: messages
+        })
+        renderReport(response.choices[0].message.content)
+
+    } catch (err) {
+        console.log('Error:', err)
+        loadingArea.innerText = 'Unable to access AI. Please refresh and try again'
+    }
+}
+
+function renderReport(output) {
+    loadingArea.style.display = 'none'
+    const outputArea = document.querySelector('.output-panel')
+    const report = document.createElement('p')
+    outputArea.appendChild(report)
+    report.textContent = output
+    outputArea.style.display = 'flex'
+}
  */
