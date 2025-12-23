@@ -6245,3 +6245,12 @@ console.log(response)
  * also you can give the model some examples and that help control the level out output
  * 
  */
+
+/**❤️‍🔥❤️‍🔥❤️‍🔥The OpenAI playground
+ * This is use to see how are instructions and prompts will perform
+ * 
+ * you navigate to the playground
+ * it is going to deault to the assistant API, change that to chat API
+ * You can adjust the system and user settings here
+ * An yu can get the source code equivalent which look very much like the api code we have been writing 
+ */
