@@ -6174,3 +6174,74 @@ function renderReport(output) {
     outputArea.style.display = 'flex'
 }
  */
+
+//{id: "chatcmpl-8HqFaX41jZKaoQoATAUyoQ5X2kK8R", object: "chat.completion", created: 1699263118, model: "gpt-4-0613", choices: [{index: 0, message: {role: "assistant", content: "Quantum computing is a special kind of computing. Imagine if you could open all your gifts at Christmas at the same time, instead of one after the other. Quantum computers work like that, problem-solving all at once instead of step-by-step. They're really powerful and fast."}, finish_reason: "stop"}], usage: {prompt_tokens: 44, completion_tokens: 56, total_tokens: 100}} 
+
+
+/**❤️‍🔥❤️‍🔥❤️‍🔥What Are Tokens 
+ * 
+ * if you look at the response above, youw will see
+ * usage: {prompt_tokens: 44, completion_tokens: 56, total_tokens: 100}
+ * The total token is the most important bcs u pay for every token
+ * Our prompt cost us 44 tokens and response cost us 56 tokens
+ * 
+ * A token is not a character, or word or syllable. 
+ * it is a chunk of text of no specific lenghth, according to OpenAI, it is around 4 characters.
+ * 
+ * A helpful rule of thumb is that one token generally corresponds to ~4 characters of text for common English text. 
+ * This translates to roughly ¾ of a word (so 100 *tokens ~= 75 words).
+
+ * If you need a programmatic interface for tokenizing text, check out our tiktoken package for Python. 
+    For JavaScript, the community-supported @dbdq/tiktoken package works with most GPT models.
+    
+*/
+
+/**
+ * Why do Tokens matter?
+ * 
+ * Tokens cost credit so the more u use, the more money you spend
+ * Tokens use processing so the more u use, the slower your app will be
+ * so keeping tokens low save you money and saves your users time
+ * 
+ * You can control the number of token that you use with the max_token settings
+ * it limits the number of tokens the model will output
+ * it doesnt limit the input tokens
+ * what you are controlling is the completion_token, not the prompt_token
+ * 
+ * Lets set the max_tokens to 16 and see what happens:
+ * 
+ const response = await openai.chat.completions.create({
+    model: 'gpt-4',
+    messages: messages,
+    max_tokens: 16
+})
+
+console.log(response)
+
+//{id: "chatcmpl-8KltZnq2aoTr3SVdBE3BroZKtOCVs", object: "chat.completion", created: 1699961361, model: "gpt-4-0613", choices: [{index: 0, message: {role: "assistant", content: "Quantum computing is like a super-powered version of your computer. While your computer"}, finish_reason: "length"}], usage: {prompt_tokens: 44, completion_tokens: 16, total_tokens: 60}}
+ *   
+ * if you check the response from AI, you wil see that the answer stopped mid sentence.
+ * this is not a good experience
+ * finish_reason: "length" is part of the response and it means the respose has been cut off
+ * finish_reason: "stop" is the good reason and it means the model finished what it wanted to say
+ * 
+ * in the past, max_token default to 16 so we had to change it.
+ * now it defaults to infinity wheich means it uses the model's max whick could be as long as 128K as at gpt 4 turbo
+ * now it would be more than that
+ * 
+ * 
+ * Some advise of setting max_tokens
+ * max_tokens does not allow us to set how concise thetext will be
+ * it only redices the characters
+ * if you set maxtoken, be sure to allow enough tokens for a full response
+ * So set max toens to be something higher than your expected output so you dont waste money on some randon outputs
+ * you can imagine if we asked for a paragraph of 50 words, 
+ * we might safely set max_tokens to be 200
+ * that would save us from getting really randowm output that we dont want anyway
+ * 
+ * But really
+ * the best way to control the text lenght is through good prompt design
+ * so it comes down to what you are doing in the messages array of objects
+ * also you can give the model some examples and that help control the level out output
+ * 
+ */
