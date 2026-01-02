@@ -5636,7 +5636,7 @@ export const dates = {
 
 
 /** ❤️‍🔥 
- function formatDate(date) {
+function formatDate(date) {
 This starts a little helper that knows how to dress up a date nicely.
 
 const yyyy = date.getFullYear();
@@ -5898,7 +5898,7 @@ We put the report words on the page.
  * LLM is an algorithm that uses training data to recognize patterns
  * and make predictions or decisions.
  * 
- * OpenAI ha different models geared for different tasks like speech or text moderation etc.
+ * OpenAI ha different models geared for different tasks like speech or text generation etc.
  * But what we want in this project is text generation, gpt4 is the model to go for.
  * 
  * What is the Array of Messages?
@@ -5972,11 +5972,11 @@ console.log(openai.apiKey)
 const message = [
     {
         role: "system",
-        constent: "You are a helpful general knowledge expert"
+        content: "You are a helpful general knowledge expert"
     },
-        {
+    {
         role: "user",
-        constent: "Who invented Television"
+        content: "Who invented Television"
     }
 ]
 
@@ -6045,14 +6045,14 @@ console.log(response)
  * If we pass in a user content: "My name is Tom" 
  * We will get a response from the Ai greeting us by name: "Hello Tom, how can I assist you today"
  * if we pass in a another user content: "what is my name"
- * We get a response saying it doesnt now our name. 
+ * We get a response saying it doesnt know our name. 
  * But that aint 100% true, it just doesnt remember our chat.
  * In later part we will look at memory solutions
  */
 
 
 /**❤️‍🔥❤️‍🔥❤️‍🔥Prompt Engineering
- * Prompt engineering is the art or science of designing inputs for generatice AI tools like gpt4
+ * Prompt engineering is the art or science of designing inputs for generative AI tools like gpt4
  * to produce optimal outputs.
  *
  * 
