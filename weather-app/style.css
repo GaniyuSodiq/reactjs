@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    text-align: center;
+    color: aliceblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main{
+    background-color: darkslategray;
+    max-width: 400px;
+    min-height: 400px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.cloud{
+    font-size: 500%;
+}
+
+.degree{
+    font-size: 250%;
+}
+
+.cloud-leter{
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.weatherDate{
+    font-size: .7rem;
+}
+
+.time{
+    font-size: 1.5rem;
+    margin-top: 50px;
+}

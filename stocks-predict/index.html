@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks Predictor App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>💸 My Stocks Predictor 💸</h1>
+    </header>
+    <main>
+        <section class="form-section">
+            <form action="">
+                <label for="ticker-input">Put your ticker keywords</label>
+                <div class="inputAndBtn">
+                    <input type="text" id="ticker-input" placeholder="TSLA">
+                    <button id="addTickerBtn">✔️</button>
+                </div>
+            </form>
+
+        </section>
+        <section class="ticker-section">
+            <div class="tickers-box">
+                <!-- <p>TSLA</p>
+                <p>meta</p>
+                <p>re</p> -->
+            </div>
+            <button class="generate-report-btn" disabled>
+                generate report
+            </button>
+        </section>
+        <section class="result-section">
+            <div class="loading-svg">
+                <!-- <img src="loading-svg" alt=""> -->
+            </div>
+            <div class="result">
+                <p>here goes the result text  jjjjjjjjjj</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; Play responsibly. Youve got 15% chance of making a profit!
+    </footer>
+</body>
+</html>
