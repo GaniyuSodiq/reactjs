@@ -11,6 +11,10 @@ body{
     margin-top: 20px;
 }
 
+/* button{
+    color: rgb(15, 44, 69); 
+} */
+
 header{
     height: 100px;
     width: 400px;
@@ -78,6 +82,17 @@ header h1{
     border-radius: 5px;
     text-transform: uppercase;
     font-weight: bolder;
+    cursor: pointer;
+    /* color: rgb(15, 44, 69); */
+}
+
+.generate-report-btn:hover{
+    background-color: rgb(170, 255, 85);
+}
+
+.generate-report-btn:active{
+    background-color: rgb(170, 255, 85);
+    box-shadow: inset black 1px 1px 10px 2px;
 }
 
 
