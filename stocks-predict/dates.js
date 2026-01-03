@@ -5,8 +5,8 @@
  * we new Date().setDate(new Date().getDate() - n)
  */
 
-export function formatDate() {
-    const now = new Date()
+function formatDate(now) {
+    // const now = new Date()
 
     const yyyy = now.getFullYear()
 
@@ -19,9 +19,21 @@ export function formatDate() {
     // console.log(formatToTwoDigits(12)); // Output: "12"
     // console.log(formatToTwoDigits(100)); // Output: "100" (does not truncate longer numbers)
 
-    const dd = now.getDate()
+    const dd = String(now.getDate()).padStart(2, '0')
 
     return `${yyyy}/${mm}/${dd}`
 }
 
 
+function daysAgo(n){
+    const noww = new Date()
+
+    noww.setDate(noww.getDate() - n)
+
+    return formatDate(noww)
+}
+
+export const datess = {
+    threeDaysAgo : daysAgo(3),
+    oneDayAgo: daysAgo(1)
+}

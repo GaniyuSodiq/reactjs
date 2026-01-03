@@ -1,4 +1,4 @@
-import { formatDate } from "./dates.js"
+import { datess } from "./dates.js"
 const tickersArr = []
 
 const tickerInput = document.getElementById("ticker-input")
@@ -39,6 +39,6 @@ async function fetchReport(){
     const response = await Promise.all(tickersArr.map(async (ticker) => {
         // const url = `https://api.${ticker}/${dates.threeDaysAgo}/${dates.oneDayAgo}?apikey=${hfndndjdj2344}`
 
-        console.log(formatDate())
+        console.log(datess)
     }))
 }
