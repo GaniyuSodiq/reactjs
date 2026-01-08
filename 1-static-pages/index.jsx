@@ -1621,7 +1621,7 @@ the form conprise just the input field and a button beside the input
 
 Lets create the form. 
 
-I know the input and buttom are just small part that we can just make without outting them in the form
+I know the input and buttom are just small part that we can just make without putting them in the form
 however, it is best to have them in a form though bcs of semantic and benefits of using a a form
 
 **/
@@ -1818,7 +1818,7 @@ export default function Main(){
     /**
      * 2: Another challenge:
      * add onSubmit eventListener on the form and get it diapl "form submitted" to console
-     */
+    */
 
 //    function handleSubmit(event){
         // to stop the submit from reloading the page
@@ -1853,7 +1853,7 @@ export default function Main(){
 //        console.log(ingredients)
 
         /**
-         * By default React doe not automatically upate the page for us
+         * By default React does not automatically upate the page for us
          * in the imparative vanilla js. we would have a fn re-render the list when new item is added
          * But React is declarative so there is a better way to do that here
          * We want to just update our data ie the list and have react sense that then update d page or us
@@ -1940,7 +1940,7 @@ export default function Main(){
  * Changing a local, non state variable does not cause React to re-render the component.
  * Changing state with a built in 'setState' function does.
  * example is our ingredients array. we save it as regular: const ingredients = []
- * this is not saved as a state value so React doe not re-render the Main component
+ * this is not saved as a state value so React doeS not re-render the Main component
  * 
  * 03: view = function(state)
  * When state changes and React re-runs (re-renders) your component,
@@ -1976,7 +1976,7 @@ export default function Main(){
    * ...to save the variable in an actual 'State'
    * We need to first import the function from React using
    * either: import {useState} from "react"
-   * or: import React form "react"
+   * or: import React from "react"
    */
   // const result = React.useState() // useState is an array of undefined and a fn: [undefined, ƒ]
   // console.log(result) // [undefined, ƒ]
@@ -3051,7 +3051,7 @@ export default function App() {
 // THIS IS WHERE CONDITIONAL RENDERING COMES IN
 // It means we will render part of our page base on a condition
 /**
- import React from "react"
+import React from "react"
 
 export default function Joke(props) {
     /**
@@ -3723,9 +3723,9 @@ export default function App() {
                     // we need to recieve it in the Star component too
                     // 
                     <Star isFilled={contact.isFavorite} onClick={toggleHandler}/>
-                    // so this unClick is just another custom property or props that we are passing to 
+                    // so this onClick is just another custom property or props that we are passing to 
                     our custom component which we will then recieve from the component jst like we recieve 
-                    any other component
+                    any other component and {toggleHandler} is like putting the entire fn here, onClick run it when clicked. so we ar basically sending the fn as props to the component
                     
                     // we can make this even more explanatory by making the custom attribute...
                     // look more different from DOM attri
@@ -3818,7 +3818,7 @@ and pass it down from there
 
 This can get cumbersome overtime so there are some ways to manage data in Reac like Redux, context etc
 
-Context and Redux and beyond the scope of this training
+Context and Redux are beyond the scope of this training
 
 so we will go with the default React 
 
@@ -3883,7 +3883,7 @@ If 2 siblings need it, then put in a parent - not the grand parent - etc
 
 // ❤️‍🔥 SOUND PADS CHALLENGE
 /**
- * This will be a series of challenges to re-force what what we have learned
+ * This will be a series of challenges to re-enforce what we have learned
  
 import padsData from "./pads"
 import React from "react"
@@ -3909,7 +3909,7 @@ export default function App(props) {
      similarly in React, anything that is real HTML, not components, 
      we can pass style attribute to it
 
-     However bcs we are in jsx, we are not going to equeat e style to a string
+     However bcs we are in jsx, we are not going to equeate style to a string
      style will equate to an object symbol: style={}
      we are not setting the style to be object, 
      but we are telling that the code in the curly braces is javascript
@@ -3970,7 +3970,7 @@ export default function App(props) {
 
     const buttonElements = pads.map(pad => <Pad color={pad.color} key={pad.id}/>)
     /**
-         export default function Pad(props){
+    export default function Pad(props){
         const bgStyle = {backgroundColor: props.color} 
         return <button style={bgStyle}></button>
      
@@ -4180,7 +4180,7 @@ RHS is what the event handler will run : props.togglePadFn(id)
 LHS is the one that will recieve the event as its parameter : (event) =>
 
     we dont need the event word. 
-    the onlything the LHS funtion will do is run the RHS function
+    the only thing the LHS funtion will do is run the RHS function
     and bcs RHS is outside the event handler fn, we can pass 'id' to it
 
     so how can we get access to the id?
@@ -4225,7 +4225,7 @@ export default function App() {
          * set to the opposite of what it was before.
          * Otherwise (if the ids don't match), just return the previous
          * item as it was, unchanged.
-         /
+         / setPads(prevSetPads => prevSetPads.map(pad => pad.id === id ? {...pad, on: !pad.on} : pad))
 
     function togglePad(id){
         console.log(id)
@@ -4278,9 +4278,9 @@ export default function Pad(props) {
 }
 
 we know that this is a lot of code compared to the first method
-but now we are setup in amore React way where we have a single source of truth
+but now we are setup in a more React way where we have a single source of truth
 data flows in one direction and pass through props to the component
-andthe props can trigger changes through the callback functions to the main source of truth
+and the props can trigger changes through the callback functions to the main source of truth
 
 Now if we have a button that says turn all the button off
 we can have that very easily.
