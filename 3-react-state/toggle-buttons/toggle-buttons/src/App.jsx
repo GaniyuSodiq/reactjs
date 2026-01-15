@@ -11,7 +11,9 @@ export default function App() {
   }
 
   function toggleAllOff(){
-    setTheBtns(prevTheBtns => prevTheBtns.map(theBtn => theBtn ? {...theBtn, on: false} : null))
+    // setTheBtns(prevTheBtns => prevTheBtns.map(theBtn => theBtn ? {...theBtn, on: false} : null))
+    setTheBtns(prevTheBtns => prevTheBtns.map(theBtn => ({...theBtn, on: false})))
+
   }
 
   const btnArr = theBtns.map(bt => <Button key={bt.id} id={bt.id} color={bt.color} on={bt.on} handleToggleBtn={toggleBtn}/>)

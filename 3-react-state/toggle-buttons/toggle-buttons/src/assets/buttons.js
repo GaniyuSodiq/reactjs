@@ -7,13 +7,13 @@ export default [
     },
     {
         id: 2,
-        color: "#ccd5ae",
+        color: "#780000",
         on: true,
 
     },
     {
         id: 3,
-        color: "red",
+        color: "#c1121f",
         on: false,
 
     },
@@ -25,7 +25,7 @@ export default [
     },
     {
         id: 5,
-        color: "green",
+        color: "#fdf0d5",
         on: true,
 
     },
@@ -43,7 +43,7 @@ export default [
     },
     {
         id: 8,
-        color: "#cdb4db",
+        color: "#669bbc",
         on: true,
 
     },
