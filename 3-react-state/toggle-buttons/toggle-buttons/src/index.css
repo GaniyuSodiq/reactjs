@@ -1,0 +1,12 @@
+.buttons{
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin: 3px;  
+}
+
+.off{
+  opacity: .2;
+}
+
+
