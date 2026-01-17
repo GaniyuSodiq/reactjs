@@ -67,7 +67,7 @@ main{
   background-color: rgb(80, 136, 239);
 }
 
-.ingredientsAtHand{
+.ingredientsAtHand, .recipeBox{
   margin: 20px auto;
   max-width: 350px;
   min-width: 150px;
@@ -80,4 +80,34 @@ main{
 .ingredientsAtHand ul{
   margin-left: 50px;
   padding-top: 20px;
+}
+
+.ctaBox{
+  width: 400px;
+  margin: 0px auto;
+  display: flex;
+  background-color:rgb(167, 196, 250);
+  padding: 20px;
+  gap: 10px;
+  font-size: .9rem;
+  color: white;
+    border-radius: 5px;
+
+}
+
+.ctaBox button{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.ctaBox button:active{
+  background-color:cornsilk;
+}
+
+.recipeBox h4{
+  margin: 15px 0 5px;
+
 }
