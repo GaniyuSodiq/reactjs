@@ -8,6 +8,7 @@
 body{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgba(0, 0, 0, 0.74);
+  background-color: ivory;
 }
 
 header {
@@ -17,9 +18,44 @@ header {
   box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.499);
   height: 100px;
   gap: 10px;
+  background-color: white;
 }
 
 header span{
   font-size: 2.5rem;
   color: black;
+}
+
+main{
+  margin: 30px 30px 10px;
+}
+
+.addIngredientForm{
+  display: flex;
+  height: 50px;
+  justify-content: center;
+
+}
+
+.addIngredientInput{
+  flex-grow: 1;
+  max-width: 350px;
+  min-width: 150px;
+}
+
+.addIngredientBtn{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding: 5px;
+  font-weight: bolder;
+  font-size: .9rem;
+  text-transform: uppercase;
+  background-color: cornflowerblue;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.addIngredientBtn::before{
+  content: "+";
+  margin: 5px;
 }
