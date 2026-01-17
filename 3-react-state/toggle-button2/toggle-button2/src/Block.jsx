@@ -1,7 +1,13 @@
-export default function Block(props){
+export default function Block(props) {
     return (
         <>
-            <div></div>
+            <div
+                style={{ backgroundColor: `${props.col}` }}
+                onClick={() => props.handleToggle(props.id)}
+            >
+                {/* {props.toggleOn ? props.an : props.qn} */}
+                {props.on ? props.an : props.qn}
+            </div>
         </>
     )
 }

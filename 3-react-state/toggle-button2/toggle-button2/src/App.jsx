@@ -7,13 +7,25 @@ function App() {
 
   const [btnArr, setBtnArr] = useState(buttons)
 
+  const [toggleOn, setToggleOn] = useState(false)
+
   const blocks = btnArr.map(btn => (<Block
     key={btn.id}
     id={btn.id}
     col={btn.col}
     qn={btn.question}
-    an={btn.answer} />)
+    an={btn.answer}
+    toggle={toggleOn}
+    on={toggleOn}
+    handleToggle={toggleBox}
+  />)
   )
+
+  function toggleBox(id) {
+    console.log(id)
+    setBtnArr(prevBtnArr => prevBtnArr.map(bt => ({...bt, col: "#123456"})))
+    // setBtnArr(prevSetBtnArr => prevSetBtnArr.map(btn => (btn.id === id ? { ...btn, on: !btn.on } : btn)))
+  }
 
   return (
     <>
