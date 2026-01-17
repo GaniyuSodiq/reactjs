@@ -19,6 +19,12 @@ export default function Main() {
         event.currentTarget.reset()
     }
 
+    const [recipeBox, setRecipeBox] = React.useState(false)
+
+    function toggleRecipe() {
+        setRecipeBox(prevRecipeBox => !prevRecipeBox)
+    }
+
     return (
         <>
             <main className="mainPage">
@@ -39,12 +45,12 @@ export default function Main() {
                     </div> : null}
 
                     {ingredientArr.length > 3 && <div className="ctaBox">
-                        <p>Send the ingredient to Chef Simi to get the best recipe you could get</p>
-                        <button>Send To Chef</button>
+                        <p>Send the ingredients to Chef Simi to get the best recipe you could get</p>
+                        <button onClick={toggleRecipe}>Send To Chef</button>
                     </div>}
                 </div>
 
-                <div className="recipeBox">
+                {recipeBox && <div className="recipeBox">
                     <h2>Nigerian Jollof Rice</h2>
                     <h4>Ingredients and Quantity</h4>
                     <ul>
@@ -60,7 +66,7 @@ export default function Main() {
                         <li>1 complete onion</li>
                         <li>2 litters of water</li>
                     </ol>
-                </div>
+                </div>}
             </main>
         </>
     )
