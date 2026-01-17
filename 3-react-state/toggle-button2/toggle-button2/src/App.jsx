@@ -23,7 +23,8 @@ function App() {
 
   function toggleBox(id) {
     console.log(id)
-    setBtnArr(prevBtnArr => prevBtnArr.map(bt => ({...bt, col: "#123456"})))
+    setBtnArr(prevBtnArr => prevBtnArr.map(bt => (bt.id === id ? {...bt, col: "#123456"} : bt)))
+    // setBtnArr(prevBtnArr => prevBtnArr.map(bt => ({...bt, col: "#123456"})))
     // setBtnArr(prevSetBtnArr => prevSetBtnArr.map(btn => (btn.id === id ? { ...btn, on: !btn.on } : btn)))
   }
 
