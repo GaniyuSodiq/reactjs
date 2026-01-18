@@ -6,7 +6,7 @@ export default function Block(props) {
                 onClick={() => props.handleToggle(props.id)}
             >
                 {/* {props.toggleOn ? props.an : props.qn} */}
-                {props.on ? props.an : props.qn}
+                {props.on ? props.qn : props.an}
             </div>
         </>
     )
