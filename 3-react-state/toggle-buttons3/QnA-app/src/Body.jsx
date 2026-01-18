@@ -10,7 +10,7 @@ export default function Body() {
     // i can even save this new array in state, 
     // const theQuestions = questions
 
-    const [theQuestions, setTheQuestions] = React.useState(questions)
+    const theQuestions = questions
     const [questionNumber, setQuestionNumber] = React.useState(0)
     const [switchQnA, setSwitchQnA] = React.useState(true)
 

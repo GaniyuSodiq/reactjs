@@ -33,6 +33,7 @@ main > div:nth-child(1){
   text-align: center;
   min-width: 400px;
   gap: 20px;
+  cursor: pointer;
 }
 
 .controls{
