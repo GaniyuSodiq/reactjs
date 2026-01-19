@@ -1,7 +1,26 @@
 export default function Form() {
+
+    function handleAction(){
+
+    }
+
+    function handleOnSubmit(event){
+        event.preventDefault()
+        const formData = new FormData(event.currentTarget)
+        const fname = formData.get("fname")
+        const lname = formData.get("lname")
+        const age = formData.get("age")
+        const mystory = formData.get("mystory")
+        const profession = formData.get("profession")
+        const tools = formData.getAll("tools")
+        const data = {fname, lname, age, mystory, profession, tools}
+        
+        console.log(data)
+    }
+
     return (
         <>
-            <form action="">
+            <form action="" onSubmit={handleOnSubmit}>
                 <label htmlFor="fname">Firstname: </label>
                 <input type="text" id="fname" name="fname" />
 
@@ -9,7 +28,7 @@ export default function Form() {
                 <input type="text" id="lname" name="lname" />
 
                 <label htmlFor="age">Age: </label>
-                <input type="number" min="20" max="80" defaultValue="33" name="age" id="age" />
+                <input type="number" min="20" max="80" defaultValue="" name="age" id="age" />
 
                 <label htmlFor="mystory">Tell us a little story about yourself</label>
                 <textarea name="mystory" id="mystory" rows="10"></textarea>
@@ -29,15 +48,15 @@ export default function Form() {
                 <fieldset>
                     <legend>The tools you use:</legend>
 
-                    <label htmlFor="computer"><input type="checkbox" id="computer" name="tools" />Computer</label>
+                    <label htmlFor="computer"><input type="checkbox" id="computer" name="tools" value="computer"/>Computer</label>
 
-                    <label htmlFor="notebook"><input type="checkbox" id="notebook" name="tools" />Notebook</label>
+                    <label htmlFor="notebook"><input type="checkbox" id="notebook" name="tools" value="notebook"/>Notebook</label>
 
-                    <label htmlFor="headset"><input type="checkbox" id="headset" name="tools" />Headset</label>
+                    <label htmlFor="headset"><input type="checkbox" id="headset" name="tools" value="headset"/>Headset</label>
 
-                    <label htmlFor="printer"><input type="checkbox" id="printer" name="tools" />Printer</label>
+                    <label htmlFor="printer"><input type="checkbox" id="printer" name="tools" value="printer"/>Printer</label>
 
-                    <label htmlFor="television"><input type="checkbox" id="television" name="tools" />Television</label>
+                    <label htmlFor="television"><input type="checkbox" id="television" name="tools" value="television"/>Television</label>
                 </fieldset>
 
                 <button>Submit</button>
