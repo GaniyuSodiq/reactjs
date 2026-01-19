@@ -15,16 +15,32 @@ export default function Form() {
                 <textarea name="mystory" id="mystory" rows="10"></textarea>
 
                 <fieldset>
-                    <legend>What is your profession</legend>
+                    <legend>What is your profession:</legend>
 
                     <label htmlFor="it-person"><input type="radio" id="it-person" name="profession" value="it-person" />IT Person</label>
 
-                    <label htmlFor="stay-at-home-mum"><input type="radio" name="profession" value="stay-at-home-mum" id="stay-at-home-mum"/>Stay-At-Home-Mum</label>
+                    <label htmlFor="stay-at-home-mum"><input type="radio" name="profession" value="stay-at-home-mum" id="stay-at-home-mum" />Stay-At-Home-Mum</label>
 
                     <label htmlFor="marketer"><input type="radio" id="marketer" name="profession" value="marketer" />Marketer</label>
 
                     <label htmlFor="accountant"><input type="radio" id="accountant" name="profession" value="accountant" />Accountant</label>
                 </fieldset>
+
+                <fieldset>
+                    <legend>The tools you use:</legend>
+
+                    <label htmlFor="computer"><input type="checkbox" id="computer" name="tools" />Computer</label>
+
+                    <label htmlFor="notebook"><input type="checkbox" id="notebook" name="tools" />Notebook</label>
+
+                    <label htmlFor="headset"><input type="checkbox" id="headset" name="tools" />Headset</label>
+
+                    <label htmlFor="printer"><input type="checkbox" id="printer" name="tools" />Printer</label>
+
+                    <label htmlFor="television"><input type="checkbox" id="television" name="tools" />Television</label>
+                </fieldset>
+
+                <button>Submit</button>
             </form>
         </>
     )

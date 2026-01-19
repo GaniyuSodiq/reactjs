@@ -11,14 +11,32 @@ body{
 }
 
 form{
+  margin: 20px 0px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-form label{
+/* form label{
   margin: 20px 0 5px;
-}
+} */
 
 fieldset label{
   margin-right: 15px;
+}
+
+form button{
+  background-color: aqua;
+  border: none;
+  padding: 15px;
+  align-self: flex-start;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.421);
+  cursor: pointer;
+}
+
+.answer{
+  background-color: rgba(255, 0, 217, 0.075);
+  height: 50px;
+  padding: 10px;
 }
