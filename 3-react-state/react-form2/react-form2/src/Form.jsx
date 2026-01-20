@@ -1,10 +1,10 @@
+import React from "react"
+
 export default function Form() {
 
-    function handleAction(){
+    const [data, setData] = React.useState({})
 
-    }
-
-    function handleOnSubmit(event){
+    function handleOnSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
         const fname = formData.get("fname")
@@ -12,15 +12,36 @@ export default function Form() {
         const age = formData.get("age")
         const mystory = formData.get("mystory")
         const profession = formData.get("profession")
-        const tools = formData.getAll("tools")
-        const data = {fname, lname, age, mystory, profession, tools}
-        
+        const tools = formData.getAll("tools").join(", ")
+        const data = { fname, lname, age, mystory, profession, tools }
+        setData(data)
         console.log(data)
+        event.currentTarget.reset()
+    }
+
+    function handleAction(formData) {
+        const data = Object.fromEntries(formData)
+        const tools = formData.getAll("tools").join(", ")
+        const allData = {...data, tools}
+        console.log(data)
+        setData(allData)
     }
 
     return (
         <>
-            <form action="" onSubmit={handleOnSubmit}>
+            {data.age && <div className="answer">
+                <p>
+                    My fullname is {data.fname} {data.lname}. <br />
+                    I am {data.age} years old. <br />
+                    I am {data.profession} person.
+                    I use these tools {data.tools} in my daily work. <br />
+                    And here is my story: <br />  "{data.mystory}" <br />
+
+                    Thank you,<br />
+                    {data.fname}.
+                </p>
+            </div>}
+            <form action={handleAction} sonSubmit="handleOnSubmit">
                 <label htmlFor="fname">Firstname: </label>
                 <input type="text" id="fname" name="fname" />
 
@@ -48,15 +69,15 @@ export default function Form() {
                 <fieldset>
                     <legend>The tools you use:</legend>
 
-                    <label htmlFor="computer"><input type="checkbox" id="computer" name="tools" value="computer"/>Computer</label>
+                    <label htmlFor="computer"><input type="checkbox" id="computer" name="tools" value="computer" />Computer</label>
 
-                    <label htmlFor="notebook"><input type="checkbox" id="notebook" name="tools" value="notebook"/>Notebook</label>
+                    <label htmlFor="notebook"><input type="checkbox" id="notebook" name="tools" value="notebook" />Notebook</label>
 
-                    <label htmlFor="headset"><input type="checkbox" id="headset" name="tools" value="headset"/>Headset</label>
+                    <label htmlFor="headset"><input type="checkbox" id="headset" name="tools" value="headset" />Headset</label>
 
-                    <label htmlFor="printer"><input type="checkbox" id="printer" name="tools" value="printer"/>Printer</label>
+                    <label htmlFor="printer"><input type="checkbox" id="printer" name="tools" value="printer" />Printer</label>
 
-                    <label htmlFor="television"><input type="checkbox" id="television" name="tools" value="television"/>Television</label>
+                    <label htmlFor="television"><input type="checkbox" id="television" name="tools" value="television" />Television</label>
                 </fieldset>
 
                 <button>Submit</button>
