@@ -16,8 +16,9 @@ header{
   align-items: center;
   justify-content: center;
   height: 100px;
-  box-shadow: 0 2px 10px 5px rgb(6, 241, 178);
+  box-shadow: 0 1px 50px 10px rgba(0, 0, 0, 0.327);
   background-color: white;
+  margin-bottom: 20px;
 }
 
 .logo{
@@ -26,13 +27,14 @@ header{
 
 main{
   text-align: center;
-  margin: 30px 0 10px;
+  margin: 50px 0 10px;
 }
 
 form{
   display: flex;
   justify-content: center;
   height: 50px;
+  gap: 5px;
 
 }
 
@@ -47,4 +49,36 @@ input{
 form button{
   font-family: inherit;
   font-size: inherit;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  background-color: rgb(6, 241, 178);
+  font-weight: bolder;
+  box-shadow: 0 1px 15px 3px rgba(0, 0, 0, 0.142);
+}
+
+form button::before{
+  content: "+";
+  margin-right: 5px;
+}
+
+form button:hover{
+  background-color: rgba(6, 241, 178, 0.547);
+}
+
+form button:active{
+  background-color: rgba(6, 241, 178, 0.547);
+  box-shadow: 0 1px 15px 3px rgba(0, 0, 0, 0.059);
+}
+
+
+.ingredient-list{
+  margin: 30px auto;
+  width: 450px;
+  text-align: left;
+}
+
+.ingredient-list li{
+  list-style: none;
+  margin: 10px 0;
 }
