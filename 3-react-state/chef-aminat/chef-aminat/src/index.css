@@ -52,8 +52,8 @@ form button{
   border-radius: 5px;
   border: none;
   padding: 10px;
-  background-color: rgb(6, 241, 178);
-  font-weight: bolder;
+  background-color:rgba(153, 50, 204, 0.582);
+  font-weight:600;
   box-shadow: 0 1px 15px 3px rgba(0, 0, 0, 0.142);
 }
 
@@ -63,11 +63,11 @@ form button::before{
 }
 
 form button:hover{
-  background-color: rgba(6, 241, 178, 0.547);
+  background-color: rgba(153, 50, 204, 0.505);
 }
 
 form button:active{
-  background-color: rgba(6, 241, 178, 0.547);
+  background-color: rgba(153, 50, 204, 0.505);
   box-shadow: 0 1px 15px 3px rgba(0, 0, 0, 0.059);
 }
 
@@ -81,4 +81,44 @@ form button:active{
 .ingredient-list li{
   list-style: none;
   margin: 10px 0;
+}
+
+.cta-box{
+  width: 450px;
+  margin: 0 auto;
+  display: flex;
+  background-color: rgba(6, 241, 178, 0.241);
+  height: 100px;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.cta-box p{
+  text-align: left;
+  width: 70%;
+}
+
+.cta-box button{
+  text-align: right;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: rgb(6, 241, 178);
+  font-weight: bolder;
+
+}
+
+.recipe-box{
+  text-align: left;
+  margin: 30px auto;
+  width: 450px;
+}
+
+.recipe-box li{  
+  margin: 10px 0;
+}
+
+.recipe-box h3{
+  margin-top: 30px;
 }
