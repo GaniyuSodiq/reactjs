@@ -1,8 +1,12 @@
 import React from "react";
 
 export default function Main() {
-  const [ingredientArr, setIngredientArr] = React.useState(["Maggi", "Rice"]);
+  const [ingredientArr, setIngredientArr] = React.useState([]);
   const ingredients = ingredientArr.map((ing) => <li key={ing}>{ing}</li>);
+  const [recipeShown, setRecipeShown] = React.useState(false)
+  function toggleRecipeShown(){
+    setRecipeShown(prev => !prev)
+  }
 
   function addIngredient(formData) {
     const newIngredient = formData.get("ingredient");
@@ -23,20 +27,19 @@ export default function Main() {
         <button>Add Ingredient</button>
       </form>
 
-      <div className="ingredient-list">
+      {ingredientArr.length > 0 && <div className="ingredient-list">
         <h2>Ingredients List:</h2>
         <ul>{ingredients}</ul>
-      </div>
+      </div>}
 
-      <div className="cta-box">
+      {ingredientArr.length > 3 && <div className="cta-box">
         <p>
-          Send the ingredients to Chef Aminat to give you the{" "}
-          <em>best recipe</em> to make the <em>sweetest food</em> possible.
+          Send the ingredients to Chef Aminat to give you the <em>best recipe</em> to make the <em>sweetest food</em> possible.
         </p>
-        <button>Get Recipe</button>
-      </div>
+        <button onClick={toggleRecipeShown}>Get Recipe</button>
+      </div>}
 
-      <div className="recipe-box">
+      {recipeShown && <div className="recipe-box">
         <h4>Ingredients to use:</h4>
         <ul>
           <li>2 Cubes of Maggi</li>
@@ -75,7 +78,7 @@ export default function Main() {
             then let it rest for 10-15 minutes before serving.
           </li>
         </ol>
-      </div>
+      </div>}
     </main>
   );
 }

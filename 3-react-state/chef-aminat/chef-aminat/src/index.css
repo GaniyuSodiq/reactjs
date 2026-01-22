@@ -27,7 +27,7 @@ header{
 
 main{
   text-align: center;
-  margin: 50px 0 10px;
+  margin: 70px 0 10px;
 }
 
 form{
@@ -106,7 +106,10 @@ form button:active{
   border-radius: 5px;
   background-color: rgb(6, 241, 178);
   font-weight: bolder;
+}
 
+.cta-box button:hover{
+  background-color: rgb(1, 212, 156);
 }
 
 .recipe-box{
