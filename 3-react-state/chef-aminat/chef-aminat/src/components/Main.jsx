@@ -1,20 +1,49 @@
 import React from "react";
 
 export default function Main() {
+  // const key = Math.random() * Math.random();
+  // const key = IDgenerator();
+  // this do not work as expected
+  // all the keys keep taking the new one generated
+
+  function IDgenerator() {
+    return Math.random() * Math.random();
+  }
+
+  const [count, setCount] = React.useState(0);
   const [ingredientArr, setIngredientArr] = React.useState([]);
-  const ingredients = ingredientArr.map((ing) => <li key={ing}>{ing}</li>);
-  const [recipeShown, setRecipeShown] = React.useState(false)
-  function toggleRecipeShown(){
-    setRecipeShown(prev => !prev)
+
+  const ingredients = ingredientArr.map(function (ing) {
+    const key = IDgenerator();
+    return (
+      <li key={key} id={key}>
+        <span>{ing}</span>{" "}
+        <span className="delete" onClick={() => removeIngredient(key)}></span>
+      </li>
+    );
+  });
+  const [recipeShown, setRecipeShown] = React.useState(false);
+  function toggleRecipeShown() {
+    setRecipeShown((prev) => !prev);
   }
 
   function addIngredient(formData) {
+    // setCount((prevCount) => prevCount + 1);
     const newIngredient = formData.get("ingredient");
     setIngredientArr((prevIngredientArr) => [
       ...prevIngredientArr,
       newIngredient,
     ]);
+    console.log(ingredients);
   }
+
+  function removeIngredient(ingredientToRemove) {
+    console.log(`Clicked ${ingredientToRemove}`);
+    setIngredientArr((prevIngArr) =>
+      prevIngArr.filter((ing) => ing.id === !ingredientToRemove),
+    );
+  }
+
   return (
     <main>
       <form action={addIngredient}>
@@ -27,58 +56,66 @@ export default function Main() {
         <button>Add Ingredient</button>
       </form>
 
-      {ingredientArr.length > 0 && <div className="ingredient-list">
-        <h2>Ingredients List:</h2>
-        <ul>{ingredients}</ul>
-      </div>}
+      {ingredientArr.length > 0 && (
+        <div className="ingredient-list">
+          <h2>Ingredients List:</h2>
+          <ul>{ingredients}</ul>
+        </div>
+      )}
 
-      {ingredientArr.length > 3 && <div className="cta-box">
-        <p>
-          Send the ingredients to Chef Aminat to give you the <em>best recipe</em> to make the <em>sweetest food</em> possible.
-        </p>
-        <button onClick={toggleRecipeShown}>Get Recipe</button>
-      </div>}
+      {ingredientArr.length > 3 && (
+        <div className="cta-box">
+          <p>
+            Send the ingredients to Chef Aminat to give you the{" "}
+            <em>best recipe</em> to make the <em>sweetest food</em> possible.
+          </p>
+          <button onClick={toggleRecipeShown}>Get Recipe</button>
+        </div>
+      )}
 
-      {recipeShown && <div className="recipe-box">
-        <h4>Ingredients to use:</h4>
-        <ul>
-          <li>2 Cubes of Maggi</li>
-          <li>2 Cups of Rice</li>
-          <li>1 Liter of Water</li>
-          <li>5 Spoons of Pepper</li>
-          <li>5 Spoons of Oil</li>
-          <li>Meat and Fish</li>
-        </ul>
-        <h3>Recipe Steps:</h3>
-        <ol>
-          <li>
-            Blend the Pepper Base: Blend tomatoes, red bell peppers, onions,
-            scotch bonnet peppers, garlic, and ginger into a smooth paste.
-          </li>
-          <li>
-            Fry the Tomato Paste and Base: Heat oil in a large pot, sauté
-            onions, then add tomato paste and fry for a few minutes until it
-            darkens. Add the blended pepper mixture and cook until reduced and
-            the oil separates.
-          </li>
-          <li>
-            Season the Sauce: Add curry powder, thyme, bay leaves, bouillon
-            cubes, and salt to the tomato mixture, stirring to combine.
-          </li>
-          <li>
-            Add Rice and Stock: Stir in thoroughly rinsed, uncooked, long-grain
-            parboiled rice until fully coated, then add chicken or beef stock.
-          </li>
-          <li>
-            Seal and Steam: Cover the pot with aluminum foil to trap steam, then
-            add the lid, and cook on low heat for 20-30 minutes.
-          </li>
-          <li>
-            Stir and Rest: Once the rice is tender, stir it gently to fluff,
-            then let it rest for 10-15 minutes before serving.
-          </li>
-        </ol>
-      </div>}
+      {recipeShown && (
+        <div className="recipe-box">
+          <h4>Ingredients to use:</h4>
+          <ul>
+            <li>2 Cubes of Maggi</li>
+            <li>2 Cups of Rice</li>
+            <li>1 Liter of Water</li>
+            <li>5 Spoons of Pepper</li>
+            <li>5 Spoons of Oil</li>
+            <li>Meat and Fish</li>
+          </ul>
+          <h3>Recipe Steps:</h3>
+          <ol>
+            <li>
+              Blend the Pepper Base: Blend tomatoes, red bell peppers, onions,
+              scotch bonnet peppers, garlic, and ginger into a smooth paste.
+            </li>
+            <li>
+              Fry the Tomato Paste and Base: Heat oil in a large pot, sauté
+              onions, then add tomato paste and fry for a few minutes until it
+              darkens. Add the blended pepper mixture and cook until reduced and
+              the oil separates.
+            </li>
+            <li>
+              Season the Sauce: Add curry powder, thyme, bay leaves, bouillon
+              cubes, and salt to the tomato mixture, stirring to combine.
+            </li>
+            <li>
+              Add Rice and Stock: Stir in thoroughly rinsed, uncooked,
+              long-grain parboiled rice until fully coated, then add chicken or
+              beef stock.
+            </li>
+            <li>
+              Seal and Steam: Cover the pot with aluminum foil to trap steam,
+              then add the lid, and cook on low heat for 20-30 minutes.
+            </li>
+            <li>
+              Stir and Rest: Once the rice is tender, stir it gently to fluff,
+              then let it rest for 10-15 minutes before serving.
+            </li>
+          </ol>
+        </div>
+      )}
     </main>
   );
 }
