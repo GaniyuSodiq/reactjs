@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <section>
+
+    </section>
+
+    <script>
+        // HERE IS THE JSON IN THE SERVER ADDRESS
+        /** 
+         * 
+         {
+  "squadName" : "Super Hero Squad",
+  "homeTown" : "Metro City",
+  "formed" : 2016,
+  "secretBase" : "Super tower",
+  "active" : true,
+  "members" : [
+    {
+      "name" : "Molecule Man",
+      "age" : 29,
+      "secretIdentity" : "Dan Jukes",
+      "powers" : [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+      ]
+    },
+    {
+      "name" : "Madame Uppercut",
+      "age" : 39,
+      "secretIdentity" : "Jane Wilson",
+      "powers" : [
+        "Million tonne punch",
+        "Damage resistance",
+        "Superhuman reflexes"
+      ]
+    },
+    {
+      "name" : "Eternal Flame",
+      "age" : 1000000,
+      "secretIdentity" : "Unknown",
+      "powers" : [
+        "Immortality",
+        "Heat Immunity",
+        "Inferno",
+        "Teleportation",
+        "Interdimensional travel"
+      ]
+    }
+  ]
+}
+         * 
+         */
+
+        // FIRST LETS GET THE SUPERHEROES OBJ FROM THE SERVER
+        // fetch(new Request(URL))
+
+        // const response = await fetch(new Request(URL))
+        async function populate() {
+            const requestURL = "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json"
+            const request = new Request(requestURL)
+
+            const response = await fetch(request) // THIS GETS THE JSON and save it int the variable; response. BUT JS CANT WORK WITH JSON
+            const superHeroes = await response.json() // THIS CONVERT THE JSON TO OBJ more like JSON.parse(response)
+
+            populateHeader(superHeroes)
+            populateHeroes(superHeroes)
+        }
+
+        function populateHeader(obj) {
+            const header = document.querySelector("header")
+            const myH1 = document.createElement("h1")
+            myH1.textContent = obj.squadName
+            header.appendChild(myH1)
+            const myPara = document.createElement("p")
+            myPara.textContent = `Hometown: ${obj.homeTown} // Formed: ${obj.formed}`
+            header.appendChild(myPara)
+        }
+
+        function populateHeroes(obj) {
+            const section = document.querySelector("section")
+            const heroes = obj.members
+
+            for (const hero of heroes) {
+                const article = document.createElement("article")
+                const myH2 = document.createElement("h2")
+                const heroPara1 = document.createElement("p")
+                const heroPara2 = document.createElement("p")
+                const heroPara3 = document.createElement("p")
+                const superPowerList = document.createElement("ul")
+
+                myH2.textContent = hero.name
+                article.appendChild(myH2)
+                heroPara1.textContent = `Secret Identity: ${hero.secretIdentity}`
+                article.appendChild(heroPara1)
+                heroPara2.textContent = `Age: ${hero.age}`
+                article.appendChild(heroPara2)
+                heroPara3.textContent = `Superpowers:`
+                article.appendChild(heroPara3)
+
+                const powers = hero.powers
+                for (const power of powers) {
+                    const pow = document.createElement("li")
+                    pow.textContent = power
+                    superPowerList.appendChild(pow)
+                    article.appendChild(superPowerList)
+                }
+
+                section.appendChild(article)
+            }
+        }
+
+        populate()
+    </script>
+</body>
+
+</html>
