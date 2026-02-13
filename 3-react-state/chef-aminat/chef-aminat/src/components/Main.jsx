@@ -10,11 +10,15 @@ export default function Main() {
     return Math.random() * Math.random();
   }
 
-  const [count, setCount] = React.useState(0);
+  // const [count, setCount] = React.useState(0);
   const [ingredientArr, setIngredientArr] = React.useState([]);
-
+  let count = 0
   const ingredients = ingredientArr.map(function (ing) {
-    const key = IDgenerator();
+    // const key = IDgenerator();
+    // const key = ingredientArr.length;   
+    // let count = 0 
+    // const key = count + 1
+    const key = count++
     return (
       <li key={key} id={key}>
         <span>{ing}</span>{" "}
@@ -22,6 +26,9 @@ export default function Main() {
       </li>
     );
   });
+
+  console.log(ingredients);
+
   const [recipeShown, setRecipeShown] = React.useState(false);
   function toggleRecipeShown() {
     setRecipeShown((prev) => !prev);
@@ -34,16 +41,32 @@ export default function Main() {
       ...prevIngredientArr,
       newIngredient,
     ]);
-    console.log(ingredients);
   }
 
+  // prevIngArr.filter((ingre) => ingre === !ingredientArr[ingredientToRemove]),
   function removeIngredient(ingredientToRemove) {
     console.log(`Clicked ${ingredientToRemove}`);
     setIngredientArr((prevIngArr) =>
-      prevIngArr.filter((ing) => ing.id === !ingredientToRemove),
+      prevIngArr.filter((ingre) => ingre !== ingredientArr[ingredientToRemove]),
     );
   }
+ // BUG TO FIX LETER 
+ // now that i am able to remove the ingredient from the list, another issue arise
+ // if there are 2 or more same ingredient on the list, removing one removes the rest
+ // how will I fix this?
+ // i feel making the array and array of objects would do that bcs
+ // i cant think of a way to remove with arr.lenght here
+ // prevIngArr.filter((ingre) => ingre !== ingredientArr[ingredientToRemove])
+ // but i can remove with .id etc
 
+
+ // FEATURE TO ADD NOW - implement AI
+ // i want to send the list of ingredient to Hugging face AI and get out jsx or recipe
+ // how?
+ // i will use my screensaver problem solving technique steps
+ // i want to send a list of ingredients to HF and get it to produce recipe
+ // how do i connect to HF api?
+ // how do I query AI from my code
   return (
     <main>
       <form action={addIngredient}>
