@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing with APIs</title>
+</head>
+
+<body>
+    <img src="" alt="">
+    <h1></h1>
+
+    <script>
+        // const img = document.querySelector("img")
+        // const apiKeyGiphy = "jZxSiuF3NaPMgDSlcp8Z8s6jlOpL9ZWc"
+        // const apiKeyWheather = "G5NHULAYP3G5EFWZLZY32WER3"
+        // let city = 'lagos'
+        // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${apiKeyWheather}`
+        // const urlRequest = new Request(url)
+
+        // fetch(urlRequest).then(response => response.json()).then(response)
+
+
+        // fetch("https://api.giphy.com/v1/gifs/translate?api_key=jZxSiuF3NaPMgDSlcp8Z8s6jlOpL9ZWc&s=cats").then(function (response) { return response.json() }).then(function(response){console.log(response)})
+
+
+        // fetch('https://api.giphy.com/v1/gifs/translate?api_key=bb2006d9d3454578be1a99cfad65913d&s=cat', { mode: 'cors' })
+        //     .then(function (response) {
+        //         return response.json()
+        //     })
+        //     .then(function (response) {
+        //         img.src = response.data.images.original.url
+        //         console.log(response.data.images.original.url)
+        //     })
+        //     .catch(e => {
+        //         console.log(e)
+        // })
+
+
+        // const bigText = document.querySelector("h1")
+
+        // const apiKeyGiphy = "jZxSiuF3NaPMgDSlcp8Z8s6jlOpL9ZWc"
+        // const apiKeyWheather = "G5NHULAYP3G5EFWZLZY32WER3"
+        // let city = 'lagos'
+        // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/lagos?key=G5NHULAYP3G5EFWZLZY32WER3`
+        
+
+        // fetch(url).then( function(response){
+        //         return response.json()
+        //     }
+        // ).then(
+        //     response => console.log(response)
+        // )
+
+       
+ // display cat image in the image
+        // display description in the h1
+    
+  // const img = document.querySelector("img")
+        // const apiKeyGiphy = "jZxSiuF3NaPMgDSlcp8Z8s6jlOpL9ZWc"
+        // const apiKeyWheather = "G5NHULAYP3G5EFWZLZY32WER3"
+        // let city = 'lagos'
+        // const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${apiKeyWheather}`
+
+
+        const img = document.querySelector("img")
+        const myH1= document.querySelector("h1")
+
+        const apiKeyGiphy = "jZxSiuF3NaPMgDSlcp8Z8s6jlOpL9ZWc"
+        const apiKeyWheather = "G5NHULAYP3G5EFWZLZY32WER3"
+        let city = 'Iseyin'
+
+        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${apiKeyWheather}`
+
+        const fetchData = fetch(url)
+
+        fetchData.then(function(response){
+            return response.json()
+        }).then(function(response){
+            myH1.textContent =  `${city} has temperature of ${response.currentConditions.temp} degrees and condition of ${response.currentConditions.conditions}`
+            console.log(response)
+        })
+
+        
+
+        const fetchGiphData = fetch("https://api.giphy.com/v1/gifs/translate?api_key=jZxSiuF3NaPMgDSlcp8Z8s6jlOpL9ZWc&s=cats")
+
+        fetchGiphData.then(function(res){
+            return res.json()
+        }).then(function(res){
+            console.log(res)
+            img.src = res.data.images.original.url
+        }).catch(function(err){
+            console.log(err)
+        })
+
+        console.log("last line in the editor")
+    </script>
+</body>
+
+</html>
