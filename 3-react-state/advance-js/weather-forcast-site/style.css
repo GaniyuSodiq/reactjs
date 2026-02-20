@@ -82,3 +82,33 @@ header{
     display: flex;
     font-size: 1.5rem;
 }
+
+
+/* MIDDLE SECTION */
+.top-section{
+    display: flex;
+    justify-content: space-between;
+    height: 60vh;
+    align-items: center;
+}
+
+.section-lhs h2{
+    font-size: 4rem;
+}
+
+.middle-image{
+    font-size: 20rem;
+}
+
+.today-temp{
+    font-size: 6rem;
+}
+
+
+
+/* BASE section */
+.base-section .next-three-days{
+    display: flex;
+    justify-content:center;
+    gap: 30px;
+}
