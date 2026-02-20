@@ -1,0 +1,84 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* BODY */
+body{
+    background-color: rgb(105, 182, 229);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* CONTAINER */
+.container-header{
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+.container{
+    padding: 20px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+
+/* HEADER */
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO */
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo h1{
+    font-size: .95rem;
+}
+
+.logo-img{
+    font-size: 2.5rem;
+}
+
+.site-menus ul{
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+.site-menus ul a{
+    text-decoration: none;
+    color: white
+}
+
+.site-menus ul a:hover{
+    text-decoration: underline;
+}
+
+
+.time, .date{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.time h4, .date h4{
+    font-size: .7rem;
+}
+
+.time-date{
+    display: flex;
+    gap: 20px;
+}
+
+.time-date span{
+    display: flex;
+    font-size: 1.5rem;
+}
