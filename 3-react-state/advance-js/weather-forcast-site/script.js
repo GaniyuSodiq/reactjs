@@ -1,4 +1,3 @@
-
 // GET ALL THE CHANGING PARTS OF THE PAGE
 
 const hourAndMinuteTag = document.getElementById("time-hour-minute")
@@ -7,6 +6,7 @@ const amOrpmTag = document.getElementById("am-or-pm")
 const dayAndMonth = document.getElementById("day-and-month")
 const year = document.getElementById("year")
 
+// CALCULATE THE TIME AND DATE EVERY SECOND
 setInterval(()=>{
     const time = new Date()
     // LETS GET THE HOURS AND MINUTES
@@ -79,9 +79,12 @@ setInterval(()=>{
 // Remember that when you see a weather forecast on TV, in a newspaper or on the radio, that anything from 20 degrees upwards is going to be warm, above 25 degrees is hot, above 30 degrees is very hot. Below 20 is cool, below 10 degrees is cold, and below zero degrees means that it will be icy outside as the water will freeze and it will feel very cold outside.
 
 
-async function getWeatherData(city) {
+async function getWeatherData() {
+    const city = "Lagos"
+    const api_key =  "G5NHULAYP3G5EFWZLZY32WER3"
+
     try {
-        const url = `url-${city}-${apikey}`
+        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${api_key}`
         const response = await fetch(url)
         const weatherData = await response.json()
         // START USING WEATHER DATA
