@@ -2,10 +2,11 @@
 
 const hourAndMinuteTag = document.getElementById("time-hour-minute")
 const amOrpmTag = document.getElementById("am-or-pm")
-
 const dayAndMonth = document.getElementById("day-and-month")
 const year = document.getElementById("year")
+const formButton = document.getElementById("formButton")
 
+let city = "Lagos"
 // CALCULATE THE TIME AND DATE EVERY SECOND
 setInterval(()=>{
     const time = new Date()
@@ -18,7 +19,7 @@ setInterval(()=>{
     const hourAndMinute = `${hour}:${minute}`
     hourAndMinuteTag.textContent = hourAndMinute
     amOrpmTag.textContent = amOrpm
-    console.log(hourAndMinute + amOrpm)
+    //console.log(hourAndMinute + amOrpm)
 
     // LETS GET THE MONTH AND DAY
     const getDay = time.getDate()
@@ -69,9 +70,19 @@ setInterval(()=>{
     dayAndMonth.textContent = `${getDay} ${getMonth}`
     year.textContent = getYear
 
-    console.log(`${getDay} ${getMonth} ${getYear}`)
+    //console.log(`${getDay} ${getMonth} ${getYear}`)
 }, 1000)
 
+
+// GET THE CITY FROM THE FORM
+formButton.addEventListener("click", function(e){
+    e.preventDefault()
+    const searchCity = document.getElementById("search-city")
+    city = searchCity.value 
+    searchCity.value = ""
+    console.log(city)
+    getWeatherData()
+})
 
     // G5NHULAYP3G5EFWZLZY32WER3
     // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London,UK?key=YOUR_API_KEY
@@ -80,7 +91,6 @@ setInterval(()=>{
 
 
 async function getWeatherData() {
-    const city = "Lagos"
     const api_key =  "G5NHULAYP3G5EFWZLZY32WER3"
 
     try {
@@ -88,8 +98,28 @@ async function getWeatherData() {
         const response = await fetch(url)
         const weatherData = await response.json()
         // START USING WEATHER DATA
-
+        console.log(weatherData)
+        renderData(weatherData)
     } catch (error) {
         // print the error on screen
     }
 }
+
+
+// RENDER TO SCREEN WHAT WE GET FROM DATA API
+function renderData(weatherObj){
+    const locationTempDes = document.getElementById("location-temp")
+    const todayDescription = document.querySelector(".today-description")
+    const forcastDescription = document.querySelector(".forcast-description")
+    const todayTempNumber = document.getElementById("today-temp-number")
+
+    locationTempDes.textContent = `${city}'s temperature today is:`
+    todayDescription.textContent = weatherObj.currentConditions.conditions
+    forcastDescription.textContent = weatherObj.description
+
+    const tempInFahrenheit = weatherObj.currentConditions.temp
+    const tempInCelcius = Math.round((tempInFahrenheit -32) * (5/9))
+    todayTempNumber.textContent = tempInCelcius
+}
+
+getWeatherData()
