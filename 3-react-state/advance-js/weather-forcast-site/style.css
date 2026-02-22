@@ -105,7 +105,11 @@ form button{
     background-color: lightgreen;
 }
 
-
+#error{
+    color: orange;
+    font-weight: bolder;
+    font-size: medium;
+}
 
 /* MIDDLE SECTION */
 .top-section{
