@@ -1,5 +1,5 @@
 // GET ALL THE CHANGING PARTS OF THE PAGE
-
+const htmlBody = document.querySelector("body")
 const hourAndMinuteTag = document.getElementById("time-hour-minute");
 const amOrpmTag = document.getElementById("am-or-pm");
 const dayAndMonth = document.getElementById("day-and-month");
@@ -127,16 +127,28 @@ function renderData(weatherObj) {
 
   if (tempInCelcius > 19 && tempInCelcius < 26){
     middleImage.textContent = "🌤️"
+    htmlBody.style.backgroundColor = "#e88104"
+    htmlBody.style.color = "#191818"
   } else if (tempInCelcius > 25 && tempInCelcius < 31){
     middleImage.textContent = "☀️"
+    htmlBody.style.backgroundColor = "#e26702"
+    htmlBody.style.color = "#1a0000"
   } else if (tempInCelcius > 30){
     middleImage.textContent = "🔥"
+    htmlBody.style.backgroundColor = "#ff0000"
+    htmlBody.style.color = "#150000"
   } else if (tempInCelcius < 20 && tempInCelcius > 10){
-    middleImage.textContent = "🌧️"
+    middleImage.textContent = "🌨️"
+    htmlBody.style.backgroundColor = "#99dff7"
+    htmlBody.style.color = "#0c0b0b"
   } else if (tempInCelcius < 10 && tempInCelcius > 0){
     middleImage.textContent = "☃️"
+    htmlBody.style.backgroundColor = "#80abf4"
+    htmlBody.style.color = "#0b0a0a"
   } else if (tempInCelcius < 0){
     middleImage.textContent = "🥶"
+    htmlBody.style.backgroundColor = "#00bbff"
+    htmlBody.style.color = "#000000"
   }
 
   // days[0].temp   fahreheitToCelcius(weatherObj.days[0].temp) 
