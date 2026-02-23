@@ -6,6 +6,12 @@ const dayAndMonth = document.getElementById("day-and-month");
 const year = document.getElementById("year");
 const formButton = document.getElementById("formButton");
 const errorPara = document.getElementById("error")
+const dayOneTemp = document.getElementById("day-one-temp-h2")
+const dayOneTempDate = document.getElementById("day-one-temp-date")
+const dayTwoTemp = document.getElementById("day-two-temp-h2")
+const dayTwoTempDate = document.getElementById("day-two-temp-date")
+const dayThreeTemp = document.getElementById("day-three-temp-h2")
+const dayThreeTempDate = document.getElementById("day-three-temp-date")
 let city = "Lagos";
 
 // CALCULATE THE TIME AND DATE EVERY SECOND
@@ -80,13 +86,13 @@ formButton.addEventListener("click", function (e) {
   const searchCity = document.getElementById("search-city");
   city = searchCity.value;
   searchCity.value = "";
-  console.log(city);
+  //console.log(city);
   getWeatherData();
 });
 
 async function getWeatherData() {
   const api_key = "G5NHULAYP3G5EFWZLZY32WER3";
-
+  errorPara.textContent = ""
   try {
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${api_key}`;
     const response = await fetch(url);
@@ -97,6 +103,10 @@ async function getWeatherData() {
     // print the error on screen
     errorPara.textContent = error
   }
+}
+
+function fahreheitToCelcius(tempInFahrenheit){
+  return Math.round((tempInFahrenheit - 32) * (5 / 9))
 }
 
 // RENDER TO SCREEN WHAT WE GET FROM DATA API
@@ -111,9 +121,9 @@ function renderData(weatherObj) {
   todayDescription.textContent = weatherObj.currentConditions.conditions;
   forcastDescription.textContent = weatherObj.description;
 
-  const tempInFahrenheit = weatherObj.currentConditions.temp;
-  const tempInCelcius = Math.round((tempInFahrenheit - 32) * (5 / 9));
-  todayTempNumber.textContent = tempInCelcius;
+  // const tempInFahrenheit = weatherObj.currentConditions.temp;
+  const tempInCelcius = fahreheitToCelcius(weatherObj.currentConditions.temp)  
+  todayTempNumber.textContent = tempInCelcius
 
   if (tempInCelcius > 19 && tempInCelcius < 26){
     middleImage.textContent = "🌤️"
@@ -128,6 +138,14 @@ function renderData(weatherObj) {
   } else if (tempInCelcius < 0){
     middleImage.textContent = "🥶"
   }
+
+  // days[0].temp   fahreheitToCelcius(weatherObj.days[0].temp) 
+  dayOneTemp.textContent =  fahreheitToCelcius(weatherObj.days[0].temp) 
+  dayOneTempDate.textContent = weatherObj.days[0].datetime
+  dayTwoTemp.textContent =  fahreheitToCelcius(weatherObj.days[1].temp) 
+  dayTwoTempDate.textContent = weatherObj.days[1].datetime
+  dayThreeTemp.textContent =  fahreheitToCelcius(weatherObj.days[2].temp) 
+  dayThreeTempDate.textContent = weatherObj.days[2].datetime
 }
 
 getWeatherData();
