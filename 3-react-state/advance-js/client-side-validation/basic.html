@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorite Fruit Start</title>
     <style>
-        input:invalid{
-            border: 2px dashed red;
-        }
 
-        input:valid{
-            border: 2px solid black;
-        }
     </style>
 </head>
+
 <body>
-    <form action="">
-        <label for="choose">Would you prefer banana or cherry?</label>
-        <input type="text" id="choose" name="i_like">
-        <button>Submit</button>
+    <form>
+        <form action="">
+            <p>Please complete all required (*) fields</p>
+            <fieldset>
+                <legend>Do you have a driver's license? *</legend>
+                <input type="radio" id="r1" name="driver" value="yes" required>
+                <label for="r1">Yes</label>
+                <input type="radio" id="r2" name="driver" value="no" required>
+                <label for="r2">No</label>
+            </fieldset>
+            <p>
+                <label for="n1">How old are you?</label>
+                <input type="number" id="n1" name="age" min="12" max="120" step="1">
+            </p>
+
+            <p>
+                <label for="t1">What is your favourite fruit? *</label>
+                <input type="text" id="t1" list="l1" pattern="[Cc]herry|[Bb]anana|[Ss]trawberry|[Mm]ango|[Oo]range"
+                    name="fruit" required>
+                <datalist id="l1">
+                    <option value="Cherry">Cherry</option>
+                    <option value="Banana">Banana</option>
+                    <option value="Strawberry">Strawberry</option>
+                    <option value="Mango">Mango</option>
+                    <option value="Orange">Orange</option>
+                </datalist>
+
+            <p>
+                <label for="t2">What's your email address?</label>
+                <input type="email" name="email" id="t2">
+            </p>
+
+            <p>
+                <label for="t3">Leave a short message</label>
+                <textarea name="msg" id="t3" maxlength="140" rows="5"></textarea>
+            </p>
+            </p>
+
+            <p><button>Submit</button></p>
+        </form>
     </form>
 </body>
+
 </html>
