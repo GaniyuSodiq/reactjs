@@ -6,12 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorite Fruit Start</title>
     <style>
+        /* body{
+            display: flex;
+            justify-content: center;
+        }
+        form{
+            max-width: 320px;
+            font: 1em sans-serif;
+        }
 
+        p > label{
+            display: block;
+        }
+
+        input[type = "text"],
+        input[type = "email"],
+        input[type = "number"],
+        textarea,
+        fieldset{
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid green;
+        }
+
+        input:invalid{
+            box-shadow: 0 0 5px 1px red;
+        }
+
+        input:focus:invalid{
+            box-shadow: none;
+        } */
+    
+        body{
+            font: 1em sans-serif;
+            padding: 0;
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        p *{
+            display: block;
+        }
+
+        input[type="email"]{
+            appearance: none;
+
+            width: 100%;
+            border: 1px solid #333333;
+            margin: 0;
+
+            box-sizing: border-box;
+
+            font-size: 90%;
+            font: inherit;
+        }
+
+        input:invalid{
+            border: 1px solid #990000;
+            background-color: #ffdddd;
+        }
+
+        input:focus:invalid{
+            outline: none;
+        }
+
+        .error{
+            width: 100%;
+            padding: 0;
+
+            font-size: 80%;
+            color: white;
+
+            background-color: #990000;
+            border-radius: 0 0 5px 5px;
+
+            box-sizing: border-box;
+        }
+
+        .error.active{
+            padding: .3em;
+        }
     </style>
 </head>
 
 <body>
-    <form>
+    <!-- <form>
         <form action="">
             <p>Please complete all required (*) fields</p>
             <fieldset>
@@ -51,7 +130,77 @@
 
             <p><button>Submit</button></p>
         </form>
+    </form> -->
+
+    <form action="" novalidate>
+        <!-- <label for="email">I would like you to rpovide me with an Eamil address</label>
+        <input type="email" name="email" id="email">
+        <button>Submit</button> -->
+        <p>
+            <label for="email">
+                <span>Please enter an email address *:</span>
+                <input type="email" id="email" name="email" minlength="8" required>
+                <span class="error" aria-live="polite"></span>
+            </label>
+        </p>
+        <button>Submit</button>
     </form>
+
+    <script>
+        // const email = document.getElementById("email")
+
+        // email.addEventListener("input", (event)=>{
+        //     if (email.validity.typeMismatch){
+        //         email.setCustomValidity("I am expecting an email address!")
+        //     } else{
+        //         email.setCustomValidity("")
+        //     }
+        // })
+
+        // email.addEventListener("input", (event)=>{
+        //     email.setCustomValidity("")
+
+        //     if (!email.validity.valid){
+        //         return
+        //     }
+
+        //     if (!email.value.endsWith("@example.com")){
+        //         email.setCustomValidity("You have to use a mail that ends with @example.com")
+        //     }
+        // })
+    
+        const form = document.querySelector("form")
+        const email = document.getElementById("email")
+        const emailError = document.querySelector("#email + span.error")
+
+        email.addEventListener("input", (event)=>{
+            if (email.validity.valid){
+                emailError.textContent = ""
+                emailError.className = "error"
+            } else{
+                showError()
+            }
+        })
+
+        function showError(){
+            if (email.validity.typeMismatch){
+                emailError.textContent = "Entered value needs to be an email address"
+            } else if (email.validity.valueMissing){
+                emailError.textContent = "You need to enter an email address"
+            } else if (email.validity.tooShort){
+                emailError.textContent = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}`
+            }
+
+            emailError.className = "error active"
+        }
+
+        form.addEventListener("submit", (event)=>{
+            if (!email.validity.valid){
+                showError()
+                event.preventDefault()
+            }
+        })
+    </script>
 </body>
 
 </html>
