@@ -1,0 +1,543 @@
+<!-- by the end of this responsive class, u will be able to build website that works on 4k monitor, a tiny smart phone and evrything in between.
+
+⭐RULE NUMBER 1
+think inside the box. 
+to plan and design your layout, you need to think interms of boxes bcs everything u see on a website is just a box.
+
+There is a big box that act as the main parent. then you have 2 boxes inside the parent inside the parent. the first box, or child - if we are tchnically more accurate- contain 4 more boxes.
+
+So if you imagine it like a top down family three.
+there is a main parent with 2 children and the first child has 4 children
+You only need to undertand this parent child relationship to create responsive layout
+
+Can u answer why does the main parent has 2 children, why cant we wrap all the 4 grandchildren and the second, as 5 direct children of the parent?
+
+Well it is bcs these boxes have certain properties that control how they are displayed in the layout. To properly plan a responsive layout, you have to know these properties.
+
+The first one is Display
+and you can do alot of things with it.
+
+# display: none
+does exactly what it says. completely removes a box from the layout.
+# display: inline
+stays in the same line and only takes as much with as it needs
+# display: block
+is default of most element. block element start from a new line and take up the full width available
+# display: inline-block 
+is a mix of inline and block. it let boxes sit side by side like inline element. but still allows you set with height, padding, margin like block element
+# display: flex
+you apply to a rapent box. this turns the parent into a flex container and its children into flex-items. by default, the children act like inline-block elements. but flex box give powerfull tool to arrange the children as a row or column. and make it much easier to managment spacing, alignment etc
+# display: grid
+Just like flex box, makes the parent a grid container. And the children grid-items. It is mainly used for structure, grid like layout where u need precise layout over rows and columns. while flex box is better for flexible layout. in many cases, you use flex box or grid depending on what fits best.
+
+
+for example: we have these 6 boxes with random sizes. As you would have on a real website-->
+
+<!--  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex HTML</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>display: block</h1>
+    <div class="parent">
+        <div class="children">Ok sure bcs everyone needs a paragraph of how great Mondays are. Truly the Hightlight of the week, cant wait</div>
+        <div class="children">Wow, another day another email, revitting stuff. Really</div>
+        <div class="children">BIG News. Coffee is still bitter</div>
+        <div class="children">BREAKING: The fridge is still empty again. Groudbreaking again. Someone call the press. Or maybe just order pizza</div>
+        <div class="children">Oh look another paragraph about exciting life it. It is not. But hey, at least there is Wi-Fi</div>
+        <div class="children">BTW why you reading all these?</div>
+    </div>
+</body>
+</html>
+
+-->
+
+
+<!-- 
+By default, these boxes will adapt to different screen sizes, as they are block elements. And will fill the apace available.
+
+But we have 2 issues with this default behaviour.
+Firstly the boxes with smaller content and are just wasting the spave on the rhs
+Secondly the bigger boxes looks hard to read bcs we dont like to read longer text.
+
+To fix this issue, we will use rule number 2
+-->
+
+<!-- 
+⭐RULE NUMBER 2
+
+Think in rows and colums
+
+As we have seen, everything inside a website is just a box. Similarly, every single design canbe broken down into rows and columns
+
+The width and number of columns will increase with screen width. and the boxes will move into them resulting in a reponsive layout.
+
+So as the screen with increases, the number of columns too increase likewise when the width reduces, the number of columms reduce.
+
+Becasue in a way, responsive layout is mostly about dynamically moving boxes into different rows and columns.
+-->
+
+<!-- 
+Currently, every box start in a a new row.
+lets change that by applying display: flex on the parent
+that will align all the boxes in the row direction. and applying gap will create equal margins between them.
+
+.parent{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+We probably dont need 6 colums so lets set flex wrap to wrap, which is set to no wrap by default. wrap make sure each box takes up only enough width for its content.
+
+Now we technically have a responsive layout and in some cases, this is all you need. But it leaves empty spaces around the design bcs boxes with smaller content have shrinked to house just what is in them, which makes the design chaotic and ugly at the edges
+
+to fix this, we are going to look into 3 more properties that are crucial in designing responsive layout. they have 0, 1, auto by default.
+
+.children{
+    flex-grow: 0; // FALSE
+    flex-shrink: 1; // TRUE
+    flex-basis: auto;
+}
+
+As you have guessed, 0 means false, and 1 means true
+
+flex grow will decide whether items will grow to fill the empty spaces or not. If we set it to 1, items will fill the empty spaces
+
+similarly, if we set flex shrink to 0, the boxes stop shrinking even when we run out of space. Shrink makes the boxes shrink by making a new line for longer text/content. But 0 just make the entire content to take up as much withd as it can.
+
+flex basis is a parcentage value and set the starting size for these boxes. Kind of like setting a min-width. If i set it to 0 then each box stat at 0 width. And space is ditributed proportionaly by flex grow. You will see this clearly when I set flex grow to false (0)
+
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 0%;
+
+For our case, we want the boxes to start at their original size then grow or shrink according based on the available the space.
+this is the most used combination when you want a flexible layout
+
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+
+And it can be written in a single line like this
+
+    flex: 1 1 auto;
+
+
+Now lets see if we can achive this flexible layout using grid.
+-->
+
+<!-- 
+To create grid container, we use display: grid on the parent
+Just display: grid makes no changes to that we can see until we give the parent gap. Grid is not as dramatic as flexbox, by deualt grid, you get a single column just like diplay block. You have to tell it to create columns like this.
+
+    grid-template-columns: 1fr 1fr;
+
+fr is short for fraction, so you are telling it to create 2 columns of 50% width each. If you do 1fr 2fr, you are creating 3 columns and assigning the right columns to 2 fractions and the first to 1 fraction. Similarly, you can put 20% 80% to make them 20 and 80% screen sizes.
+
+    grid-template-columns: 20% 80%;
+
+what you cant do is create flexible column. You can use a repeat funtion with auto fill and min max, but this still looks like a grid
+
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+
+But ths still looks like a grid. If you really want to, you can manually set a pan value on bigger children.
+
+.parent {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+}
+
+.children:nth-child(1),
+.children:nth-child(4),
+.children:nth-child(5) {
+    grid-column: span 3;
+}
+
+But this is still no where near what we have with flex-box.
+
+So if you want a flexible layout: USE FLEXBOX
+
+And when you want full control over the children and you want them to behave exactly how you want them to, use grid.
+-->
+
+
+<!-- 
+Wheather you use flexbox or grid, the design can be broken into rowns and colum.
+
+Think flex box and grid like a parent who owns the house. and all children get their own rooms.
+
+Flex is that cool parent where the children have more freedom as they get to choose their room size and location.
+
+Whereas in the grid house, they are more disciplined and obey their parent.
+
+What we have above is just a small summary of glexbox and grid
+-->
+
+<!-- 
+⭐RULE NUMBER 3
+Design first build later
+
+I dont man a pixel perfect or polish design. You dont even need to open figma if you dont want to.
+
+You just need a rough idea about the layout and how everything will respond on different screen sizes.
+
+say you want to show a pricing section with 3 options, on mobile devices you will have one column and desktop u'll have 3 but what about the middle.
+
+Or if you have a side bar, how will it appear on a mobile device. Should you just toggle it or completely show a different UI. Doing all this directly in a code editor is time consuming so it is very easy to settle for good enough solution.
+
+So whenever you create a new project, first sketch how the final design will look and respond to different screen sizes.
+
+Once you have a design or at least a rough idea on how things will behave on different breakpoints, then we can start coding.
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="hamburger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12" />
+                    <line x1="4" x2="20" y1="6" y2="6" />
+                    <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+            </button>
+            <h2>Dashboard</h2>
+        </div>
+        <div class="header-middle">
+            <input type="text" placeholder="Search..." class="search-bar" />
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+            </svg>
+        </div>
+        <div class="header-right">
+            <button class="btn magic-btn" aria-label="Magic Button">
+                <svg class="magic-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                </svg>
+                <span class="magic-text">Magic</span>
+            </button>
+            <img src="https://assets.codepen.io/10662311/internal/avatars/users/default.png" alt="profile-picture"
+                class="profile-pic" />
+        </div>
+    </header>
+    <div class="container">
+        <aside class="show-sidebar">
+            <a href="#" class="sidebar-links">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                    <path
+                        d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                </svg>
+                Home
+            </a>
+            <a href="#" class="sidebar-links">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 7v14" />
+                    <path
+                        d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+                </svg>
+                Reports
+            </a>
+            <a href="#" class="sidebar-links active-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+                    <path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7" />
+                </svg>
+                Analytics
+            </a>
+            <a href="#" class="sidebar-links">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 21a8 8 0 0 0-16 0" />
+                    <circle cx="10" cy="8" r="5" />
+                    <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+                </svg>
+                Community
+            </a>
+            <a href="#" class="sidebar-links">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="14" x="2" y="5" rx="2" />
+                    <line x1="2" x2="22" y1="10" y2="10" />
+                </svg>
+                Billing
+            </a>
+            <a href="#" class="sidebar-links">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                    <circle cx="12" cy="12" r="3" />
+                </svg>
+                Settings
+            </a>
+        </aside>
+        <div class="main-layout">
+            <main>
+                <div class="main-top">
+                    <div class="analytics">
+                        <h3>Analytics</h3>
+                        <div class="analytics-duration shine">
+                            <p>Last 28 days</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="price-chart shine">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                </div>
+                <div class="main-bottom">
+                    <div class="main-bottom-left">
+                        <h3>Overview</h3>
+                        <table class="shine">
+                            <tr>
+                                <th>Quarter</th>
+                                <th>Revenue</th>
+                                <th>Growth</th>
+                            </tr>
+                            <tr>
+                                <td>Q1 - Last</td>
+                                <td>$3680</td>
+                                <td class="growth">
+                                    <svg class="arrow-up-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 18v-6H5l7-7 7 7h-4v6H9z" />
+                                    </svg>
+                                    <span>$69</span>
+                                </td>
+                            </tr>
+                            <tr class="active-quarter">
+                                <td>Q2 - Current</td>
+                                <td>$4680</td>
+                                <td class="growth">
+                                    <svg class="arrow-up-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 18v-6H5l7-7 7 7h-4v6H9z" />
+                                    </svg>
+                                    <span>$420</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="main-bottom-right">
+                        <h3>Predictions</h3>
+                        <table class="shine">
+                            <tr>
+                                <th>Quarter</th>
+                                <th>Revenue</th>
+                                <th>Growth</th>
+                            </tr>
+                            <tr>
+                                <td>Q3 - Next</td>
+                                <td>$5600</td>
+                                <td class="growth">
+                                    <svg class="arrow-up-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 18v-6H5l7-7 7 7h-4v6H9z" />
+                                    </svg>
+                                    <span>$389</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Q4 - Upcoming</td>
+                                <td>$2600</td>
+                                <td class="growth">
+                                    <svg class="arrow-down-icon" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M15 6v6h4l-7 7-7-7h4V6h6z" />
+                                    </svg>
+                                    <span>$1769</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </main>
+            <section class="stats">
+                <div class="analytics">
+                    <h3>Stats</h3>
+                    <div class="analytics-duration shine">
+                        <p>Last 28 days</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="stats-top shine">
+                    <div>
+                        <div class="stats-top-duration">
+                            <span>TT1</span><span>384/1000</span>
+                        </div>
+                        <meter class="stats-tt" value="0.384"></meter>
+                    </div>
+                    <div>
+                        <div class="stats-top-duration">
+                            <span>TT2</span><span>649/1000</span>
+                        </div>
+                        <meter class="stats-tt" value="0.649"></meter>
+                    </div>
+                </div>
+                <div class="stats-bottom">
+                    <div class="recent-transactions">
+                        <p class="links">Recent Transactions</p>
+                        <a href="#">See all</a>
+                    </div>
+                    <table class="shine">
+                        <tr class="stats-bottom-table">
+                            <th>Source</th>
+                            <th>Amount</th>
+                        </tr>
+                        <tr>
+                            <td>PayPal</td>
+                            <td>$4000</td>
+                        </tr>
+                        <tr>
+                            <td>Stripe</td>
+                            <td>$2500</td>
+                        </tr>
+                        <tr>
+                            <td>Chase Bank</td>
+                            <td>$7800</td>
+                        </tr>
+                        <tr>
+                            <td>Wells Fargo</td>
+                            <td>$3200</td>
+                        </tr>
+                        <tr>
+                            <td>Venmo</td>
+                            <td>$1500</td>
+                        </tr>
+                        <tr>
+                            <td>Zelle</td>
+                            <td>$6700</td>
+                        </tr>
+                        <tr>
+                            <td>Square</td>
+                            <td>$5400</td>
+                        </tr>
+                        <tr>
+                            <td>Bank of America</td>
+                            <td>$8900</td>
+                        </tr>
+                        <tr>
+                            <td>Google Pay</td>
+                            <td>$2300</td>
+                        </tr>
+                        <tr>
+                            <td>Apple Pay</td>
+                            <td>$4100</td>
+                        </tr>
+                        <!-- <tr>
+                <td>Citibank</td>
+                <td>$7600</td>
+              </tr> -->
+                        <!-- <tr>
+                <td>Amazon Pay</td>
+                <td>$3400</td>
+              </tr>
+              <tr>
+                <td>HSBC</td>
+                <td>$6200</td>
+              </tr> -->
+                        <!-- <tr>
+                <td>Ally Bank</td>
+                <td>$2900</td>
+              </tr>
+              <tr>
+                <td>Capital One</td>
+                <td>$4800</td>
+              </tr>
+              <tr>
+                <td>Cash App</td>
+                <td>$3700</td>
+              </tr>
+              <tr>
+                <td>PNC Bank</td>
+                <td>$5200</td>
+              </tr> -->
+                    </table>
+                </div>
+            </section>
+            <div class="cards">
+                <div class="analytics">
+                    <h3>Cards</h3>
+                    <div class="analytics-duration shine">
+                        <p>All</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <div class="card shine">
+                        <p class="bank-name">Bank of Valentine</p>
+                        <p class="card-number">4320 6942 4820 9669</p>
+                        <p class="small">VALIDITY <span>12/25</span></p>
+                        <p class="card-balance">$ 1,063.40</p>
+                        <p class="card-holder">ARTHUR MORGAN</p>
+                    </div>
+                    <div class="card shine">
+                        <p class="bank-name">Bank of Saint Denis</p>
+                        <p class="card-number">5214 7896 1234 5678</p>
+                        <p class="small">VALIDITY <span>11/26</span></p>
+                        <p class="card-balance">$ 23,849.00</p>
+                        <p class="card-holder">DUTCH VAN DER LINDE</p>
+                    </div>
+                    <div class="card shine">
+                        <p class="bank-name">Bank of Rhodes</p>
+                        <p class="card-number">6789 4321 8765 4321</p>
+                        <p class="small">VALIDITY <span>08/27</span></p>
+                        <p class="card-balance">$ 420.00</p>
+                        <p class="card-holder">MICAH BELL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
