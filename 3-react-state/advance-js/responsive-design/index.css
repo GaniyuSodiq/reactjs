@@ -1,6 +1,6 @@
 /* Responsive CSS */
 
-header {
+/* header {
     display: flex;
     justify-content: space-between;
     position: sticky;
@@ -57,16 +57,84 @@ table {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1rem;
+} */
+/*media queries for responsive design
+. */
+/* @media (max-width: 50rem) {
+    .search-bar {
+        display: none;
+    }
+
+    .header-middle {
+        flex-grow: 0;
+        margin-left: auto;
+        margin-right: 1.5rem;
+    }
+
+    .magic-text {
+        display: none;
+    }
+
+    aside {
+        position: absolute;
+        top: 0;
+        left: -2.5%;
+        background: var(--color-bg-dark);
+        padding: 0 5% 0 2.5%;
+        height: 100vh;
+    }
+} */
+
+
+/* THE ABOVE IS THE COMPLETE RESPONSIVE CODE 
+
+commenting it out makes the boxes on the page appear block, line by line
+
+Lets start by fixing the header
+We talked about boxes, parent child relationship and rows/columns.
+
+Header is the parent and has 3 separate columns, so we use the columns as the children. And that brings us to rule number 4
+
+Rule number 4 - 
+Name your children carefully
+
+to apply any css, you are going to name them anyway. Why not use a name that is unique and more descriptive. That way it will easier to debug the code later. And you will aviod name conflicts aswell.
+
+So we have a header that has 3 children.
+*/
+header {
+    display: flex;
+    justify-content: space-between;
+    border: var(--parent);
 }
 
-/* .
-.
-.
-\
+.header-middle {
+    border: var(--child);
+    flex-grow: 1;
+    max-width: 25%;
+}
 
-media queries for responsive design
-.
-. */
+/* 
+As you have guessed, we are using flex to align the side by side
+
+And to distribute them evenly, we use justify-content: spacebetween
+distributes the leftover space evenly between the children
+Very handy for responsive layout
+
+Then we have another useful property that we talked about ealiear. Flex grow will allow the middle child to grow for ever. But max-width will caution it with 25% of the parent at max.
+
+Flex and Grid can only take you sofar
+on a very smaller screen, this side by side arrangement doesnt work.
+
+And that brings us to the final rule: Use @media to add complexity.
+*/
+
+/* 
+FINAL RULE: Use @media to add complexity.
+Media Queries let u apply diferent css properties based on a specific condition.
+
+for this video, we are going to use the screen width condition. 
+*/
 @media (max-width: 50rem) {
     .search-bar {
         display: none;
@@ -91,6 +159,146 @@ media queries for responsive design
         height: 100vh;
     }
 }
+
+/* 
+if I set a max width and set some basic css, the browser will switch to this css when the condition is true.
+
+We can hid the sidebar and stop it from growing by setting flex grow back to 0
+
+Then use the margin auto property to send it to the right.
+And dsiplay none to hide the magic text
+
+This is pretty simple but very powerfult to achieve complex behaviour.
+*/
+
+/* 
+Speaking of complex behaviour,
+We want the main UI to sit right next to the sidebar.
+Any idea on how to do that? 
+You must be thinking by using Flex or Grid.
+
+There is only one right answer. We want the side bar on the left. And the main UI to be on the right, filling the big space.
+
+Does it look like flexible layout or grid?
+Here is a bonus rule.
+Use flex-box until proven grid-y. by default use flexbox for everything. 
+*/
+
+.container {
+    border: var(--parent);
+    display: flex;
+    gap: 4rem;
+}
+
+.container>* {
+    border: var(--child);
+}
+
+.main-layout {
+    flex-grow: 1;
+}
+
+/* 
+so we have a main container which is the parent for the main section.
+
+Can you tell the imediate children? think about it or a second
+
+We want the side bar on the left and the main UI on the right.
+So ofcorse we need 2 children. Display flex to aligh the children.
+
+flex-grow of 1 for the main UI bcs we want the main UI to cover everything. and some gap to keep things clear
+
+and some basic css and javascript to toggle sidebar
+*/
+
+/* // Toggle sidebar
+
+const hamburger = document.querySelector(".hamburger");
+const sidebar = document.querySelector("aside");
+
+hamburger.addEventListener("click", () => {
+  sidebar.classList.toggle("show-sidebar");
+  sidebar.classList.toggle("hide-sidebar");
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth < 800) {
+    sidebar.classList.remove("show-sidebar");
+    sidebar.classList.add("hide-sidebar");
+  }
+}); 
+
+*/
+
+/* 
+The design is perfect on bigger screen but looks awkward on smaller screen.
+
+So instead of shifting the UI, we can put the sidebar above the UIso it doesnt interfare with the rest of the layout.
+
+And to do that, we are going to use the position property
+
+like we are doing with display, you can use position to describe how this boxes are placed on the screen
+
+position static
+By default evry box just flow in a normal document order
+
+position relative
+is also the same as static but you unlock 4 more properties to move the box. top, botttom, left, right
+
+position absolute
+absolute is abit more dramatic and completely removes the box from the normal flow but you can control it by asigning any none staic value, like relative,  to the parent
+
+position fixed
+Fixed is almost identical to absolute but you dont need any parent to control its positioning. As the name suggests, fixed boxes are always fix on screen and dont move on scroll.
+
+position sticky
+sticky is a bit tricky. It will stay in the document flow and scroll normally but then stick to the position you assigned to it. This exactly what we did with our header and side bar
+make sure u set alig-self as flex-start on sticky element if the parent is a flexbox. it is just one of those little things that makes you love css even more
+
+Dont forget we dont want the sidevar to break the design on smaller screen. Thats why we take it out of the document flow on @media (max-width: 50rem) 
+*/
+
+
+/* sidebar */
+aside {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 80px;
+    gap: 2rem;
+    z-index: 10;
+    align-self: flex-start;
+}
+
+.show-sidebar {
+    display: flex;
+}
+
+.hide-sidebar {
+    display: none;
+}
+
+.sidebar-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.active-link {
+    font-weight: 700;
+}
+
+.active-link svg {
+    stroke-width: 2;
+}
+
+/* 
+
+And that is all the media query we will need for this project
+*/
+
+
+
 
 /* Rest of the CSS */
 /* reset */
@@ -303,35 +511,7 @@ header {
     margin-top: 1rem;
 }
 
-/* sidebar */
-aside {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    z-index: 10;
-}
 
-.show-sidebar {
-    display: flex;
-}
-
-.hide-sidebar {
-    display: none;
-}
-
-.sidebar-links {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.active-link {
-    font-weight: 700;
-}
-
-.active-link svg {
-    stroke-width: 2;
-}
 
 .analytics {
     display: flex;
