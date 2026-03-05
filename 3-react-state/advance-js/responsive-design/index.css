@@ -135,30 +135,7 @@ Media Queries let u apply diferent css properties based on a specific condition.
 
 for this video, we are going to use the screen width condition. 
 */
-@media (max-width: 50rem) {
-    .search-bar {
-        display: none;
-    }
 
-    .header-middle {
-        flex-grow: 0;
-        margin-left: auto;
-        margin-right: 1.5rem;
-    }
-
-    .magic-text {
-        display: none;
-    }
-
-    aside {
-        position: absolute;
-        top: 0;
-        left: -2.5%;
-        background: var(--color-bg-dark);
-        padding: 0 5% 0 2.5%;
-        height: 100vh;
-    }
-}
 
 /* 
 if I set a max width and set some basic css, the browser will switch to this css when the condition is true.
@@ -188,6 +165,7 @@ Use flex-box until proven grid-y. by default use flexbox for everything.
     border: var(--parent);
     display: flex;
     gap: 4rem;
+    position: relative;
 }
 
 .container>* {
@@ -196,6 +174,14 @@ Use flex-box until proven grid-y. by default use flexbox for everything.
 
 .main-layout {
     flex-grow: 1;
+    display: flex;
+    border: var(--parent);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.main-layout > * {
+    border: var(--child);
 }
 
 /* 
@@ -294,9 +280,84 @@ aside {
 
 /* 
 
-And that is all the media query we will need for this project
+And that is all the media query we will need for this project.
+But the design in still breaking and that is bcs of 2 reasons.
+
+First, the cascading part of CSS
+So it is recommended to move all your media query to the end, so you dont accidentally ovride something
+
+Second, is a very common issue with absolute positioning. We applied it on the child but the parent still have the static position by default. So lets add a relative position to the container that holds our side bar and the main UI.
+
+Speaking of main-layout, I am going to make it a flexbox and see what happens plus a border and gap to make things abit clear.
+
+I chose 3 children to achieve the responsive behavour i made in the sketch. Usually before writing any HTML you should create a family tree of the HTML content. draw out the main conatiner, the arrangement of its children and grand children. 
+
+Define every parent-child relationship in an easy to understand format so u can come back to reference the document hierachy to fix any issue.
+
+Currently, we have many issues with our main UI
+the first one is the empty space on the right so we set flex grow to 1 on all children.
+
+This solves our issue, but if you noticed closely, stats and cards are not growing. It is a very gotcha behaviour of flexbox.
+Just bcs there is room to grow, doesnt mean all the items will grow equally. 
+
+at first flex baes is et to auto on all 3 childrens. So the flexbox algorithm do some calculations and give the letover space to the bigger child. 
+
+In our case we have assigned width 100% to the main child so it can respond to our screen size. But we can still control the layout however we want. 
+
+For example we can set the flex basis to a fixed value like 300px 
+This make everything grow equally, but the child is the most important part o the UI. I will set flex grow to take 2 values. Actually we can set flex grow to a bigger number as it is actually a proportional unit and comes in very handy for responsive layout 
 */
 
+main {
+    flex: 3 1 300px;
+}
+
+.stats {
+    flex: 1 1 300px;
+}
+
+.cards {
+    flex: 1 1 300px;
+}
+
+/* 
+Lets fix our table so they grow to fill the small empty space.
+
+On bigger screen, the overview and predictions table can be set on a single row. We can use flex or grid whatever we want. But lets use Grid this time.
+
+we start by setting display to grid and adding a gap to space things out. And to create our columns, we declare grid template column with the repeat function that takes 2 values.
+
+How many columns we want and their size. we want them to auto-fit and the size can go from 400 to full width.
+
+But that might overflow on smaller screen, so lets use a min function to handle that.
+
+This might look way complicated than flex box. Yes it is but it is also super useful
+
+
+take the cards section for exmample. I have used the same repeat function or the column.
+
+First lets et flex wrap to wrap on the main layout so the boxes can actually wrap into the next line.
+
+And bcs we used grid, you got same size card whether it is one column, 2 column 0r 3 coulmn layout.
+
+And with that, we've got a fully responsive UI that works on 4k monitor tiniest mobile phone and everything in between.
+*/
+
+.main-bottom {
+    color: var(--color-text-light);
+    margin-top: 3rem;
+    border: var(--parent);
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit , minmax(min(400px, 100%), 1fr));
+}
+
+.cards {
+    border: var(--parent);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit , minmax(min(300px, 100%), 1fr));
+}
 
 
 
@@ -511,8 +572,6 @@ header {
     margin-top: 1rem;
 }
 
-
-
 .analytics {
     display: flex;
     justify-content: space-between;
@@ -656,4 +715,29 @@ tr:last-child td {
 .card-holder {
     font-weight: 500;
     letter-spacing: 0.15rem;
+}
+
+@media (max-width: 50rem) {
+    .search-bar {
+        display: none;
+    }
+
+    .header-middle {
+        flex-grow: 0;
+        margin-left: auto;
+        margin-right: 1.5rem;
+    }
+
+    .magic-text {
+        display: none;
+    }
+
+    aside {
+        position: absolute;
+        top: 0;
+        left: -2.5%;
+        background: var(--color-bg-dark);
+        padding: 0 5% 0 2.5%;
+        height: 100vh;
+    }
 }
